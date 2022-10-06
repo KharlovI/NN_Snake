@@ -144,12 +144,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
+    <ClCompile Include="Genotyp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Utilits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
+    <ClInclude Include="Genotyp.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="Utilits.h" />
   </ItemGroup>

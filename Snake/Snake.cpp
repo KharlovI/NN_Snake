@@ -31,7 +31,7 @@ Snake::Snake()
 	this->snake.push_back(head);
 	SetStartPositionSnake();							// ѕрисваиваем голове рандомную позицию
 
-	this->score = 0;
+	this->countOfApple = 0;
 	this->isAlive = 1;
 
 }
@@ -49,7 +49,6 @@ bool Snake::FrameIsWall()
 
 	return 0;
 }
-
 bool Snake::FrameIsBody()
 {
 	const int snakeLenth = this->snake.size();
@@ -155,7 +154,7 @@ void Snake::SetIsAliveStatus()
 
 void Snake::IncrementScore()
 {
-	this->score++;
+	this->countOfApple++;
 }
 
 void Snake::AddElementToBody(sf::Vector2f newPosition)
@@ -171,4 +170,41 @@ void Snake::AddElementToBody(sf::Vector2f newPosition)
 char Snake::GetDirection()
 {
 	return this->direction;
+}
+
+float Snake::GetTotalScore()
+{
+	return this->totalScore;
+}
+
+Genotyp& Snake::GetGenotyp()
+{
+	return this->genotyp;
+}
+
+Genotyp* GetBestParrents(Snake generation[])
+{
+	float maxValue1 = generation[0].GetTotalScore();
+	float maxValue2 = 0;
+
+	int position1 = 0;
+	int position2 = 0;
+
+	float currentValue;
+
+	for (int i = 1; i < 100; i++)
+	{
+		currentValue = generation[i].GetTotalScore();
+
+		if (currentValue > maxValue1)
+		{
+			maxValue2 = maxValue1;
+			position2 = position1;
+
+			maxValue1 = currentValue;
+			position1 = i;
+		}
+	}
+
+	Genotyp temp[2] = { generation[position1].GetGenotyp(), generation[position2].GetGenotyp()};
 }
