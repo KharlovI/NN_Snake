@@ -1,9 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include "Utilits.h"
-#include <iostream>
+
+//#include"Matrix.h"
+//#include <iostream>
 
 int main()
 {
+	srand(time(NULL));
+
 	int deley = 100;
 	int counter = 0;
 	char imposibleDirection;

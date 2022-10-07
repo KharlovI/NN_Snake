@@ -27,9 +27,6 @@
     <ClCompile Include="Apple.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Genotyp.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>

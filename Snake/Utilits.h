@@ -1,5 +1,4 @@
 #pragma once
-#include "Apple.h"
 #include "Snake.h"
 
 bool FrameISApple(Apple& apple, Snake& snake);

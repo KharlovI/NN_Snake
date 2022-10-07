@@ -2,6 +2,7 @@
 #include"SFML/Graphics.hpp"
 #include <vector>
 #include"Genotyp.h"
+#include "Apple.h"
 
 /// <Заметка>
 /// 1) Сделать выбор направления
@@ -20,6 +21,7 @@ private:
 
 	std::vector <sf::RectangleShape> snake;
 
+	int generation;
 	Genotyp genotyp;
 
 	int countOfApple;
@@ -31,7 +33,7 @@ private:
 
 public:
 
-	Snake();
+	Snake();															// 20 змей
 
 	bool FrameIsWall();
 	bool FrameIsBody();
@@ -39,6 +41,7 @@ public:
 	void Move();
 
 
+	void SetGenotyp(int genertion, Snake parents[]);					// 20 змей
 	void SetDirection(char dir);
 	void SetStartPositionSnake();
 	void SetIsAliveStatus();
@@ -64,9 +67,9 @@ public:
 
 	// Сделать !!!!
 
-	float DistanceToWall();
-	float DistanceToTail();
-	float DistanceToApple();
+	int DistanceToWall(char direction);
+	int DistanceToTail(char direction);
+	int DistanceToApple(char direction, Apple& apple);
 };
 
 Genotyp* GetBestParrents(Snake generation[]);

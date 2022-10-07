@@ -4,11 +4,10 @@
 class Genotyp
 {
 private:
-	Matrix firstLayer{5,10};
-	Matrix secondLayer{3,5};
-	int generation;
+	Matrix firstLayer{10,5};				// первый слой весов 
+	Matrix secondLayer{5,3};				// второй слой весов 
 public:
-
-	Genotyp(int generation); // if(generation == 0) заполняем матрицы случайными весами 
+	Genotyp();
+	Genotyp(int generation, Genotyp bestParents[]); // if(generation == 0) заполняем матрицы случайными весами 
 	Row GetStepPosobility(Row& inputs);
 };
