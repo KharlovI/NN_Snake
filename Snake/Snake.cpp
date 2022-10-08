@@ -138,7 +138,7 @@ std::vector<sf::RectangleShape>& Snake::GetSnake()
 {
 	return this->snake;
 }
-sf::Vector2f     Snake::GetNextPosition()
+sf::Vector2f Snake::GetNextPosition()
 {
 	const int headIndex = this->snake.size() - 1;
 
