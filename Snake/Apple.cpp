@@ -1,6 +1,6 @@
 #include "Apple.h"
 
-struct Coordinats
+struct Coordinates
 {
 	int x;
 	int y;

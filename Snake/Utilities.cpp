@@ -1,6 +1,6 @@
 #include "Utilities.h"
 
-struct Coordinats
+struct Coordinates
 {
 	int x;
 	int y;
@@ -22,7 +22,7 @@ void SetPositionApple(Apple& apple, Snake& snake)
 
 	int position[20] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 };
 
-	std::vector<Coordinats> notFreePositions;
+	std::vector<Coordinates> notFreePositions;
 
 	int xTemp;
 	int yTemp;
