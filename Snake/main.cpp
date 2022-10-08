@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Utilits.h"
+#include "Utilities.h"
 
 //#include"Matrix.h"
 //#include <iostream>
@@ -8,19 +8,19 @@ int main()
 {
 	srand(time(NULL));
 
-	int deley = 100;
+	int delay = 100;
 	int counter = 0;
-	char imposibleDirection;
-	char lustPosibleDirection;
+	char impossibleDirection;
+	char lastPossibleDirection;
 
-	sf::RenderWindow window(sf::VideoMode(800, 800), "Lesson 1. kychka-pc.ru");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "Snake With AI");
 
 	Snake snake{};
 	Apple apple{};
 
 	SetPositionApple(apple, snake);
 
-	lustPosibleDirection = snake.GetDirection();
+    lastPossibleDirection = snake.GetDirection();
 
 	while (window.isOpen())
 	{
@@ -33,37 +33,37 @@ int main()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			if (snake.GetDirection() != 'R')
 			{
-				if (imposibleDirection != 'L')
-					lustPosibleDirection = 'L';
+				if (impossibleDirection != 'L')
+                    lastPossibleDirection = 'L';
 			}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			if (snake.GetDirection() != 'D')
 			{
-				if (imposibleDirection != 'U')
-					lustPosibleDirection = 'U';
+				if (impossibleDirection != 'U')
+                    lastPossibleDirection = 'U';
 			}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			if (snake.GetDirection() != 'L')
 			{
-				if (imposibleDirection != 'R')
-					lustPosibleDirection = 'R';
+				if (impossibleDirection != 'R')
+                    lastPossibleDirection = 'R';
 			}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			if (snake.GetDirection() != 'U')
 			{
-				if (imposibleDirection != 'D')
-					lustPosibleDirection = 'D';
+				if (impossibleDirection != 'D')
+                    lastPossibleDirection = 'D';
 			}
 
 		window.clear();
 
 		snake.PrintSnake(window);
-		apple.PrintAple(window);
+		apple.PrintApple(window);
 
-		if (counter == deley)
+		if (counter == delay)
 		{
-			snake.SetDirection(lustPosibleDirection);
-			imposibleDirection = snake.GetDirection();
+			snake.SetDirection(lastPossibleDirection);
+            impossibleDirection = snake.GetDirection();
 
 			if (EatApple(apple, snake))
 			{

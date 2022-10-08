@@ -11,7 +11,7 @@ public:
 
 	sf::RectangleShape& GetApple();
 
-	void PrintAple(sf::RenderWindow& window)
+	void PrintApple(sf::RenderWindow& window)
 	{
 		window.draw(this->apple);
 	}

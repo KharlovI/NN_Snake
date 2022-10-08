@@ -1,19 +1,19 @@
 #pragma once
 #include"SFML/Graphics.hpp"
 #include <vector>
-#include"Genotyp.h"
+#include"Genotype.h"
 #include "Apple.h"
 
-/// <Заметка>
-/// 1) Сделать выбор направления
-/// 2) Переделаь движение
-/// 3) Сделать счетчик времени 
-/// 4) Обучение змеи
+/// <пїЅпїЅпїЅпїЅпїЅпїЅпїЅ>
+/// 1) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+/// 2) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+/// 3) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+/// 4) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 /// </summary>
 
 
 
-constexpr int FrameLenth = 40;
+constexpr int FrameLength = 40;
 
 class Snake
 {
@@ -22,7 +22,7 @@ private:
 	std::vector <sf::RectangleShape> snake;
 
 	int generation;
-	Genotyp genotyp;
+	Genotype genotype;
 
 	int countOfApple;
 	float aliveTime;
@@ -33,7 +33,7 @@ private:
 
 public:
 
-	Snake();															// 20 змей
+	Snake();															// 20 пїЅпїЅпїЅпїЅ
 
 	bool FrameIsWall();
 	bool FrameIsBody();
@@ -41,7 +41,7 @@ public:
 	void Move();
 
 
-	void SetGenotyp(int genertion, Snake parents[]);					// 20 змей
+	void SetGenotype(int generation, Snake parents[]);					// 20 пїЅпїЅпїЅпїЅ
 	void SetDirection(char dir);
 	void SetStartPositionSnake();
 	void SetIsAliveStatus();
@@ -53,7 +53,7 @@ public:
 	bool GetAliveStatus();
 	char GetDirection();
 	float GetTotalScore();
-	Genotyp& GetGenotyp();
+	Genotype& GetGenotype();
 
 	void PrintSnake(sf::RenderWindow& window)
 	{
@@ -65,11 +65,11 @@ public:
 
 
 
-	// Сделать !!!!
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ !!!!
 
 	int DistanceToWall(char direction);
 	int DistanceToTail(char direction);
 	int DistanceToApple(char direction, Apple& apple);
 };
 
-Genotyp* GetBestParrents(Snake generation[]);
+Genotype* GetBestParents(Snake generation[]);

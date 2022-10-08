@@ -3,7 +3,7 @@
 Snake::Snake()
 {
 	srand(time(0));
-	const int randValue = rand() % 4;					// Случайное стартовое направление движения 
+	const int randValue = rand() % 4;					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	switch (randValue)
 	{
 	case 0:
@@ -29,18 +29,18 @@ Snake::Snake()
 	head.setSize(sf::Vector2f(40, 40));
 
 	this->snake.push_back(head);
-	SetStartPositionSnake();							// Присваиваем голове рандомную позицию
+	SetStartPositionSnake();							// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	this->countOfApple = 0;
 	this->isAlive = 1;
 
-	//SetGenotyp(generation, parents);
+	//SetGenotype(generation, parents);
 }
 
 bool Snake::FrameIsWall()
 {
-	const int snakeLenth = this->snake.size();
-	sf::Vector2f headPosition = this->snake[snakeLenth - 1].getPosition();
+	const int snakeLength = this->snake.size();
+	sf::Vector2f headPosition = this->snake[snakeLength - 1].getPosition();
 
 
 	if (headPosition.x < 0 || headPosition.y < 0)
@@ -52,14 +52,14 @@ bool Snake::FrameIsWall()
 }
 bool Snake::FrameIsBody()
 {
-	const int snakeLenth = this->snake.size();
-	if (snakeLenth < 4)
+	const int snakeLength = this->snake.size();
+	if (snakeLength < 4)
 		return 0;
 
-	sf::Vector2f headPosition = this->snake[snakeLenth - 1].getPosition();
+	sf::Vector2f headPosition = this->snake[snakeLength - 1].getPosition();
 
 	sf::Vector2f temp;
-	for (int i = 0; i < snakeLenth - 1; i++)								// не учитываем голову 
+	for (int i = 0; i < snakeLength - 1; i++)								// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		temp = this->snake[i].getPosition();
 
@@ -72,25 +72,25 @@ bool Snake::FrameIsBody()
 
 void Snake::Move()
 {
-	const int snakeLenth = this->snake.size();
+	const int snakeLength = this->snake.size();
 
 	sf::Vector2f nextPosition;
-	for (int i = 0; i < snakeLenth - 1; i++)
+	for (int i = 0; i < snakeLength - 1; i++)
 	{
 		nextPosition = this->snake[i + 1].getPosition();
 		this->snake[i].setPosition(nextPosition);
 	}
 
 	sf::Vector2f head = GetNextPosition();
-	this->snake[snakeLenth - 1].setPosition(head);
+	this->snake[snakeLength - 1].setPosition(head);
 }
 
-void Snake::SetGenotyp(int generation, Snake parents[])
+void Snake::SetGenotype(int generation, Snake parents[])
 {
-	Genotyp temp{ generation + 1, GetBestParrents(parents) };
-	this->genotyp = temp;
+	Genotype temp{generation + 1, GetBestParents(parents) };
+	this->genotype = temp;
 }
-void Snake::SetDirection(char dir)							// dir будем получать в мейне 
+void Snake::SetDirection(char dir)							// dir пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ 
 {
 	this->direction = dir;
 }
@@ -101,8 +101,8 @@ void Snake::SetStartPositionSnake()
 	int x;
 	int y;
 
-	x = (rand() % 7 + 7) * FrameLenth;
-	y = (rand() % 7 + 7) * FrameLenth;
+	x = (rand() % 7 + 7) * FrameLength;
+	y = (rand() % 7 + 7) * FrameLength;
 
 	this->snake[0].setPosition(x, y);
 }
@@ -179,13 +179,13 @@ void Snake::AddElementToBody(sf::Vector2f newPosition)
 	this->snake.push_back(newPart);
 }
 
-// Протестить
-Genotyp& Snake::GetGenotyp()
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+Genotype& Snake::GetGenotype()
 {
-	return this->genotyp;
+	return this->genotype;
 }
 
-// Протестить
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int Snake::DistanceToWall(char direction)
 {
 	int answer = 0;
@@ -195,16 +195,16 @@ int Snake::DistanceToWall(char direction)
 	switch (direction)
 	{
 	case 'L':
-		answer = (this->snake[headPosition].getPosition().x) / FrameLenth;
+		answer = (this->snake[headPosition].getPosition().x) / FrameLength;
 		break;
 	case 'U':
-		answer = (this->snake[headPosition].getPosition().y) / FrameLenth;
+		answer = (this->snake[headPosition].getPosition().y) / FrameLength;
 		break;
 	case 'R':
-		answer = (800 - (this->snake[headPosition].getPosition().x)) / FrameLenth;
+		answer = (800 - (this->snake[headPosition].getPosition().x)) / FrameLength;
 		break;
 	case 'D':
-		answer = (800 - (this->snake[headPosition].getPosition().y)) / FrameLenth;
+		answer = (800 - (this->snake[headPosition].getPosition().y)) / FrameLength;
 		break;
 	}
 
@@ -212,7 +212,7 @@ int Snake::DistanceToWall(char direction)
 }
 
 
-// Протестить
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int Snake::DistanceToTail(char direction)
 {
 	const int headPosition = this->snake.size() - 1;
@@ -220,8 +220,8 @@ int Snake::DistanceToTail(char direction)
 	int xHead = this->snake[headPosition].getPosition().x;
 	int yHead = this->snake[headPosition].getPosition().y;
 
-	int answerX = xHead / FrameLenth;
-	int answerY = yHead / FrameLenth;
+	int answerX = xHead / FrameLength;
+	int answerY = yHead / FrameLength;
 
 	switch (direction)
 	{
@@ -230,9 +230,9 @@ int Snake::DistanceToTail(char direction)
 		{
 			if (this->snake[i].getPosition().y == yHead)
 			{
-				if ((xHead - this->snake[i].getPosition().x) / FrameLenth < answerX && xHead - this->snake[i].getPosition().x > 0)
+				if ((xHead - this->snake[i].getPosition().x) / FrameLength < answerX && xHead - this->snake[i].getPosition().x > 0)
 				{
-					answerX = (xHead - this->snake[headPosition].getPosition().x) / FrameLenth;
+					answerX = (xHead - this->snake[headPosition].getPosition().x) / FrameLength;
 				}
 			}
 		}
@@ -244,9 +244,9 @@ int Snake::DistanceToTail(char direction)
 		{
 			if (this->snake[i].getPosition().x == xHead)
 			{
-				if ((yHead - this->snake[i].getPosition().y) / FrameLenth < answerY && xHead - this->snake[i].getPosition().y > 0)
+				if ((yHead - this->snake[i].getPosition().y) / FrameLength < answerY && xHead - this->snake[i].getPosition().y > 0)
 				{
-					answerY = (yHead - this->snake[headPosition].getPosition().y) / FrameLenth;
+					answerY = (yHead - this->snake[headPosition].getPosition().y) / FrameLength;
 				}
 			}
 		}
@@ -259,9 +259,9 @@ int Snake::DistanceToTail(char direction)
 		{
 			if (this->snake[i].getPosition().y == yHead)
 			{
-				if ((this->snake[i].getPosition().x - xHead) / FrameLenth < answerX && this->snake[i].getPosition().x - xHead > 0)
+				if ((this->snake[i].getPosition().x - xHead) / FrameLength < answerX && this->snake[i].getPosition().x - xHead > 0)
 				{
-					answerX = (this->snake[headPosition].getPosition().x - xHead) / FrameLenth;
+					answerX = (this->snake[headPosition].getPosition().x - xHead) / FrameLength;
 				}
 			}
 		}
@@ -274,9 +274,9 @@ int Snake::DistanceToTail(char direction)
 		{
 			if (this->snake[i].getPosition().x == xHead)
 			{
-				if ((yHead - this->snake[i].getPosition().y) / FrameLenth < answerY && xHead - this->snake[i].getPosition().y > 0)
+				if ((yHead - this->snake[i].getPosition().y) / FrameLength < answerY && xHead - this->snake[i].getPosition().y > 0)
 				{
-					answerY = (yHead - this->snake[headPosition].getPosition().y) / FrameLenth;
+					answerY = (yHead - this->snake[headPosition].getPosition().y) / FrameLength;
 				}
 			}
 		}
@@ -286,7 +286,7 @@ int Snake::DistanceToTail(char direction)
 	}
 }
 
-// Протестить
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int Snake::DistanceToApple(char direction, Apple& apple)
 {
 	int answer = 0;
@@ -336,7 +336,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 	}
 }
 
-Genotyp* GetBestParrents(Snake generation[])
+Genotype* GetBestParents(Snake generation[])
 {
 	float maxValue1 = generation[0].GetTotalScore();
 	float maxValue2 = 0;
@@ -360,7 +360,7 @@ Genotyp* GetBestParrents(Snake generation[])
 		}
 	}
 
-	Genotyp temp[2] = { generation[position1].GetGenotyp(), generation[position2].GetGenotyp()};
+	Genotype temp[2] = {generation[position1].GetGenotype(), generation[position2].GetGenotype()};
 
 	return temp;
 }

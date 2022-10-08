@@ -10,11 +10,11 @@
 class Row {
 private:
 	std::vector<double> numbers;
-	int lenth;
+	int length;
 public:
 	Row() {}
 	Row(std::size_t lenth) {
-		this->lenth = lenth;
+		this->length = lenth;
 		numbers = std::vector<double>(lenth, 0);
 	}
 	double operator [](std::size_t i) const {
@@ -63,11 +63,11 @@ public:
 	void set(double value, std::size_t index) {
 		numbers[index] = value;
 	}
-	void setLenth(int lenth) { this->lenth = lenth; }
+	void setLenth(int length) { this->length = length; }
 	double get(std::size_t index) {
 		return numbers[index];
 	}
-	int getLenth() { return this->lenth; }
+	int getLenth() { return this->length; }
 	std::size_t size() {
 		return numbers.size();
 	}
@@ -97,7 +97,7 @@ public:
 
 	void setRandomValues()
 	{
-		for (int i = 0; i < this->lenth; i++)
+		for (int i = 0; i < this->length; i++)
 		{
 			if (rand() % 2 == 0)
 			{
