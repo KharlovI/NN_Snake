@@ -49,7 +49,7 @@ public:
 	void AddElementToBody(sf::Vector2f newPosition);
 
 	std::vector <sf::RectangleShape>& GetSnake();
-	sf::Vector2f& GetNextPosition();
+	sf::Vector2f GetNextPosition();
 	bool GetAliveStatus();
 	char GetDirection();
 	float GetTotalScore();
