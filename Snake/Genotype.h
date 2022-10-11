@@ -4,8 +4,8 @@
 class Genotype
 {
 private:
-	Matrix firstLayer{ 22, 9};					// count of column, rows
-	Matrix secondLayer{10, 3 };					// count of column, rows
+	Matrix firstLayer{ 22, 9 };					// count of column, rows
+	Matrix secondLayer{ 10, 3 };					// count of column, rows
 
 public:
 	Genotype();

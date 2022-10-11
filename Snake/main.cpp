@@ -4,7 +4,7 @@
 //#include"Matrix.h"
 //#include <iostream>
 
-constexpr bool flag = 1;
+constexpr bool flag = 0;
 
 int main()
 {
@@ -12,6 +12,7 @@ int main()
 
 	int delay = 5;
 	int counter = 0;
+    const int countOfSnakes = 100;
 
 	/*char impossibleDirection;
 	char lastPossibleDirection;*/
@@ -19,13 +20,11 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WindowSize, WindowSize), "Snake With AI");
     window.setFramerateLimit(60);
 
-	const int countOfSnakes = 100;
-
 	Snake snake[countOfSnakes];
 	Apple apple[countOfSnakes];
 
 	for (int i = 0; i < countOfSnakes; i++)
-		snake[i].SetPositionApple(apple[i]);
+		snake[i].SetApple(apple[i]);
 
 	//   lastPossibleDirection = snake.GetDirection();
 	   //impossibleDirection = snake.ImposibleDirection();
@@ -102,6 +101,9 @@ int main()
 			{
 				if (snake[i].GetAliveStatus())
 				{
+                    snake[i].PrintSnake(window);
+                    apple[i].PrintApple(window);
+
 					snake[i].MoveAI(apple[i]);
 					snake[i].SetIsAliveStatus();
 					snake[i].IncrementSteps();
@@ -122,7 +124,7 @@ int main()
 			Apple newApples[countOfSnakes];
 
 			for (int i = 0; i < countOfSnakes; i++)
-				snake[i].SetPositionApple(apple[i]);
+				snake[i].SetApple(apple[i]);
 
 			for (int i = 0; i < countOfSnakes; i++)
 			{

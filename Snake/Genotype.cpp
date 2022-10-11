@@ -2,7 +2,7 @@
 
 Row Norm(Row layer)
 {
-	for (int i = 0; i <9; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		if (layer[i] < 0)
 			layer[i] = 0;
@@ -45,7 +45,7 @@ Genotype::Genotype(Genotype* bestParents)
 	{
 		for (int j = 0; j < 22; j++)
 		{
-			if (rand() % 35 == 0)
+			if (rand() % 30 == 0)
 			{
 				if (rand() % 2 == 0)
 					firstLayer[i][j] = 1.f / ((rand() % 100) + 1);
@@ -65,7 +65,7 @@ Genotype::Genotype(Genotype* bestParents)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if (rand() % 40 == 0)
+			if (rand() % 30 == 0)
 			{
 				if (rand() % 2 == 0)
 					secondLayer[i][j] = 1.f / ((rand() % 100) + 1);

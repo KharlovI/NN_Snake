@@ -4,12 +4,13 @@
 class Apple
 {
 private:
-	sf::RectangleShape apple;
+	sf::CircleShape apple;
 
 public:
 	Apple();
 
-	sf::RectangleShape& GetApple();
+	sf::CircleShape& GetApple();
+    void SetColor(sf::Color color);
 
 	void PrintApple(sf::RenderWindow& window)
 	{

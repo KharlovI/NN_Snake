@@ -9,9 +9,11 @@ struct Coordinates
 
 Snake::Snake()
 {
+    this->color = sf::Color(80+rand()%176, 80+rand()%176, 80+rand()%176, this->opacity);
+
 	sf::RectangleShape head;							// Set random weights
 	Genotype temp{};
-	head.setFillColor(sf::Color::Green);
+	head.setFillColor(this->color);
 	head.setSize(sf::Vector2f(FrameLength, FrameLength));
 
 	int randValue = rand() % 4;
@@ -49,7 +51,7 @@ Snake::Snake(Snake* old, int count)
 {
 	sf::RectangleShape head;
 
-	head.setFillColor(sf::Color::Green);
+	head.setFillColor(old->color);
 	head.setSize(sf::Vector2f(FrameLength, FrameLength));
 
 	/*Genotype* best = GetBestParents(old, count);*/
@@ -331,7 +333,7 @@ void Snake::AddElementToBody(sf::Vector2f newPosition)
 {
 	sf::RectangleShape newPart;
 	newPart.setSize(sf::Vector2f(FrameLength, FrameLength));
-	newPart.setFillColor(sf::Color::Green);
+	newPart.setFillColor(this->color);
 	newPart.setPosition(newPosition);
 
 	this->snake.push_back(newPart);
@@ -810,8 +812,10 @@ bool Snake::FrameISApple(Apple& apple)
 	return (nextPosition == apple.GetApple().getPosition());
 }
 
-void Snake::SetPositionApple(Apple& apple)
+void Snake::SetApple(Apple& apple)
 {
+    apple.SetColor(this->color);
+
 	std::vector<Coordinates> notFreePositions;
 	int snakeLength = this->snake.size();
 
@@ -855,7 +859,7 @@ bool Snake::EatApple(Apple& apple)
 		RemoveSteps();
 
 		AddElementToBody(apple.GetApple().getPosition());
-		SetPositionApple(apple);
+		SetApple(apple);
 		return 1;
 	}
 	return 0;

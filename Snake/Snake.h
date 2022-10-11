@@ -12,6 +12,10 @@ class Snake
 private:
 
 	std::vector <sf::RectangleShape> snake;
+    sf::Color color;
+
+    static const int opacity = 128;
+
 	Genotype genotype;
 	int generation;
 
@@ -79,7 +83,7 @@ public:
 	void RemoveSteps();
 	void IncrementSteps();
 
-	void SetPositionApple(Apple& apple);
+	void SetApple(Apple& apple);
 
 	bool EatApple(Apple& apple);
 };
