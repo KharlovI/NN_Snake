@@ -4,23 +4,30 @@
 //#include"Matrix.h"
 //#include <iostream>
 
+constexpr bool flag = 1;
+
 int main()
 {
 	srand(time(NULL));
 
-	int delay = 100;
+	int delay = 10;
 	int counter = 0;
-	char impossibleDirection;
-	char lastPossibleDirection;
 
-	sf::RenderWindow window(sf::VideoMode(800, 800), "Snake With AI");
+	/*char impossibleDirection;
+	char lastPossibleDirection;*/
 
-	Snake snake{};
-	Apple apple{};
+	sf::RenderWindow window(sf::VideoMode(WindowSize, WindowSize), "Snake With AI");
 
-	SetPositionApple(apple, snake);
+	const int countOfSnakes = 100;
 
-    lastPossibleDirection = snake.GetDirection();
+	Snake snake[countOfSnakes];
+	Apple apple[countOfSnakes];
+
+	for (int i = 0; i < countOfSnakes; i++)
+		snake[i].SetPositionApple(apple[i]);
+
+	//   lastPossibleDirection = snake.GetDirection();
+	   //impossibleDirection = snake.ImposibleDirection();
 
 	while (window.isOpen())
 	{
@@ -29,55 +36,118 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+			/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+				if (snake.GetDirection() != 'R')
+				{
+					if (impossibleDirection != 'L')
+						lastPossibleDirection = 'L';
+				}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+				if (snake.GetDirection() != 'D')
+				{
+					if (impossibleDirection != 'U')
+						lastPossibleDirection = 'U';
+				}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				if (snake.GetDirection() != 'L')
+				{
+					if (impossibleDirection != 'R')
+						lastPossibleDirection = 'R';
+				}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				if (snake.GetDirection() != 'U')
+				{
+					if (impossibleDirection != 'D')
+						lastPossibleDirection = 'D';
+				}*/
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			if (snake.GetDirection() != 'R')
-			{
-				if (impossibleDirection != 'L')
-                    lastPossibleDirection = 'L';
-			}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			if (snake.GetDirection() != 'D')
-			{
-				if (impossibleDirection != 'U')
-                    lastPossibleDirection = 'U';
-			}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			if (snake.GetDirection() != 'L')
-			{
-				if (impossibleDirection != 'R')
-                    lastPossibleDirection = 'R';
-			}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			if (snake.GetDirection() != 'U')
-			{
-				if (impossibleDirection != 'D')
-                    lastPossibleDirection = 'D';
-			}
 
 		window.clear();
 
-		snake.PrintSnake(window);
-		apple.PrintApple(window);
+		if (flag)
+		{
+			int position = 0;
+			int maxCountOfApple = snake[0].GetCountOfApple();
+
+			for (int i = 1; i < countOfSnakes; i++)
+			{
+				if (snake[i].GetCountOfApple() > maxCountOfApple && snake[i].GetAliveStatus() == 1)
+					position = i;
+			}
+
+			snake[position].PrintSnake(window);
+			apple[position].PrintApple(window);
+		}
+		else
+		{
+			for (int i = 0; i < countOfSnakes; i++)
+			{
+				if (snake[i].GetAliveStatus())
+				{
+					snake[i].PrintSnake(window);
+					apple[i].PrintApple(window);
+				}
+			}
+		}
 
 		if (counter == delay)
 		{
-			snake.SetDirection(lastPossibleDirection);
-            impossibleDirection = snake.GetDirection();
+			/*snake.SetDirection(lastPossibleDirection);
+			impossibleDirection = snake.ImposibleDirection();
+			impossibleDirection = snake.GetDirection();*/
 
-			if (EatApple(apple, snake))
+			for (int i = 0; i < countOfSnakes; i++)
 			{
-				counter = 0;
-				continue;
+				if (snake[i].GetAliveStatus())
+				{
+					snake[i].MoveAI(apple[i]);
+					snake[i].SetIsAliveStatus();
+					snake[i].IncrementSteps();
+				}
 			}
-			snake.Move();
 
+
+			counter = 0;
+		}
+
+		if (AllSnakesIsDead(snake, countOfSnakes))
+		{
+			for (int i = 0; i < countOfSnakes; i++)
+			{
+				snake[i].CalculateTotalScore();
+			}
+			Snake babys[countOfSnakes];
+			Apple newApples[countOfSnakes];
+
+			for (int i = 0; i < countOfSnakes; i++)
+				snake[i].SetPositionApple(apple[i]);
+
+			for (int i = 0; i < countOfSnakes; i++)
+			{
+				Snake snake2{ snake, countOfSnakes };
+				babys[i] = snake2;
+			}
+
+			for (int i = 0; i < countOfSnakes; i++)
+			{
+				snake[i] = babys[i];
+			}
+
+			std::cout << snake[0].GetGeneration() << std::endl;
 			counter = 0;
 
 		}
-		snake.SetIsAliveStatus();
+		/*snake.SetIsAliveStatus();
 		if (snake.GetAliveStatus() != 1)
-			window.close();
+		{
+			Snake snake2{};
+			Apple apple2{};
+
+			snake = snake2;
+			apple = apple2;
+			SetPositionApple(apple, snake);
+		}*/
 
 		counter++;
 

@@ -12,10 +12,10 @@ private:
 	std::vector<double> numbers;
 	int length;
 public:
-	Row() {}
-	Row(std::size_t lenth) {
-		this->length = lenth;
-		numbers = std::vector<double>(lenth, 0);
+	Row() { this->length = 0; }
+	Row(std::size_t length) {
+		this->length = length;
+		numbers = std::vector<double>(length, 0);
 	}
 	double operator [](std::size_t i) const {
 		return numbers[i];
