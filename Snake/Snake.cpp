@@ -9,7 +9,7 @@ struct Coordinates
 
 Snake::Snake()
 {
-    this->color = sf::Color(80+rand()%176, 80+rand()%176, 80+rand()%176, this->opacity);
+    this->color = sf::Color(20+rand()%236, 20+rand()%236, 20+rand()%236, this->opacity);
 
 	sf::RectangleShape head;							// Set random weights
 	Genotype temp{};
@@ -47,16 +47,17 @@ Snake::Snake()
 
 	SetStartPositionSnake();
 }
-Snake::Snake(Snake* old, int count)
+Snake::Snake(Genotype* old, int generation)
 {
+	this->color = sf::Color(20+rand()%236, 20+rand()%236, 20+rand()%236, this->opacity);
 	sf::RectangleShape head;
 
-	head.setFillColor(old->color);
+	head.setFillColor(this->color);
 	head.setSize(sf::Vector2f(FrameLength, FrameLength));
 
 	/*Genotype* best = GetBestParents(old, count);*/
 
-	Genotype temp(GetBestParents(old, count));
+	Genotype temp(old);
 
 	int randValue = rand() % 4;
 	switch (randValue)
@@ -81,7 +82,7 @@ Snake::Snake(Snake* old, int count)
 	this->steps = 0;
 	this->snake.push_back(head);
 	this->genotype = temp;
-	this->generation = old[0].GetGeneration() + 1;
+	this->generation = generation + 1;
 	this->totalScore = 0;
 	this->countOfApple = 0;
 	this->isAlive = 1;
@@ -270,7 +271,6 @@ void Snake::SetIsAliveStatus()
 	{
 		this->isAlive = 0;
 		this->totalScore -= 1.5;
-		std::cout << "T" << std::endl;
 		return;
 	}
 

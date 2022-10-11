@@ -30,7 +30,7 @@ private:
 public:
 
 	Snake();
-	Snake(Snake* old, int count);
+	Snake(Genotype* old, int generation);
 
 	bool FrameIsWall();
 	bool FrameIsBody();

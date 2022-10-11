@@ -10,15 +10,16 @@ int main()
 {
 	srand(time(NULL));
 
-	int delay = 5;
-	int counter = 0;
-    const int countOfSnakes = 100;
+	//int delay = 5;
+	//int counter = 0;
 
 	/*char impossibleDirection;
 	char lastPossibleDirection;*/
 
 	sf::RenderWindow window(sf::VideoMode(WindowSize, WindowSize), "Snake With AI");
-    window.setFramerateLimit(60);
+	window.setFramerateLimit(240);
+
+	const int countOfSnakes = 100;
 
 	Snake snake[countOfSnakes];
 	Apple apple[countOfSnakes];
@@ -90,9 +91,6 @@ int main()
 				}
 			}
 		}
-
-		if (counter == delay)
-		{
 			/*snake.SetDirection(lastPossibleDirection);
 			impossibleDirection = snake.ImposibleDirection();
 			impossibleDirection = snake.GetDirection();*/
@@ -101,8 +99,8 @@ int main()
 			{
 				if (snake[i].GetAliveStatus())
 				{
-                    snake[i].PrintSnake(window);
-                    apple[i].PrintApple(window);
+					snake[i].PrintSnake(window);
+					apple[i].PrintApple(window);
 
 					snake[i].MoveAI(apple[i]);
 					snake[i].SetIsAliveStatus();
@@ -110,12 +108,12 @@ int main()
 				}
 			}
 
-
-			counter = 0;
-		}
-
 		if (AllSnakesIsDead(snake, countOfSnakes))
 		{
+			int generation = snake[0].GetGeneration();
+
+			std::cout << "Generation: " << generation << std::endl;
+
 			for (int i = 0; i < countOfSnakes; i++)
 			{
 				snake[i].CalculateTotalScore();
@@ -123,23 +121,21 @@ int main()
 			Snake babies[countOfSnakes];
 			Apple newApples[countOfSnakes];
 
-			for (int i = 0; i < countOfSnakes; i++)
-				snake[i].SetApple(apple[i]);
-
+			Genotype* best = GetBestParents(snake, countOfSnakes);
+			std::cout << std::endl;
 			for (int i = 0; i < countOfSnakes; i++)
 			{
-				Snake snake2{ snake, countOfSnakes };
-                babies[i] = snake2;
+				Snake snake2{ best , generation };
+				babies[i] = snake2;
 			}
+
+			for (int i = 0; i < countOfSnakes; i++)
+				babies[i].SetApple(apple[i]);
 
 			for (int i = 0; i < countOfSnakes; i++)
 			{
 				snake[i] = babies[i];
 			}
-
-			std::cout << snake[0].GetGeneration() << std::endl;
-			counter = 0;
-
 		}
 		/*snake.SetIsAliveStatus();
 		if (snake.GetAliveStatus() != 1)
@@ -151,8 +147,6 @@ int main()
 			apple = apple2;
 			SetPositionApple(apple, snake);
 		}*/
-
-		counter++;
 
 		window.display();
 	}
