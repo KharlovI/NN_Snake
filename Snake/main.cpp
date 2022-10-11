@@ -10,13 +10,14 @@ int main()
 {
 	srand(time(NULL));
 
-	int delay = 10;
+	int delay = 5;
 	int counter = 0;
 
 	/*char impossibleDirection;
 	char lastPossibleDirection;*/
 
 	sf::RenderWindow window(sf::VideoMode(WindowSize, WindowSize), "Snake With AI");
+    window.setFramerateLimit(60);
 
 	const int countOfSnakes = 100;
 
@@ -117,7 +118,7 @@ int main()
 			{
 				snake[i].CalculateTotalScore();
 			}
-			Snake babys[countOfSnakes];
+			Snake babies[countOfSnakes];
 			Apple newApples[countOfSnakes];
 
 			for (int i = 0; i < countOfSnakes; i++)
@@ -126,12 +127,12 @@ int main()
 			for (int i = 0; i < countOfSnakes; i++)
 			{
 				Snake snake2{ snake, countOfSnakes };
-				babys[i] = snake2;
+                babies[i] = snake2;
 			}
 
 			for (int i = 0; i < countOfSnakes; i++)
 			{
-				snake[i] = babys[i];
+				snake[i] = babies[i];
 			}
 
 			std::cout << snake[0].GetGeneration() << std::endl;
