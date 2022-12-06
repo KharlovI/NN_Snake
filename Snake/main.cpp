@@ -7,35 +7,22 @@ int FPS = 15;
 
 int main()
 {
+	srand(time(NULL));
+
 	sf::Font font;
 	font.loadFromFile("NotCourierSans.otf");
 
 	Button first("Not trained SNAKE", sf::Vector2f{ FieldSIze + 5*NORM, 10*NORM}, font);
 	Button second("Train 100 SNAKES", sf::Vector2f{ FieldSIze + 5*NORM, 15 * NORM }, font);
 	Button third("Trained SNAKE", sf::Vector2f{ FieldSIze + 5*NORM, 20 * NORM }, font);
-
 	Button SpeedUP("Speed up", sf::Vector2f{ FieldSIze + 5 * NORM, FieldSIze - 15 * NORM }, font);
-	Button SpeedDown("Slow down", sf::Vector2f{ FieldSIze + 5 * NORM, FieldSIze - 10 * NORM }, font);
-	srand(time(NULL));
-	sf::RenderWindow window(sf::VideoMode(WindowSize, FieldSIze), "Snake With AI");
+	Button SpeedDown("Slaw down", sf::Vector2f{ FieldSIze + 5 * NORM, FieldSIze - 10 * NORM }, font);
+
+	sf::RenderWindow window(sf::VideoMode(WindowSize, FieldSIze), "Snake With AI", sf::Style::Close);
 	window.setFramerateLimit(FPS);
 	const int countOfSnakes = 100;
 
 	int maxValue = 60;
-	Snake snake;
-	Apple apple;
-
-	/*Snake snake[countOfSnakes];
-	for (int i = 0; i < countOfSnakes; i++)
-	{
-		Snake temp{ 1 };
-		snake[i] = temp;
-	}
-	Apple apple[countOfSnakes];
-
-	for (int i = 0; i < countOfSnakes; i++)
-		snake[i].SetApple(apple[i]);*/
-	snake.SetApple(apple);
 
 	std::vector<Button> b;
 	b.push_back(first);
@@ -45,7 +32,26 @@ int main()
 	b.push_back(SpeedUP);
 	b.push_back(SpeedDown);
 
-	int numOfFunction = FirstAction(b, window, FPS);
+	sf::Texture appleTexture;
+	appleTexture.loadFromFile("Apple_Texture.png");
+	sf::Sprite appleSprite;
+	appleSprite.setTexture(appleTexture);
+
+	sf::Texture SnakeTexture;
+	SnakeTexture.loadFromFile("Snake_Texture.png");
+	std::vector<sf::Sprite> SP;
+	for (int i = 0; i < 7; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			sf::Sprite temp;
+			temp.setTexture(SnakeTexture);
+			temp.setTextureRect({i*40,j*40,40,40});
+			SP.push_back(temp);
+		}
+	}
+
+	int numOfFunction = FirstAction(b, window, FPS, appleSprite, SP);
 
 	while (window.isOpen())
 	{
@@ -54,76 +60,15 @@ int main()
 		case 0:
 			return 1;
 		case 1:
-			numOfFunction = FirstAction(b, window, FPS);
+			numOfFunction = FirstAction(b, window, FPS, appleSprite, SP);
 			continue;
 		case 2:
-			numOfFunction = SecondAction(b, window, FPS);
+			numOfFunction = SecondAction(b, window, FPS, appleSprite, SP);
 			continue;
 		case 3:
-			numOfFunction = ThirdAction(b, window, FPS);
+			numOfFunction = ThirdAction(b, window, FPS, appleSprite, SP);
 			continue;
 		}
-		/*sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-
-			if (event.type == sf::Event::MouseButtonPressed)
-			{
-				sf::Vector2i mp = sf::Mouse::getPosition(window);
-
-				first.SetIsPressed(mp);
-				second.SetIsPressed(mp);
-				third.SetIsPressed(mp);
-
-				SpeedUP.SetIsPressed(mp);
-				SpeedDown.SetIsPressed(mp);
-
-				if (first.IsPressed())
-				{
-					FirstAction(b, window, FPS);
-					
-				}
-
-				else if (second.IsPressed())
-				{
-					SecondAction(b, window, FPS);
-				}
-
-				else if (third.IsPressed())
-				{
-					ThirdAction(b, window, FPS);
-				}
-
-				else if (SpeedUP.IsPressed())
-				{
-					if (FPS < 150)
-					{
-						FPS += 5; 
-						window.setFramerateLimit(FPS);
-					}
-				}
-				else if (SpeedDown.IsPressed())
-				{
-					if (FPS > 14)
-					{
-						FPS -= 5;
-						window.setFramerateLimit(FPS);
-					}
-				}
-				
-			}
-		}
-
-		window.clear();
-		first.Draw(window);
-		second.Draw(window);
-		third.Draw(window);
-		SpeedUP.Draw(window);
-		SpeedDown.Draw(window);
-
-		window.display();*/
 	}
 
 	return 0;

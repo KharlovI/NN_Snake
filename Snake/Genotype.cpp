@@ -86,7 +86,7 @@ Genotype::Genotype(Genotype* bestParents)
 	}
 }
 
-Row Genotype::GetStepPosobility(int inputs[])
+Row Genotype::GetStepPossibility(int inputs[])
 {
 	Row inputTemp{ CountOfInputs };												// 3 distances for 3 directions + offset
 
@@ -166,7 +166,7 @@ Row Genotype::GetStepPosobility(int inputs[])
 	}
 }
 
-void Genotype::SetFromeFile()
+void Genotype::SetFromFile()
 {
 	std::ifstream file1;
 	std::ifstream file2;

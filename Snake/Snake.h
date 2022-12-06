@@ -13,6 +13,8 @@ class Snake
 private:
 
 	std::vector <sf::RectangleShape> snake;
+	std::vector <sf::Sprite> sprites;
+
     sf::Color color;
 
     static const int opacity = 128;
@@ -34,12 +36,14 @@ public:
 	Snake(Genotype* old, int generation);
 	Snake(bool HER);
 
+	void UpdateSprites(std::vector<sf::Sprite> sprites);
+	void AddSprites(std::vector<sf::Sprite> sprites);
 	bool FrameIsWall();
 	bool FrameIsBody();
 	bool FrameISApple(Apple& apple);
 
 	void Move();
-	void MoveAI(Apple& apple);
+	void MoveAI(Apple& apple, std::vector<sf::Sprite>snakeSprites);
 
 	void SetDirection(char dir);
 	void SetStartPositionSnake();
@@ -67,7 +71,15 @@ public:
 		}
 	}
 
-	char ImposibleDirection();
+	void PrintSnakeSprites(sf::RenderWindow& window)
+	{
+		for (int i = 0; i < this->snake.size(); i++)
+		{
+			window.draw(this->sprites[i]);
+		}
+	}
+
+	char ImpossibleDirection();
 
 	int GetLength() { return this->snake.size(); }
 
@@ -88,13 +100,7 @@ public:
 
 	void SetApple(Apple& apple);
 
-	bool EatApple(Apple& apple);
-
-	~Snake()
-	{
-		
-	}
+	bool EatApple(Apple& apple, std::vector<sf::Sprite> sp);
 };
 
 Genotype* GetBestParents(Snake* generation, int count, int& value);
-//void SetValuesFromFiles(Snake& temp);

@@ -12,11 +12,11 @@ private:
 public:
 	Genotype();
 	Genotype(Genotype* bestParents);
-	Row GetStepPosobility(int inputs[]);
+	Row GetStepPossibility(int inputs[]);
 
 	Matrix GetFirstLayer() { return this->firstLayer; }
 	Matrix GetSecondLayer() { return this->secondLayer; }
-	void SetFromeFile();
+	void SetFromFile();
 
 	/*void SetLayer(Matrix temp);*/
 	void operator =(Genotype g2)

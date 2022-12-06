@@ -161,6 +161,10 @@
   <ItemGroup>
     <Font Include="NotCourierSans.otf" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Apple_Texture.png" />
+    <Image Include="Snake_Texture.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

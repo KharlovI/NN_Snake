@@ -11,8 +11,9 @@ Button::Button(std::string name, sf::Vector2f position, sf::Font& font)
 	this->enable = 1;
 
 	sf::Vector2f size;
-	size.x = name.size() * (CHAR_SIZE_Button - 7);
-	size.y = 2 * (CHAR_SIZE_Button - 7);
+	//size.x = name.size() * (CHAR_SIZE_Button - 7);
+	size.x = (CHAR_SIZE_Button - 7) * 17;
+	size.y = 4 * (CHAR_SIZE_Button - 7);
 
 	this->shape.setSize(size);					
 	this->shape.setPosition(position);
@@ -20,6 +21,8 @@ Button::Button(std::string name, sf::Vector2f position, sf::Font& font)
 
 	sf::Text temp;
 
+	position.x += ((17 - name.size()) / 2) * (CHAR_SIZE_Button - 7);
+	position.y += (CHAR_SIZE_Button - 7);
 	temp.setFont(font);
 	temp.setCharacterSize(CHAR_SIZE_Button);
 	temp.setString(name);

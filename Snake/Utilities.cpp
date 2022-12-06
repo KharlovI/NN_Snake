@@ -10,12 +10,15 @@ bool AllSnakesIsDead(Snake snakes[], int count)
 	return 1;
 }
 
-int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
+int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	Snake snake;
 	Apple apple;
+	apple.SetSprite(appleSprite);
 	snake.SetApple(apple);
 
+	snake.AddSprites(snakeSprites);
+    snake.UpdateSprites(snakeSprites);
 	while (w.isOpen())
 	{
 		sf::Event event;
@@ -37,19 +40,16 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 
 				if (b[0].IsPressed())
 				{
-					//FirstAction(b, w, FPS);
 					return 1;
 				}
 
 				else if (b[1].IsPressed())
 				{
-					//SecondAction(b, w, FPS);
 					return 2;
 				}
 
 				else if (b[2].IsPressed())
 				{
-					//ThirdAction(b, w, FPS);
 					return 3;
 				}
 
@@ -75,12 +75,12 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 
 		w.clear();
 
-		snake.PrintSnake(w);
-		apple.PrintApple(w);
+		snake.PrintSnakeSprites(w);
+		apple.PrintAppleSprite(w);
 
 		if (snake.GetAliveStatus())
 		{
-			snake.MoveAI(apple);
+			snake.MoveAI(apple, snakeSprites);
 			snake.SetIsAliveStatus();
 			snake.IncrementSteps();
 		}
@@ -90,6 +90,8 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 			std::cout << snake.GetGeneration() << " " << snake.GetCountOfApple() << std::endl;
 			Snake snake3;
 			snake = snake3;
+			snake.AddSprites(snakeSprites);
+            snake.UpdateSprites(snakeSprites);
 			snake.SetApple(apple);
 		}
 
@@ -104,7 +106,7 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 	return -1;
 }
 
-int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
+int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	const int countOfSnakes = 100;
 	int maxValue = 60;
@@ -116,6 +118,11 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 		snake[i] = temp;
 	}
 	Apple apple[countOfSnakes];
+
+	/*for (int i = 0; i < countOfSnakes; i++)
+	{
+		apple[i].SetSprite(appleSprite);
+	}*/
 
 	for (int i = 0; i < countOfSnakes; i++)
 		snake[i].SetApple(apple[i]);
@@ -141,19 +148,16 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 
 				if (b[0].IsPressed())
 				{
-					//FirstAction(b, w, FPS);
 					return 1;
 				}
 
 				else if (b[1].IsPressed())
 				{
-					//SecondAction(b, w, FPS);
 					return 2;
 				}
 
 				else if (b[2].IsPressed())
 				{
-					//ThirdAction(b, w, FPS);
 					return 3;
 				}
 
@@ -184,7 +188,7 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 			if (snake[i].GetAliveStatus())
 			{
 				snake[i].PrintSnake(w);
-				apple[i].PrintApple(w);
+				apple[i].PrintAppleShape(w);							// PrintAppleSprite
 			}
 		}
 
@@ -192,7 +196,7 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 		{
 			if (snake[i].GetAliveStatus())
 			{
-				snake[i].MoveAI(apple[i]);
+				snake[i].MoveAI(apple[i], snakeSprites);
 				snake[i].SetIsAliveStatus();
 				snake[i].IncrementSteps();
 			}
@@ -231,10 +235,12 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 	return -1;
 }
 
-int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
+int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	Snake snake(1);
 	Apple apple;
+	apple.SetSprite(appleSprite);
+
 	snake.SetApple(apple);
 
 	while (w.isOpen())
@@ -258,19 +264,16 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 
 				if (b[0].IsPressed())
 				{
-					//FirstAction(b, w, FPS);
 					return 1;
 				}
 
 				else if (b[1].IsPressed())
 				{
-					//SecondAction(b, w, FPS);
 					return 2;
 				}
 
 				else if (b[2].IsPressed())
 				{
-					//ThirdAction(b, w, FPS);
 					return 3;
 				}
 
@@ -297,11 +300,11 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS)
 		w.clear();
 
 		snake.PrintSnake(w);
-		apple.PrintApple(w);
+		apple.PrintAppleSprite(w);
 
 		if (snake.GetAliveStatus())
 		{
-			snake.MoveAI(apple);
+			snake.MoveAI(apple, snakeSprites);
 			snake.SetIsAliveStatus();
 			snake.IncrementSteps();
 		}

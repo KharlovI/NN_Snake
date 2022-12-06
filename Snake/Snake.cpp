@@ -5,7 +5,7 @@ Snake::Snake()
 {
     this->color = sf::Color(20+rand()%236, 20+rand()%236, 20+rand()%236, this->opacity);
 	//this->color = sf::Color::Green;
-	sf::RectangleShape head;							// Set random weights
+	sf::RectangleShape head;   // Set random weights
 	head.setFillColor(this->color);
 	head.setSize(sf::Vector2f(FrameLength, FrameLength));
 
@@ -93,7 +93,7 @@ Snake::Snake(bool HER)
 
 	Genotype temp{};
 
-	temp.SetFromeFile();
+	temp.SetFromFile();
 
 	int randValue = rand() % 4;
 
@@ -158,6 +158,165 @@ bool Snake::FrameIsBody()
 	return 0;
 }
 
+void Snake::UpdateSprites(std::vector<sf::Sprite> sprites)
+{
+	for (int i = 0; i < this->snake.size(); i++)
+	{
+		sf::Vector2f position = this->snake[i].getPosition();
+
+		this->sprites[i].setPosition(position);
+	}
+
+	switch (this->direction)
+	{
+	case 'L':
+		this->sprites[0] = sprites[9];
+		break;
+	case 'U':
+		this->sprites[0] = sprites[6];
+		break;
+	case 'R':
+		this->sprites[0] = sprites[8];
+		break;
+	case 'D':
+		this->sprites[0] = sprites[7];
+		break;
+
+	}
+	for (int i = 1; i < this->snake.size(); i++)
+	{
+		sf::Vector2f PrevPosition = this->snake[i - 1].getPosition();
+		sf::Vector2f CurrentPosition = this->snake[i].getPosition();
+		sf::Vector2f NextPosition = this->snake[i + 1].getPosition();
+
+
+		if (CurrentPosition.x > PrevPosition.x && CurrentPosition.y == PrevPosition.y )
+		{
+			if (CurrentPosition.x < NextPosition.x && CurrentPosition.y == NextPosition.y)					// ---
+			{
+				this->sprites[i] = sprites[5];		
+				continue;
+			}
+
+			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y > NextPosition.y)
+			{
+				this->sprites[i] = sprites[10];
+				continue;
+			}
+
+			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y < NextPosition.y)
+			{
+				this->sprites[i] = sprites[11];
+				continue;
+			}
+		}
+		if (CurrentPosition.x < PrevPosition.x && CurrentPosition.y == PrevPosition.y)
+		{
+			if (CurrentPosition.x > NextPosition.x && CurrentPosition.y == NextPosition.y)					// ---
+			{
+				this->sprites[i] = sprites[5];
+				continue;
+			}
+
+			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y > NextPosition.y)
+			{
+				this->sprites[i] = sprites[13];
+				continue;
+			}
+
+			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y < NextPosition.y)
+			{
+				this->sprites[i] = sprites[12];
+				continue;
+			}
+		}
+
+		if (CurrentPosition.x == PrevPosition.x && CurrentPosition.y > PrevPosition.y)
+		{
+			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y < NextPosition.y)					// ---
+			{
+				this->sprites[i] = sprites[4];
+				continue;
+			}
+
+			if (CurrentPosition.x > NextPosition.x && CurrentPosition.y == NextPosition.y)
+			{
+				this->sprites[i] = sprites[13];
+				continue;
+			}
+
+			if (CurrentPosition.x < NextPosition.x && CurrentPosition.y == NextPosition.y)
+			{
+				this->sprites[i] = sprites[10];
+				continue;
+			}
+		}
+		if (CurrentPosition.x == PrevPosition.x && CurrentPosition.y < PrevPosition.y)
+		{
+			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y > NextPosition.y)					// ---
+			{
+				this->sprites[i] = sprites[4];
+				continue;
+			}
+
+			if (CurrentPosition.x > NextPosition.x && CurrentPosition.y == NextPosition.y)
+			{
+				this->sprites[i] = sprites[12];
+				continue;
+			}
+
+			if (CurrentPosition.x < NextPosition.x && CurrentPosition.y == NextPosition.y)
+			{
+				this->sprites[i] = sprites[11];
+				continue;
+			}
+		}
+	}
+
+	if (this->snake.size() > 1)
+	{
+		sf::Vector2f tailPosition = this->snake[snake.size() - 1].getPosition();
+		sf::Vector2f prevPosition = this->snake[snake.size() - 2].getPosition();
+
+		if (tailPosition.x == prevPosition.x)
+		{
+			if (tailPosition.y > prevPosition.y)
+			{
+				this->sprites[snake.size() - 1] = sprites[0];
+				return;
+			}
+
+			if (tailPosition.y < prevPosition.y)
+			{
+				this->sprites[snake.size() - 1] = sprites[3];
+				return;
+			}
+		}
+
+		else
+		{
+			if (tailPosition.x > prevPosition.x)
+			{
+				this->sprites[snake.size() - 1] = sprites[1];
+				return;
+			}
+
+			if (tailPosition.x < prevPosition.x)
+			{
+				this->sprites[snake.size() - 1] = sprites[2];
+				return;
+			}
+		}
+	}
+
+
+}
+
+void Snake::AddSprites(std::vector<sf::Sprite> sprites)
+{
+	this->sprites.push_back(sprites[0]);
+}
+
 void Snake::Move()
 {
 	int headIndex = this->snake.size() - 1;
@@ -172,12 +331,12 @@ void Snake::Move()
 	sf::Vector2f head = NextPosition();
 	this->snake[headIndex].setPosition(head);
 }
-void Snake::MoveAI(Apple& apple)
+void Snake::MoveAI(Apple& apple, std::vector<sf::Sprite> snakeSprites)
 {
 	int* inputs = Inputs(apple);
 	int headIndex = this->snake.size() - 1;
 
-	Row steps = this->genotype.GetStepPosobility(inputs);
+	Row steps = this->genotype.GetStepPossibility(inputs);
 
 	sf::Vector2f nextPosition;
 	for (int i = 0, j = 1; i < headIndex; i++, j++)
@@ -226,14 +385,15 @@ void Snake::MoveAI(Apple& apple)
 			this->direction = 'L';
 	}
 
-	if (EatApple(apple))
+	if (EatApple(apple, snakeSprites))
 	{
+        UpdateSprites(snakeSprites);
 		delete inputs;
 		return;
 	}
 	nextPosition = NextPosition();
 	this->snake[headIndex].setPosition(nextPosition);
-
+    UpdateSprites(snakeSprites);
 	delete inputs;
 }
 
@@ -343,7 +503,7 @@ void Snake::AddElementToBody(sf::Vector2f newPosition)
 
 	this->snake.push_back(newPart);
 }
-char Snake::ImposibleDirection()
+char Snake::ImpossibleDirection()
 {
 	switch (this->direction)
 	{
@@ -981,15 +1141,17 @@ void Snake::SetApple(Apple& apple)
 	}
 
 	apple.GetApple().setPosition(sf::Vector2f(AppleX * FrameLength, AppleY * FrameLength));
+	apple.GetAS().setPosition(sf::Vector2f(AppleX * FrameLength, AppleY * FrameLength));
 }
 
-bool Snake::EatApple(Apple& apple)
+bool Snake::EatApple(Apple& apple, std::vector<sf::Sprite> sp)
 {
 	if (FrameISApple(apple))
 	{
 		IncrementScore();
 		RemoveSteps();
 		AddElementToBody(apple.GetApple().getPosition());
+		AddSprites(sp);
 		SetApple(apple);
 
 		return 1;
@@ -1020,7 +1182,7 @@ Genotype* GetBestParents(Snake* generation, int count, int& currentValue2)
 				position2 = i;
 			}
 
-			else 
+			else
 			{
 				maxValue1 = currentValue;
 				position1 = i;
@@ -1043,7 +1205,7 @@ Genotype* GetBestParents(Snake* generation, int count, int& currentValue2)
 	answer[0] = generation[position1].GetGenotype();
 	answer[1] = generation[position2].GetGenotype();
 
-	std::cout << generation[position1].GetCountOfApple()<< " " << generation[position2].GetCountOfApple() << std::endl;
+	std::cout << generation[position1].GetCountOfApple() << " " << generation[position2].GetCountOfApple() << std::endl;
 
 	if (maxValue2 > currentValue2)
 	{
@@ -1079,8 +1241,8 @@ Genotype* GetBestParents(Snake* generation, int count, int& currentValue2)
 	return answer;
 }
 
+
 void Move3(Snake& s, Apple& a)
 {
 	int* inputs = s.Inputs(a);
-	
 }

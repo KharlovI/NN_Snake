@@ -57,4 +57,12 @@
   <ItemGroup>
     <Font Include="NotCourierSans.otf" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Apple_Texture.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Snake_Texture.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

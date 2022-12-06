@@ -7,10 +7,15 @@ struct Coordinates
 };
 
 Apple::Apple()
-{
+{	
 	this->apple.setRadius(20);
-	this->apple.setFillColor(sf::Color::Red);
+	//this->apple.setFillColor(sf::Color::Red);
 	this->apple.setPosition(0, 0);
+}
+
+void Apple::SetSprite(sf::Sprite& appleSprite)
+{
+	this->aS = appleSprite;
 }
 
 sf::CircleShape& Apple::GetApple()
