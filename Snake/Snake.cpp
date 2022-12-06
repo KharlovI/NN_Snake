@@ -160,30 +160,23 @@ bool Snake::FrameIsBody()
 
 void Snake::UpdateSprites(std::vector<sf::Sprite> sprites)
 {
-	for (int i = 0; i < this->snake.size(); i++)
-	{
-		sf::Vector2f position = this->snake[i].getPosition();
-
-		this->sprites[i].setPosition(position);
-	}
-
 	switch (this->direction)
 	{
 	case 'L':
-		this->sprites[0] = sprites[9];
+		this->sprites[this->snake.size() - 1] = sprites[9];
 		break;
 	case 'U':
-		this->sprites[0] = sprites[6];
+		this->sprites[this->snake.size() - 1] = sprites[6];
 		break;
 	case 'R':
-		this->sprites[0] = sprites[8];
+		this->sprites[this->snake.size() - 1] = sprites[8];
 		break;
 	case 'D':
-		this->sprites[0] = sprites[7];
+		this->sprites[this->snake.size() - 1] = sprites[7];
 		break;
 
 	}
-	for (int i = 1; i < this->snake.size(); i++)
+	for (int i = 1; i < this->snake.size() - 1; i++)
 	{
 		sf::Vector2f PrevPosition = this->snake[i - 1].getPosition();
 		sf::Vector2f CurrentPosition = this->snake[i].getPosition();
@@ -200,13 +193,13 @@ void Snake::UpdateSprites(std::vector<sf::Sprite> sprites)
 
 			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y > NextPosition.y)
 			{
-				this->sprites[i] = sprites[10];
+				this->sprites[i] = sprites[13];
 				continue;
 			}
 
 			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y < NextPosition.y)
 			{
-				this->sprites[i] = sprites[11];
+				this->sprites[i] = sprites[12];
 				continue;
 			}
 		}
@@ -220,13 +213,13 @@ void Snake::UpdateSprites(std::vector<sf::Sprite> sprites)
 
 			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y > NextPosition.y)
 			{
-				this->sprites[i] = sprites[13];
+				this->sprites[i] = sprites[10];
 				continue;
 			}
 
 			if (CurrentPosition.x == NextPosition.x && CurrentPosition.y < NextPosition.y)
 			{
-				this->sprites[i] = sprites[12];
+				this->sprites[i] = sprites[11];
 				continue;
 			}
 		}
@@ -275,21 +268,19 @@ void Snake::UpdateSprites(std::vector<sf::Sprite> sprites)
 
 	if (this->snake.size() > 1)
 	{
-		sf::Vector2f tailPosition = this->snake[snake.size() - 1].getPosition();
-		sf::Vector2f prevPosition = this->snake[snake.size() - 2].getPosition();
+		sf::Vector2f tailPosition = this->snake[0].getPosition();
+		sf::Vector2f prevPosition = this->snake[1].getPosition();
 
 		if (tailPosition.x == prevPosition.x)
 		{
 			if (tailPosition.y > prevPosition.y)
 			{
-				this->sprites[snake.size() - 1] = sprites[0];
-				return;
+				this->sprites[0] = sprites[0];
 			}
 
-			if (tailPosition.y < prevPosition.y)
+			else if (tailPosition.y < prevPosition.y)
 			{
-				this->sprites[snake.size() - 1] = sprites[3];
-				return;
+				this->sprites[0] = sprites[3];
 			}
 		}
 
@@ -297,16 +288,20 @@ void Snake::UpdateSprites(std::vector<sf::Sprite> sprites)
 		{
 			if (tailPosition.x > prevPosition.x)
 			{
-				this->sprites[snake.size() - 1] = sprites[1];
-				return;
+				this->sprites[0] = sprites[1];
 			}
 
-			if (tailPosition.x < prevPosition.x)
+			else if (tailPosition.x < prevPosition.x)
 			{
-				this->sprites[snake.size() - 1] = sprites[2];
-				return;
+				this->sprites[0] = sprites[2];
 			}
 		}
+	}
+
+	for (int i = 0; i < this->snake.size(); i++)
+	{
+		sf::Vector2f position = this->snake[i].getPosition();
+		this->sprites[i].setPosition(position);
 	}
 
 
@@ -331,7 +326,7 @@ void Snake::Move()
 	sf::Vector2f head = NextPosition();
 	this->snake[headIndex].setPosition(head);
 }
-void Snake::MoveAI(Apple& apple, std::vector<sf::Sprite> snakeSprites)
+bool Snake::MoveAI(Apple& apple, std::vector<sf::Sprite> snakeSprites)
 {
 	int* inputs = Inputs(apple);
 	int headIndex = this->snake.size() - 1;
@@ -386,15 +381,15 @@ void Snake::MoveAI(Apple& apple, std::vector<sf::Sprite> snakeSprites)
 	}
 
 	if (EatApple(apple, snakeSprites))
-	{
-        UpdateSprites(snakeSprites);
+	{        
 		delete inputs;
-		return;
+		return 1;
 	}
 	nextPosition = NextPosition();
 	this->snake[headIndex].setPosition(nextPosition);
-    UpdateSprites(snakeSprites);
+    
 	delete inputs;
+	return 0;
 }
 
 void Snake::SetDirection(char dir)
@@ -1151,7 +1146,6 @@ bool Snake::EatApple(Apple& apple, std::vector<sf::Sprite> sp)
 		IncrementScore();
 		RemoveSteps();
 		AddElementToBody(apple.GetApple().getPosition());
-		AddSprites(sp);
 		SetApple(apple);
 
 		return 1;

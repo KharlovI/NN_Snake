@@ -60,6 +60,7 @@ int main()
 
 	while (window.isOpen())
 	{
+
 		switch (numOfFunction)
 		{
 		case 0:

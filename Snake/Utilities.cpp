@@ -81,7 +81,13 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 
 		if (snake.GetAliveStatus())
 		{
-			snake.MoveAI(apple, snakeSprites);
+			if (snake.MoveAI(apple, snakeSprites))
+			{
+				snake.AddSprites(snakeSprites);
+				snake.UpdateSprites(snakeSprites);
+			}
+
+			snake.UpdateSprites(snakeSprites);
 			snake.SetIsAliveStatus();
 			snake.IncrementSteps();
 		}
@@ -119,11 +125,6 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprit
 		snake[i] = temp;
 	}
 	Apple apple[countOfSnakes];
-
-	/*for (int i = 0; i < countOfSnakes; i++)
-	{
-		apple[i].SetSprite(appleSprite);
-	}*/
 
 	for (int i = 0; i < countOfSnakes; i++)
 		snake[i].SetApple(apple[i]);
@@ -241,8 +242,10 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 	Snake snake(1);
 	Apple apple;
 	apple.SetSprite(appleSprite);
-
 	snake.SetApple(apple);
+
+	snake.AddSprites(snakeSprites);
+	snake.UpdateSprites(snakeSprites);
 
 	while (w.isOpen())
 	{
@@ -301,12 +304,17 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 		w.clear();
 
         w.draw(backgroundSprite);
-		snake.PrintSnake(w);
+		snake.PrintSnakeSprites(w);
 		apple.PrintAppleSprite(w);
 
 		if (snake.GetAliveStatus())
 		{
-			snake.MoveAI(apple, snakeSprites);
+			if (snake.MoveAI(apple, snakeSprites))
+			{
+				snake.AddSprites(snakeSprites);
+				snake.UpdateSprites(snakeSprites);
+			}
+			snake.UpdateSprites(snakeSprites);
 			snake.SetIsAliveStatus();
 			snake.IncrementSteps();
 		}
@@ -317,6 +325,8 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 			Snake snake3{ 1 };
 			snake = snake3;
 			snake.SetApple(apple);
+			snake.AddSprites(snakeSprites);
+			snake.UpdateSprites(snakeSprites);
 		}
 
 		for (int i = 0; i < b.size(); i++)

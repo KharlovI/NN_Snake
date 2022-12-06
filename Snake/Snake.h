@@ -43,7 +43,7 @@ public:
 	bool FrameISApple(Apple& apple);
 
 	void Move();
-	void MoveAI(Apple& apple, std::vector<sf::Sprite>snakeSprites);
+	bool MoveAI(Apple& apple, std::vector<sf::Sprite>snakeSprites);
 
 	void SetDirection(char dir);
 	void SetStartPositionSnake();
@@ -73,7 +73,7 @@ public:
 
 	void PrintSnakeSprites(sf::RenderWindow& window)
 	{
-		for (int i = 0; i < this->snake.size(); i++)
+		for (int i = 0; i < this->sprites.size(); i++)
 		{
 			window.draw(this->sprites[i]);
 		}
