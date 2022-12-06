@@ -10,7 +10,7 @@ bool AllSnakesIsDead(Snake snakes[], int count)
 	return 1;
 }
 
-int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, std::vector<sf::Sprite> snakeSprites)
+int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, sf::Sprite& backgroundSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	Snake snake;
 	Apple apple;
@@ -75,6 +75,7 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 
 		w.clear();
 
+        w.draw(backgroundSprite);
 		snake.PrintSnakeSprites(w);
 		apple.PrintAppleSprite(w);
 
@@ -235,7 +236,7 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprit
 	return -1;
 }
 
-int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, std::vector<sf::Sprite> snakeSprites)
+int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, sf::Sprite& backgroundSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	Snake snake(1);
 	Apple apple;
@@ -299,6 +300,7 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 
 		w.clear();
 
+        w.draw(backgroundSprite);
 		snake.PrintSnake(w);
 		apple.PrintAppleSprite(w);
 

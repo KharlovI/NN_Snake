@@ -14,8 +14,7 @@ file(COPY ${CMAKE_BINARY_DIR}/secondLayer.txt DESTINATION ${CMAKE_CURRENT_SOURCE
 file(COPY Snake/NotCourierSans.otf DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY Snake/Apple_Texture.png DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY Snake/Snake_Texture.png DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY Snake/wood.png DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY Snake/grass.png DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY Snake/Background_Texture.png DESTINATION ${CMAKE_BINARY_DIR})
 
 add_executable(AISnake
         Snake/Apple.cpp
