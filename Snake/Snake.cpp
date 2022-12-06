@@ -1,22 +1,18 @@
 #include"Snake.h"
 #include<cmath>
 
-struct Coordinates
-{
-	int x;
-	int y;
-};
-
 Snake::Snake()
 {
     this->color = sf::Color(20+rand()%236, 20+rand()%236, 20+rand()%236, this->opacity);
-
+	//this->color = sf::Color::Green;
 	sf::RectangleShape head;							// Set random weights
-	Genotype temp{};
 	head.setFillColor(this->color);
 	head.setSize(sf::Vector2f(FrameLength, FrameLength));
 
+	Genotype temp{};
+
 	int randValue = rand() % 4;
+
 	switch (randValue)
 	{
 	case 0:
@@ -36,12 +32,12 @@ Snake::Snake()
 		break;
 
 	}
-	this->steps = 0;
+
 	this->snake.push_back(head);
+	this->steps = 0;
 	this->generation = 0;
 	this->countOfApple = 0;
 	this->totalScore = 0;
-	//this->aliveTime = 0;					// when snake die use aliveTime = (clock() - aliveTime)/ CLOCKS_PER_SEC for seting time
 	this->isAlive = 1;
 	this->genotype = temp;
 
@@ -51,11 +47,8 @@ Snake::Snake(Genotype* old, int generation)
 {
 	this->color = sf::Color(20+rand()%236, 20+rand()%236, 20+rand()%236, this->opacity);
 	sf::RectangleShape head;
-
 	head.setFillColor(this->color);
 	head.setSize(sf::Vector2f(FrameLength, FrameLength));
-
-	/*Genotype* best = GetBestParents(old, count);*/
 
 	Genotype temp(old);
 
@@ -90,6 +83,51 @@ Snake::Snake(Genotype* old, int generation)
 	SetStartPositionSnake();
 }
 
+Snake::Snake(bool HER)
+{
+	this->color = sf::Color(20 + rand() % 236, 20 + rand() % 236, 20 + rand() % 236, this->opacity);
+
+	sf::RectangleShape head;							// Set random weights
+	head.setFillColor(this->color);
+	head.setSize(sf::Vector2f(FrameLength, FrameLength));
+
+	Genotype temp{};
+
+	temp.SetFromeFile();
+
+	int randValue = rand() % 4;
+
+	switch (randValue)
+	{
+	case 0:
+		this->direction = 'L';
+		break;
+
+	case 1:
+		this->direction = 'U';
+		break;
+
+	case 2:
+		this->direction = 'R';
+		break;
+
+	case 3:
+		this->direction = 'D';
+		break;
+
+	}
+
+	this->snake.push_back(head);
+	this->steps = 0;
+	this->generation = 0;
+	this->countOfApple = 0;
+	this->totalScore = 0;
+	this->isAlive = 1;
+	this->genotype = temp;
+
+	SetStartPositionSnake();
+}
+
 bool Snake::FrameIsWall()
 {
 	int headIndex = this->snake.size() - 1;
@@ -97,7 +135,7 @@ bool Snake::FrameIsWall()
 
 	if (headPosition.x < 0 || headPosition.y < 0)
 		return 1;
-	if (headPosition.x >= 800 || headPosition.y >= 800)
+	if (headPosition.x >= FieldSIze || headPosition.y >= FieldSIze)
 		return 1;
 
 	return 0;
@@ -105,13 +143,11 @@ bool Snake::FrameIsWall()
 bool Snake::FrameIsBody()
 {
 	int headIndex = this->snake.size() - 1;
-	//if (snakeLength < 4)
-	//	return 0;
 
 	sf::Vector2f headPosition = this->snake[headIndex].getPosition();
-
 	sf::Vector2f temp;
-	for (int i = 0; i < headIndex; i++)								// �� ��������� ������
+
+	for (int i = 0; i < headIndex; i++)								
 	{
 		temp = this->snake[i].getPosition();
 
@@ -124,123 +160,80 @@ bool Snake::FrameIsBody()
 
 void Snake::Move()
 {
-	int length = this->snake.size();
-
+	int headIndex = this->snake.size() - 1;
 	sf::Vector2f nextPosition;
-	for (int i = 0; i < length - 1; i++)
+
+	for (int i = 0, j = 1; i < headIndex; i++, j++)
 	{
-		nextPosition = this->snake[i + 1].getPosition();
+		nextPosition = this->snake[j].getPosition();
 		this->snake[i].setPosition(nextPosition);
 	}
 
-	sf::Vector2f head = GetNextPosition();
-	this->snake[length - 1].setPosition(head);
+	sf::Vector2f head = NextPosition();
+	this->snake[headIndex].setPosition(head);
 }
-
-
 void Snake::MoveAI(Apple& apple)
 {
 	int* inputs = Inputs(apple);
-	Row steps = this->genotype.GetStepPosobility(inputs);				// contain chance of every (posible) steps(L, Str, R)
 	int headIndex = this->snake.size() - 1;
 
+	Row steps = this->genotype.GetStepPosobility(inputs);
+
 	sf::Vector2f nextPosition;
-	for (int i = 0; i < headIndex; i++)
+	for (int i = 0, j = 1; i < headIndex; i++, j++)
 	{
-		nextPosition = this->snake[i + 1].getPosition();
+		nextPosition = this->snake[j].getPosition();
 		this->snake[i].setPosition(nextPosition);
 	}
 
 	if (this->direction == 'L')
 	{
 		if (steps[0] == 1)
-		{
 			this->direction = 'D';
-		}
 		else if (steps[1] == 1)
-		{
 			this->direction = 'L';
-		}
 		else if (steps[2] == 1)
-		{
 			this->direction = 'U';
-		}
-
-		if (EatApple(apple))
-		{
-			delete inputs;
-			return;
-		}
-
-		sf::Vector2f head = GetNextPosition();
-		this->snake[headIndex].setPosition(head);
 	}
+
 	else if (this->direction == 'U')
 	{
 		if (steps[0] == 1)
-		{
 			this->direction = 'L';
-		}
 		else if (steps[1] == 1)
-		{
 			this->direction = 'U';
-		}
 		else if (steps[2] == 1)
-		{
 			this->direction = 'R';
-		}
-		if (EatApple(apple))
-		{
-			delete inputs;
-			return;
-		}
-		sf::Vector2f head = GetNextPosition();
-		this->snake[headIndex].setPosition(head);
 	}
+
 	else if (this->direction == 'R')
 	{
 		if (steps[0] == 1)
-		{
 			this->direction = 'U';
-		}
 		else if (steps[1] == 1)
-		{
 			this->direction = 'R';
-		}
 		else if (steps[2] == 1)
-		{
 			this->direction = 'D';
-		}
-		if (EatApple(apple))
-		{
-			delete inputs;
-			return;
-		}
-		sf::Vector2f head = GetNextPosition();
-		this->snake[headIndex].setPosition(head);
 	}
+
 	else
 	{
 		if (steps[0] == 1)
-		{
 			this->direction = 'R';
-		}
 		else if (steps[1] == 1)
-		{
 			this->direction = 'D';
-		}
 		else if (steps[2] == 1)
-		{
 			this->direction = 'L';
-		}
-		if (EatApple(apple))
-		{
-			delete inputs;
-			return;
-		}
-		sf::Vector2f head = GetNextPosition();
-		this->snake[headIndex].setPosition(head);
 	}
+
+	if (EatApple(apple))
+	{
+		delete inputs;
+		return;
+	}
+	nextPosition = NextPosition();
+	this->snake[headIndex].setPosition(nextPosition);
+
 	delete inputs;
 }
 
@@ -279,13 +272,12 @@ void Snake::SetIsAliveStatus()
 		this->isAlive = 0;
 		return;
 	}
-	/*if (this->aliveTime > (10 + this->countOfApple * 5))
-	{
-		this->isAlive = 0;
-	}*/
 }
 
-
+void Snake::SetIsAliveStatus(bool status)
+{
+	this->isAlive = status;
+}
 
 char Snake::GetDirection()
 {
@@ -299,11 +291,24 @@ bool Snake::GetAliveStatus()
 {
 	return this->isAlive;
 }
+Genotype Snake::GetGenotype()
+{
+	return this->genotype;
+}
+int Snake::GetGeneration()
+{
+	return this->generation;
+}
+int Snake::GetCountOfApple()
+{
+	return this->countOfApple;
+}
 std::vector<sf::RectangleShape>& Snake::GetSnake()
 {
 	return this->snake;
 }
-sf::Vector2f Snake::GetNextPosition()
+
+sf::Vector2f Snake::NextPosition()
 {
 	const int headIndex = this->snake.size() - 1;
 
@@ -312,19 +317,19 @@ sf::Vector2f Snake::GetNextPosition()
 	switch (this->direction)
 	{
 	case 'L':
-		temp.x -= 40;
+		temp.x -= FrameLength;
 		return temp;
 
 	case 'U':
-		temp.y -= 40;
+		temp.y -= FrameLength;
 		return temp;
 
 	case 'R':
-		temp.x += 40;
+		temp.x += FrameLength;
 		return temp;
 
 	case 'D':
-		temp.y += 40;
+		temp.y += FrameLength;
 		return temp;
 	}
 }
@@ -337,20 +342,6 @@ void Snake::AddElementToBody(sf::Vector2f newPosition)
 	newPart.setPosition(newPosition);
 
 	this->snake.push_back(newPart);
-}
-
-
-Genotype Snake::GetGenotype()
-{
-	return this->genotype;
-}
-int Snake::GetGeneration()
-{
-	return this->generation;
-}
-int Snake::GetCountOfApple()
-{
-	return this->countOfApple;
 }
 char Snake::ImposibleDirection()
 {
@@ -366,12 +357,10 @@ char Snake::ImposibleDirection()
 		return 'U';
 	}
 }
-
-
 // Check!!!!!!!!
 int Snake::DistanceToWall(char direction)
 {
-	int answer;
+	int answer = 0;
 
 	int headPosition = this->snake.size() - 1;
 
@@ -384,10 +373,10 @@ int Snake::DistanceToWall(char direction)
 		answer = (this->snake[headPosition].getPosition().y) / FrameLength;
 		break;
 	case 'R':
-		answer = (WindowSize - (this->snake[headPosition].getPosition().x)) / FrameLength;
+		answer = (FieldSIze - (this->snake[headPosition].getPosition().x)) / FrameLength;
 		break;
 	case 'D':
-		answer = (WindowSize - (this->snake[headPosition].getPosition().y)) / FrameLength;
+		answer = (FieldSIze - (this->snake[headPosition].getPosition().y)) / FrameLength;
 		break;
 	}
 
@@ -425,6 +414,7 @@ int Snake::DistanceToTail(char direction)
 
 		for (int i = 0; i < headIndex; i++)
 		{
+			tailPosition = this->snake[i].getPosition();
 			if (snakePosition.x == tailPosition.x)
 			{
 				if ((snakePosition.y - tailPosition.y) / FrameLength < answer && snakePosition.y - tailPosition.y > 0)
@@ -434,10 +424,11 @@ int Snake::DistanceToTail(char direction)
 		return answer;
 
 	case 'R':
-		answer = (WindowSize - snakePosition.x) / FrameLength;
+		answer = (FieldSIze - snakePosition.x) / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
+			tailPosition = this->snake[i].getPosition();
 			if (snakePosition.y == tailPosition.y)
 			{
 				if ((tailPosition.x - snakePosition.x) / FrameLength < answer && tailPosition.x - snakePosition.x > 0)
@@ -448,14 +439,102 @@ int Snake::DistanceToTail(char direction)
 		return answer;
 
 	case 'D':
-		answer = (WindowSize - snakePosition.y) / FrameLength;
+		answer = (FieldSIze - snakePosition.y) / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
+			tailPosition = this->snake[i].getPosition();
 			if (snakePosition.x == tailPosition.x)
 			{
 				if ((tailPosition.y - snakePosition.y) / FrameLength < answer && tailPosition.y - snakePosition.y > 0)
 					answer = (tailPosition.y - snakePosition.y) / FrameLength;
+			}
+		}
+
+		return answer;
+	}
+}
+int Snake::DistanceToTail(char direction, int& tailIndex)
+{
+	int headIndex = this->snake.size() - 1;
+
+	sf::Vector2f snakePosition = this->snake[headIndex].getPosition();
+	sf::Vector2f tailPosition;
+
+	int answer;
+
+	switch (direction)
+	{
+	case 'L':
+
+		answer = snakePosition.x / FrameLength;
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.y == tailPosition.y)
+			{
+				if ((snakePosition.x - tailPosition.x) / FrameLength < answer && snakePosition.x - tailPosition.x > 0)
+				{
+					answer = (snakePosition.x - tailPosition.x) / FrameLength;
+					tailIndex = i;
+				}
+			}
+		}
+
+		return answer;
+
+	case 'U':
+		answer = snakePosition.y / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.x == tailPosition.x)
+			{
+				if ((snakePosition.y - tailPosition.y) / FrameLength < answer && snakePosition.y - tailPosition.y > 0)
+				{
+					answer = (snakePosition.y - tailPosition.y) / FrameLength;
+					tailIndex = i;
+				}
+			}
+		}
+		return answer;
+
+	case 'R':
+		answer = (FieldSIze - snakePosition.x) / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.y == tailPosition.y)
+			{
+				if ((tailPosition.x - snakePosition.x) / FrameLength < answer && tailPosition.x - snakePosition.x > 0)
+				{
+					tailIndex = i;
+					answer = (tailPosition.x - snakePosition.x) / FrameLength;
+				}
+			}
+		}
+
+		return answer;
+
+	case 'D':
+		answer = (FieldSIze - snakePosition.y) / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.x == tailPosition.x)
+			{
+				if ((tailPosition.y - snakePosition.y) / FrameLength < answer && tailPosition.y - snakePosition.y > 0)
+				{
+					answer = (tailPosition.y - snakePosition.y) / FrameLength;
+					tailIndex = i;
+				}
 			}
 		}
 
@@ -497,7 +576,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 	case 'R':
-		answer =(WindowSize - snakePosition.x) / FrameLength;
+		answer =(FieldSIze - snakePosition.x) / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -510,7 +589,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 
 	case 'D':
 
-		answer = (WindowSize - snakePosition.y) / FrameLength;
+		answer = (FieldSIze - snakePosition.y) / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -529,6 +608,15 @@ int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& appl
 	sf::Vector2f snakePosition = this->snake[headIndex].getPosition();
 	sf::Vector2f applePosition = apple.GetApple().getPosition();
 
+	int snakeNormX = snakePosition.x / FrameLength;
+	int snakeNormY = snakePosition.y / FrameLength;
+
+	int appleNormX = applePosition.x / FrameLength;
+	int appleNormY = applePosition.y / FrameLength;
+
+	int dx;
+	int dy;
+
 	int answer;
 	switch (direction1)
 	{
@@ -536,28 +624,29 @@ int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& appl
 		switch (direction2)
 		{
 		case 'U':
-			answer = (snakePosition.x + snakePosition.y) / (2 * FrameLength);
+			dx = pow(snakeNormX, 2);
+			dy = pow(snakeNormY, 2);
 
 			if (snakePosition.x - applePosition.x == snakePosition.y - applePosition.y)
 			{
-				int dx = (snakePosition.x - applePosition.x) / FrameLength;
-				int dy = (snakePosition.y - applePosition.y) / FrameLength;
-
-				answer = (dx + dy) / 2;
+				dx = pow(snakeNormX - appleNormX, 2);
+				dy = pow(snakeNormY - appleNormY, 2);
 			}
+
+			answer = pow(dx + dy, 0.5);
 			return answer;
 
-
 		case 'D':
-			answer = (snakePosition.x + WindowSize - snakePosition.y) / (2 * FrameLength);
+			dx = pow(snakeNormX, 2);
+			dy = pow(FieldSIze / FrameLength - snakeNormY, 2);
 
 			if (snakePosition.x - applePosition.x == applePosition.y - snakePosition.y)
 			{
-				int dx = (snakePosition.x - applePosition.x) / FrameLength;
-				int dy = (applePosition.y - snakePosition.y) / FrameLength;
-
-				answer = (dx + dy) / 2;
+				dx = pow(snakeNormX - appleNormX, 2);
+				dy = pow(appleNormY - snakeNormY, 2);
 			}
+
+			answer = pow(dx + dy, 0.5);
 			return answer;
 		}
 		break;
@@ -565,36 +654,46 @@ int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& appl
 		switch (direction2)
 		{
 		case 'U':
-			answer = (WindowSize - snakePosition.x + snakePosition.y) / (2 * FrameLength);
+			dx = pow(FieldSIze / FrameLength - snakeNormX, 2);
+			dy = pow(snakeNormY, 2);
 
 			if (applePosition.x - snakePosition.x == snakePosition.y - applePosition.y)
 			{
-				int dx = (applePosition.x - snakePosition.x) / FrameLength;
-				int dy = (snakePosition.y - applePosition.y) / FrameLength;
-
-				answer = (dx + dy) / 2;
+				dx = pow((appleNormX - snakeNormX), 2);
+				dy = pow((snakeNormY - appleNormY), 2);
 			}
+			answer = pow(dx + dy, 0.5);
 			return answer;
+
 		case 'D':
-			answer = (WindowSize - snakePosition.x + WindowSize - snakePosition.y) / (2 * FrameLength);
+			dx = pow(FieldSIze / FrameLength - snakeNormX, 2);
+			dy = pow(FieldSIze / FrameLength - snakeNormY, 2);
 
 			if (applePosition.x - snakePosition.x == applePosition.y - snakePosition.y)
 			{
-				int dx = (applePosition.x - snakePosition.x) / FrameLength;
-				int dy = (applePosition.y - snakePosition.y) / FrameLength;
-
-				answer = (dx + dy) / 2;
+				dx = pow((appleNormX - snakeNormX), 2);
+				dy = pow((appleNormY - snakeNormY), 2);
 			}
+			answer = pow(dx + dy, 0.5);
 			return answer;
 		}
 	}
 }
+
 int Snake::DiagonalDistanceToTail(char direction1, char direction2)
 {
 	int headIndex = this->snake.size() - 1;
 	sf::Vector2f snakePosition = this->snake[headIndex].getPosition();
 	sf::Vector2f tailPosition;
 
+	int headNormX = snakePosition.x / FrameLength;
+	int headNormY = snakePosition.y / FrameLength;
+
+	int tailNormX;
+	int tailNormY;
+
+	int dx;
+	int dy;
 	int answer;
 
 	switch (direction1)
@@ -603,35 +702,46 @@ int Snake::DiagonalDistanceToTail(char direction1, char direction2)
 		switch (direction2)
 		{
 		case 'U':
-			answer = (snakePosition.x + snakePosition.y) / (2 * FrameLength);
+			dx = pow(headNormX, 2);
+			dy = pow(headNormY, 2);
+
+			answer = pow(dx+dy,0.5);
 
 			for (int i = 0; i < headIndex; i++)
 			{
-				tailPosition = this->snake[i].getPosition();
+				tailNormX = this->snake[i].getPosition().x / FrameLength;
+				tailNormY = this->snake[i].getPosition().y / FrameLength;
 
-				if (snakePosition.x - tailPosition.x == snakePosition.y - tailPosition.y)
+				if (headNormX - tailNormX == headNormY - tailNormY)
 				{
-					int dx = (snakePosition.x - tailPosition.x) / FrameLength;
-					int dy = (snakePosition.y - tailPosition.y) / FrameLength;
-					if (answer > (dx + dy) / 2)
-						answer = (dx + dy) / 2;
+					dx = pow(headNormX - tailNormX, 2);
+					dy = pow(headNormY - tailNormY, 2);
+
+					if (answer > pow(dx + dy, 0.5))
+						answer = pow(dx + dy, 0.5);
 				}
 			}
+
 			return answer;
 
 		case 'D':
-			answer = (snakePosition.x + WindowSize - snakePosition.y) / (2 * FrameLength);
+			dx = pow(headNormX, 2);
+			dy = pow(FieldSIze / FrameLength - headNormY, 2);
+
+			answer = pow(dx + dy, 0.5);
 
 			for (int i = 0; i < headIndex; i++)
 			{
-				tailPosition = this->snake[i].getPosition();
+				tailNormX = this->snake[i].getPosition().x / FrameLength;
+				tailNormY = this->snake[i].getPosition().y / FrameLength;
 
-				if (snakePosition.x - tailPosition.x == tailPosition.y - snakePosition.y)
+				if (headNormX - tailNormX == tailNormY - headNormY)
 				{
-					int dx = (snakePosition.x - tailPosition.x) / FrameLength;
-					int dy = (tailPosition.y - snakePosition.y) / FrameLength;
-					if (answer > (dx + dy) / 2)
-						answer = (dx + dy) / 2;
+					dx = pow(headNormX - tailNormX, 2);
+					dy = pow(tailNormY - headNormY, 2);
+
+					if (answer > pow(dx + dy, 0.5))
+						answer = pow(dx + dy, 0.5);
 				}
 			}
 			return answer;
@@ -642,35 +752,45 @@ int Snake::DiagonalDistanceToTail(char direction1, char direction2)
 		{
 		case 'U':
 
-			answer = (WindowSize - snakePosition.x + snakePosition.y) / (2 * FrameLength);
+			dx = pow(FieldSIze / FrameLength - headNormX, 2);
+			dy = pow(headNormY, 2);
+
+			answer = pow(dx + dy, 0.5);
 
 			for (int i = 0; i < headIndex; i++)
 			{
-				tailPosition = this->snake[i].getPosition();
+				tailNormX = this->snake[i].getPosition().x / FrameLength;
+				tailNormY = this->snake[i].getPosition().y / FrameLength;
 
-				if (tailPosition.x - snakePosition.x == snakePosition.y - tailPosition.y)
+				if (tailNormX - headNormX == headNormY - tailNormY)
 				{
-					int dx = (tailPosition.x - snakePosition.x) / FrameLength;
-					int dy = (snakePosition.y - tailPosition.y) / FrameLength;
-					if (answer > (dx + dy) / 2)
-						answer = (dx + dy) / 2;
+					dx = pow(tailNormX - headNormX, 2);
+					dy = pow(headNormY - tailNormY, 2);
+
+					if (answer > pow(dx + dy, 0.5))
+						answer = pow(dx + dy, 0.5);
 				}
 			}
 			return answer;
 
 		case 'D':
-			answer = (WindowSize - snakePosition.x + WindowSize - snakePosition.y) / (2 * FrameLength);
+			dx = pow(FieldSIze / FrameLength - headNormX, 2);
+			dy = pow(FieldSIze / FrameLength - headNormY, 2);
+
+			answer = pow(dx + dy, 0.5);
 
 			for (int i = 0; i < headIndex; i++)
 			{
-				tailPosition = this->snake[i].getPosition();
+				tailNormX = this->snake[i].getPosition().x / FrameLength;
+				tailNormY = this->snake[i].getPosition().y / FrameLength;
 
-				if (tailPosition.x - snakePosition.x == tailPosition.y - snakePosition.y)
+				if (tailNormX - headNormX == tailNormY - headNormY)
 				{
-					int dx = (tailPosition.x - snakePosition.x) / FrameLength;
-					int dy = (tailPosition.y - snakePosition.y) / FrameLength;
-					if (answer > (dx + dy) / 2)
-						answer = (dx + dy) / 2;
+					dx = pow(tailNormX - headNormX, 2);
+					dy = pow(tailNormY - headNormY, 2);
+
+					if (answer > pow(dx + dy, 0.5))
+						answer = pow(dx + dy, 0.5);
 				}
 			}
 			return answer;
@@ -680,7 +800,11 @@ int Snake::DiagonalDistanceToTail(char direction1, char direction2)
 int Snake::DiagonalDistanceToWall(char direction1, char direction2)
 {
 	int headIndex = this->snake.size() - 1;
-	sf::Vector2f snakePosition = this->snake[headIndex].getPosition();
+	
+	int snakeNormX = this->snake[headIndex].getPosition().x / FrameLength;
+	int snakeNormY = this->snake[headIndex].getPosition().y / FrameLength;
+
+	int temp;
 	int answer;
 
 	switch (direction1)
@@ -690,12 +814,16 @@ int Snake::DiagonalDistanceToWall(char direction1, char direction2)
 		{
 		case'U':
 
-			answer = (snakePosition.x + snakePosition.y) / (2 * FrameLength);
+			temp = pow(snakeNormX + snakeNormY, 2);
+			answer = pow(temp, 0.5);
+
 			return answer;
 
 		case'D':
 
-			answer = (snakePosition.x + WindowSize - snakePosition.y) / (2 * FrameLength);
+			temp = pow(snakeNormX  + FieldSIze / FrameLength - snakeNormY, 2);
+			answer = pow(temp, 0.5);
+
 			return answer;
 
 		}
@@ -706,12 +834,16 @@ int Snake::DiagonalDistanceToWall(char direction1, char direction2)
 
 		case'U':
 
-			answer = (WindowSize - snakePosition.x + snakePosition.y) / (2 * FrameLength);
+			temp = pow(FieldSIze / FrameLength - snakeNormX + snakeNormY , 2);
+			answer = pow(temp, 0.5);
+
 			return answer;
 
 		case'D':
 
-			answer = (WindowSize - snakePosition.x + WindowSize - snakePosition.y) / (2 * FrameLength);
+			temp = pow(FieldSIze / FrameLength - snakeNormX + FieldSIze / FrameLength - snakeNormY, 2);
+			answer = pow(temp, 0.5);
+
 			return answer;
 
 		}
@@ -721,7 +853,7 @@ int Snake::DiagonalDistanceToWall(char direction1, char direction2)
 
 int* Snake::Inputs(Apple& apple)
 {
-	int* answer = new int[22];
+	int* answer = new int[CountOfInputs];
 
 	switch (this->direction)
 	{
@@ -777,29 +909,30 @@ int* Snake::Inputs(Apple& apple)
 	answer[10] = DiagonalDistanceToApple('L', 'D', apple);
 	answer[11] = DiagonalDistanceToApple('R', 'U', apple);;
 	answer[12] = DiagonalDistanceToApple('R', 'D', apple);;
-	answer[13] = DiagonalDistanceToTail('L', 'U');
+	/*answer[13] = DiagonalDistanceToTail('L', 'U');
 	answer[14] = DiagonalDistanceToTail('L', 'D');
 	answer[15] = DiagonalDistanceToTail('R', 'U');
 	answer[16] = DiagonalDistanceToTail('R', 'D');
 	answer[17] = DiagonalDistanceToWall('L', 'U');
 	answer[18] = DiagonalDistanceToWall('L', 'D');
 	answer[19] = DiagonalDistanceToWall('R', 'U');
-	answer[20] = DiagonalDistanceToWall('R', 'D');
-	answer[21] = 1;
+	answer[20] = DiagonalDistanceToWall('R', 'D');*/
+	answer[13] = 1;
 
 	return answer;
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!
 void Snake::CalculateTotalScore()
 {
 	this->totalScore += this->countOfApple;
 }
+//
 
 void Snake::RemoveSteps()
 {
-	this->steps -= 50;
+	this->steps -= 75;
 }
-
 void Snake::IncrementSteps()
 {
 	this->steps++;
@@ -807,8 +940,7 @@ void Snake::IncrementSteps()
 
 bool Snake::FrameISApple(Apple& apple)
 {
-	int headIndex = this->snake.size() - 1;
-	sf::Vector2f nextPosition = GetNextPosition();
+	sf::Vector2f nextPosition = NextPosition();
 	return (nextPosition == apple.GetApple().getPosition());
 }
 
@@ -816,10 +948,10 @@ void Snake::SetApple(Apple& apple)
 {
     apple.SetColor(this->color);
 
-	std::vector<Coordinates> notFreePositions;
+	std::vector<sf::Vector2f> notFreePositions;
 	int snakeLength = this->snake.size();
 
-	Coordinates temp;
+	sf::Vector2f temp;
 	for (int i = 0; i < snakeLength; i++)
 	{
 		temp.x = this->snake[i].getPosition().x / FrameLength;
@@ -833,8 +965,8 @@ void Snake::SetApple(Apple& apple)
 
 	while (AppleX == -1)
 	{
-		AppleX = rand() % 20;
-		AppleY = rand() % 20;
+		AppleX = rand() % (FieldSIze / FrameLength);
+		AppleY = rand() % (FieldSIze / FrameLength);
 
 		for (int i = 0; i < snakeLength; i++)
 		{
@@ -857,37 +989,38 @@ bool Snake::EatApple(Apple& apple)
 	{
 		IncrementScore();
 		RemoveSteps();
-
 		AddElementToBody(apple.GetApple().getPosition());
 		SetApple(apple);
+
 		return 1;
 	}
 	return 0;
 }
 
-Genotype* GetBestParents(Snake* generation, int count)
+Genotype* GetBestParents(Snake* generation, int count, int& currentValue2)
 {
-	float maxValue1 = generation[0].GetTotalScore();
-	float maxValue2 = generation[1].GetTotalScore();
+	float maxValue1 = 0;
+	float maxValue2 = 0;
 
-	int position1 = 0;
-	int position2 = 1;
+	int position1 = -1;
+	int position2 = -1;
 
 	float currentValue;
 
-	for (int i = 2; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		currentValue = generation[i].GetTotalScore();
 
-		if (currentValue > maxValue2 || currentValue > maxValue1)
+		if (currentValue >= maxValue2 || currentValue >= maxValue1)
 		{
 
-			if (currentValue > maxValue2)
+			if (currentValue >= maxValue2)
 			{
 				maxValue2 = currentValue;
 				position2 = i;
 			}
-			else if (currentValue > maxValue1)
+
+			else 
 			{
 				maxValue1 = currentValue;
 				position1 = i;
@@ -903,6 +1036,7 @@ Genotype* GetBestParents(Snake* generation, int count)
 		Genotype randSnake2{};
 		answer[0] = randSnake1;
 		answer[1] = randSnake2;
+
 		return answer;
 	}
 
@@ -910,5 +1044,43 @@ Genotype* GetBestParents(Snake* generation, int count)
 	answer[1] = generation[position2].GetGenotype();
 
 	std::cout << generation[position1].GetCountOfApple()<< " " << generation[position2].GetCountOfApple() << std::endl;
+
+	if (maxValue2 > currentValue2)
+	{
+		currentValue2 = maxValue2;
+
+		std::ofstream file1;
+		std::ofstream file2;
+
+		file1.open("firstLayer.txt");
+		file2.open("secondLayer.txt");
+
+		for (int i = 0; i < 7; i++)
+		{
+			for (int j = 0; j < CountOfInputs; j++)
+			{
+				file1 << answer[1].GetFirstLayer()[i][j];
+				file1 << std::endl;
+			}
+		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				file2 << answer[1].GetSecondLayer()[i][j];
+				file2 << std::endl;
+			}
+		}
+
+		file1.close();
+		file2.close();
+	}
 	return answer;
+}
+
+void Move3(Snake& s, Apple& a)
+{
+	int* inputs = s.Inputs(a);
+	
 }

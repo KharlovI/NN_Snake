@@ -7,6 +7,11 @@ set(SFML_STATIC_LIBRARIES TRUE)
 
 include_directories(Snake)
 
+file(COPY ${CMAKE_BINARY_DIR}/firstLayer.txt DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/Snake)
+file(COPY ${CMAKE_BINARY_DIR}/secondLayer.txt DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/Snake)
+##file(COPY Snake/firstLayer.txt DESTINATION ${CMAKE_BINARY_DIR})
+##file(COPY Snake/secondLayer.txt DESTINATION ${CMAKE_BINARY_DIR})
+
 add_executable(AISnake
         Snake/Apple.cpp
         Snake/Apple.h
@@ -17,7 +22,11 @@ add_executable(AISnake
         Snake/Snake.cpp
         Snake/Snake.h
         Snake/Utilities.cpp
-        Snake/Utilities.h)
+        Snake/Utilities.h
+        Snake/Button.cpp
+        Snake/Button.h
+        Snake/firstLayer.txt
+        Snake/secondLayer.txt)
 
 set(SFML_DIR "S:\\Programs\\CLion 2022.2.3\\SFML\\lib\\cmake\\SFML")
 

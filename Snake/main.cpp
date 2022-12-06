@@ -1,154 +1,129 @@
 #include <SFML/Graphics.hpp>
 #include "Utilities.h"
+#include<iostream>
 
-//#include"Matrix.h"
-//#include <iostream>
-
-constexpr bool flag = 0;
+constexpr int NORM = CHAR_SIZE_Button - 7;
+int FPS = 15;
 
 int main()
 {
+	sf::Font font;
+	font.loadFromFile("NotCourierSans.otf");
+
+	Button first("Not trained SNAKE", sf::Vector2f{ FieldSIze + 5*NORM, 10*NORM}, font);
+	Button second("Train 100 SNAKES", sf::Vector2f{ FieldSIze + 5*NORM, 15 * NORM }, font);
+	Button third("Trained SNAKE", sf::Vector2f{ FieldSIze + 5*NORM, 20 * NORM }, font);
+
+	Button SpeedUP("Speed up", sf::Vector2f{ FieldSIze + 5 * NORM, FieldSIze - 15 * NORM }, font);
+	Button SpeedDown("Slow down", sf::Vector2f{ FieldSIze + 5 * NORM, FieldSIze - 10 * NORM }, font);
 	srand(time(NULL));
-
-	//int delay = 5;
-	//int counter = 0;
-
-	/*char impossibleDirection;
-	char lastPossibleDirection;*/
-
-	sf::RenderWindow window(sf::VideoMode(WindowSize, WindowSize), "Snake With AI");
-	window.setFramerateLimit(240);
-
+	sf::RenderWindow window(sf::VideoMode(WindowSize, FieldSIze), "Snake With AI");
+	window.setFramerateLimit(FPS);
 	const int countOfSnakes = 100;
 
-	Snake snake[countOfSnakes];
+	int maxValue = 60;
+	Snake snake;
+	Apple apple;
+
+	/*Snake snake[countOfSnakes];
+	for (int i = 0; i < countOfSnakes; i++)
+	{
+		Snake temp{ 1 };
+		snake[i] = temp;
+	}
 	Apple apple[countOfSnakes];
 
 	for (int i = 0; i < countOfSnakes; i++)
-		snake[i].SetApple(apple[i]);
+		snake[i].SetApple(apple[i]);*/
+	snake.SetApple(apple);
 
-	//   lastPossibleDirection = snake.GetDirection();
-	   //impossibleDirection = snake.ImposibleDirection();
+	std::vector<Button> b;
+	b.push_back(first);
+	b.push_back(second);
+	b.push_back(third);
+
+	b.push_back(SpeedUP);
+	b.push_back(SpeedDown);
+
+	int numOfFunction = FirstAction(b, window, FPS);
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		switch (numOfFunction)
+		{
+		case 0:
+			return 1;
+		case 1:
+			numOfFunction = FirstAction(b, window, FPS);
+			continue;
+		case 2:
+			numOfFunction = SecondAction(b, window, FPS);
+			continue;
+		case 3:
+			numOfFunction = ThirdAction(b, window, FPS);
+			continue;
+		}
+		/*sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				if (snake.GetDirection() != 'R')
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				sf::Vector2i mp = sf::Mouse::getPosition(window);
+
+				first.SetIsPressed(mp);
+				second.SetIsPressed(mp);
+				third.SetIsPressed(mp);
+
+				SpeedUP.SetIsPressed(mp);
+				SpeedDown.SetIsPressed(mp);
+
+				if (first.IsPressed())
 				{
-					if (impossibleDirection != 'L')
-						lastPossibleDirection = 'L';
+					FirstAction(b, window, FPS);
+					
 				}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				if (snake.GetDirection() != 'D')
+
+				else if (second.IsPressed())
 				{
-					if (impossibleDirection != 'U')
-						lastPossibleDirection = 'U';
+					SecondAction(b, window, FPS);
 				}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				if (snake.GetDirection() != 'L')
+
+				else if (third.IsPressed())
 				{
-					if (impossibleDirection != 'R')
-						lastPossibleDirection = 'R';
+					ThirdAction(b, window, FPS);
 				}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				if (snake.GetDirection() != 'U')
+
+				else if (SpeedUP.IsPressed())
 				{
-					if (impossibleDirection != 'D')
-						lastPossibleDirection = 'D';
-				}*/
+					if (FPS < 150)
+					{
+						FPS += 5; 
+						window.setFramerateLimit(FPS);
+					}
+				}
+				else if (SpeedDown.IsPressed())
+				{
+					if (FPS > 14)
+					{
+						FPS -= 5;
+						window.setFramerateLimit(FPS);
+					}
+				}
+				
+			}
 		}
 
 		window.clear();
+		first.Draw(window);
+		second.Draw(window);
+		third.Draw(window);
+		SpeedUP.Draw(window);
+		SpeedDown.Draw(window);
 
-		if (flag)
-		{
-			int position = 0;
-			int maxCountOfApple = snake[0].GetCountOfApple();
-
-			for (int i = 1; i < countOfSnakes; i++)
-			{
-				if (snake[i].GetCountOfApple() > maxCountOfApple && snake[i].GetAliveStatus() == 1)
-					position = i;
-			}
-
-			snake[position].PrintSnake(window);
-			apple[position].PrintApple(window);
-		}
-		else
-		{
-			for (int i = 0; i < countOfSnakes; i++)
-			{
-				if (snake[i].GetAliveStatus())
-				{
-					snake[i].PrintSnake(window);
-					apple[i].PrintApple(window);
-				}
-			}
-		}
-			/*snake.SetDirection(lastPossibleDirection);
-			impossibleDirection = snake.ImposibleDirection();
-			impossibleDirection = snake.GetDirection();*/
-
-			for (int i = 0; i < countOfSnakes; i++)
-			{
-				if (snake[i].GetAliveStatus())
-				{
-					snake[i].PrintSnake(window);
-					apple[i].PrintApple(window);
-
-					snake[i].MoveAI(apple[i]);
-					snake[i].SetIsAliveStatus();
-					snake[i].IncrementSteps();
-				}
-			}
-
-		if (AllSnakesIsDead(snake, countOfSnakes))
-		{
-			int generation = snake[0].GetGeneration();
-
-			std::cout << "Generation: " << generation << std::endl;
-
-			for (int i = 0; i < countOfSnakes; i++)
-			{
-				snake[i].CalculateTotalScore();
-			}
-			Snake babies[countOfSnakes];
-			Apple newApples[countOfSnakes];
-
-			Genotype* best = GetBestParents(snake, countOfSnakes);
-			std::cout << std::endl;
-			for (int i = 0; i < countOfSnakes; i++)
-			{
-				Snake snake2{ best , generation };
-				babies[i] = snake2;
-			}
-
-			for (int i = 0; i < countOfSnakes; i++)
-				babies[i].SetApple(apple[i]);
-
-			for (int i = 0; i < countOfSnakes; i++)
-			{
-				snake[i] = babies[i];
-			}
-		}
-		/*snake.SetIsAliveStatus();
-		if (snake.GetAliveStatus() != 1)
-		{
-			Snake snake2{};
-			Apple apple2{};
-
-			snake = snake2;
-			apple = apple2;
-			SetPositionApple(apple, snake);
-		}*/
-
-		window.display();
+		window.display();*/
 	}
 
 	return 0;

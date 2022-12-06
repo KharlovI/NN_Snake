@@ -1,8 +1,8 @@
 #pragma once
 #include "Snake.h"
-
-//bool FrameISApple(Apple& apple, Snake& snake);
-//void SetPositionApple(Apple& apple, Snake& snake);
-//void EatApple(Apple& apple, Snake& snake);
+#include "Button.h"
 
 bool AllSnakesIsDead(Snake snakes[], int count);
+int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& curFPS);
+int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& curFPS);
+int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& curFPS);

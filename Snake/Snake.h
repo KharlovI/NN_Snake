@@ -5,7 +5,8 @@
 #include "Apple.h"
 #include <ctime>
 constexpr int FrameLength = 40;
-constexpr int WindowSize = 800;
+constexpr int FieldSIze = 800;
+constexpr int WindowSize = 1100;
 
 class Snake
 {
@@ -31,6 +32,7 @@ public:
 
 	Snake();
 	Snake(Genotype* old, int generation);
+	Snake(bool HER);
 
 	bool FrameIsWall();
 	bool FrameIsBody();
@@ -42,13 +44,13 @@ public:
 	void SetDirection(char dir);
 	void SetStartPositionSnake();
 	void SetIsAliveStatus();
-	//void SetAliveTime();
+	void SetIsAliveStatus(bool status);
 	void IncrementScore() { this->countOfApple++; }
 
 	void AddElementToBody(sf::Vector2f newPosition);
 
 	std::vector <sf::RectangleShape>& GetSnake();
-	sf::Vector2f GetNextPosition();
+	sf::Vector2f NextPosition();
 
 	bool GetAliveStatus();
 	char GetDirection();
@@ -67,10 +69,11 @@ public:
 
 	char ImposibleDirection();
 
-
+	int GetLength() { return this->snake.size(); }
 
 	int DistanceToWall(char direction);
 	int DistanceToTail(char direction);
+	int DistanceToTail(char direction, int& tailIndex);
 	int DistanceToApple(char direction, Apple& apple);
 	int DiagonalDistanceToApple(char direction1, char direction2, Apple& apple);	// (L+U, L+D, R+U, R+D)
 	int DiagonalDistanceToTail(char direction1, char direction2);
@@ -86,6 +89,12 @@ public:
 	void SetApple(Apple& apple);
 
 	bool EatApple(Apple& apple);
+
+	~Snake()
+	{
+		
+	}
 };
 
-Genotype* GetBestParents(Snake* generation, int count);
+Genotype* GetBestParents(Snake* generation, int count, int& value);
+//void SetValuesFromFiles(Snake& temp);

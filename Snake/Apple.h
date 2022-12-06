@@ -10,7 +10,7 @@ public:
 	Apple();
 
 	sf::CircleShape& GetApple();
-    void SetColor(sf::Color color);
+	void SetColor(sf::Color color);
 
 	void PrintApple(sf::RenderWindow& window)
 	{

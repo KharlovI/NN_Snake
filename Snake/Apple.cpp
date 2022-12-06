@@ -20,5 +20,5 @@ sf::CircleShape& Apple::GetApple()
 
 void Apple::SetColor(sf::Color color)
 {
-    this->apple.setFillColor(color);
+	this->apple.setFillColor(color);
 }

@@ -1,8 +1,9 @@
 #include"Genotype.h"
+#include<fstream>
 
 Row Norm(Row layer)
 {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		if (layer[i] < 0)
 			layer[i] = 0;
@@ -14,10 +15,11 @@ Row Norm(Row layer)
 
 Genotype::Genotype()
 {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 7; i++)
 	{
-		for (int j = 0; j < 22; j++)
+		for (int j = 0; j < CountOfInputs; j++)
 		{
+
 			if (rand() % 2 == 0)
 				firstLayer[i][j] = -1.f / ((rand() % 100) + 1);
 
@@ -28,7 +30,7 @@ Genotype::Genotype()
 
 	for (int i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 8; j++)
 		{
 			if (rand() % 2 == 0)
 				secondLayer[i][j] = -1.f / ((rand() % 100) + 1);
@@ -38,19 +40,20 @@ Genotype::Genotype()
 		}
 	}
 }
-
 Genotype::Genotype(Genotype* bestParents)
 {
-	for (int i = 0; i < 9; i++)
+
+	for (int i = 0; i < 7; i++)
 	{
-		for (int j = 0; j < 22; j++)
+		for (int j = 0; j < CountOfInputs; j++)
 		{
-			if (rand() % 30 == 0)
+			if (rand() % 40 == 0)
 			{
 				if (rand() % 2 == 0)
-					firstLayer[i][j] = 1.f / ((rand() % 100) + 1);
-				else
 					firstLayer[i][j] = -1.f / ((rand() % 100) + 1);
+
+				else
+					firstLayer[i][j] = 1.f / ((rand() % 100) + 1);
 			}
 
 			else if (rand() % 3 > 0)
@@ -63,14 +66,15 @@ Genotype::Genotype(Genotype* bestParents)
 
 	for (int i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 8; j++)
 		{
-			if (rand() % 30 == 0)
+			if (rand() % 40 == 0)
 			{
 				if (rand() % 2 == 0)
-					secondLayer[i][j] = 1.f / ((rand() % 100) + 1);
-				else
 					secondLayer[i][j] = -1.f / ((rand() % 100) + 1);
+
+				else
+					secondLayer[i][j] = 1.f / ((rand() % 100) + 1);
 			}
 
 			else if (rand() % 3 > 0)
@@ -84,22 +88,24 @@ Genotype::Genotype(Genotype* bestParents)
 
 Row Genotype::GetStepPosobility(int inputs[])
 {
-	Row inputTemp{ 22 };												// 3 distances for 3 directions + offset
+	Row inputTemp{ CountOfInputs };												// 3 distances for 3 directions + offset
 
-	for (int i = 0; i < 22; i++)
+	for (int i = 0; i < CountOfInputs; i++)
 	{
 		inputTemp[i] = inputs[i];
 	}
 
-	Row secondLayer{ 9 };
+	Row secondLayer{ 7 };
 	Row answerTemp{ 3 };
 
 	secondLayer = this->firstLayer * inputTemp;
-
 	secondLayer = Norm(secondLayer);
 
 	secondLayer.add((double)1);									// add = push_beck() 
 	answerTemp = this->secondLayer * secondLayer;
+
+
+
 
 	int a = answerTemp[0] * 1000;
 	int b = answerTemp[1] * 1000;
@@ -158,4 +164,34 @@ Row Genotype::GetStepPosobility(int inputs[])
 		answerTemp[2] = 1;
 		return answerTemp;
 	}
+}
+
+void Genotype::SetFromeFile()
+{
+	std::ifstream file1;
+	std::ifstream file2;
+    file1.open("firstLayer.txt", std::ifstream::in);
+    file2.open("secondLayer.txt",std::ifstream::in);
+
+    if(file1.is_open()) std::cout << "First layer file loaded." << std::endl;
+    if(file2.is_open()) std::cout << "Second layer file loaded." << std::endl;
+
+	for (int i = 0; i < 7; i++)
+	{
+		for (int j = 0; j < CountOfInputs; j++)
+		{
+			file1 >> this->firstLayer[i][j];
+		}
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			file2 >> this->secondLayer[i][j];
+		}
+	}
+
+	file1.close();
+	file2.close();
 }
