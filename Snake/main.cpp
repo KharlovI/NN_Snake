@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Utilities.h"
 #include<iostream>
+constexpr int WindowSize = 1100;
 
 constexpr int NORM = CHAR_SIZE_Button - 7;
 int FPS = 15;
@@ -22,7 +23,7 @@ int main()
 	window.setFramerateLimit(FPS);
 	const int countOfSnakes = 100;
 
-	int maxValue = 60;
+	int maxValue = 70;
 
 	std::vector<Button> b;
 	b.push_back(first);

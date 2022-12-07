@@ -9,7 +9,6 @@ bool AllSnakesIsDead(Snake snakes[], int count)
 
 	return 1;
 }
-
 int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, sf::Sprite& backgroundSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	Snake snake;
@@ -81,7 +80,7 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 
 		if (snake.GetAliveStatus())
 		{
-			if (snake.MoveAI(apple, snakeSprites))
+			if (snake.MoveAI(apple))
 			{
 				snake.AddSprites(snakeSprites);
 				snake.UpdateSprites(snakeSprites);
@@ -112,11 +111,10 @@ int FirstAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 
 	return -1;
 }
-
 int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	const int countOfSnakes = 100;
-	int maxValue = 60;
+	int maxValue = 70;
 
 	Snake snake[countOfSnakes];
 	for (int i = 0; i < countOfSnakes; i++)
@@ -198,7 +196,7 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprit
 		{
 			if (snake[i].GetAliveStatus())
 			{
-				snake[i].MoveAI(apple[i], snakeSprites);
+				snake[i].MoveAI(apple[i]);
 				snake[i].SetIsAliveStatus();
 				snake[i].IncrementSteps();
 			}
@@ -236,7 +234,6 @@ int SecondAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprit
 
 	return -1;
 }
-
 int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite& appleSprite, sf::Sprite& backgroundSprite, std::vector<sf::Sprite> snakeSprites)
 {
 	Snake snake(1);
@@ -309,7 +306,7 @@ int ThirdAction(std::vector<Button> b, sf::RenderWindow& w, int& FPS, sf::Sprite
 
 		if (snake.GetAliveStatus())
 		{
-			if (snake.MoveAI(apple, snakeSprites))
+			if (snake.MoveAI(apple))
 			{
 				snake.AddSprites(snakeSprites);
 				snake.UpdateSprites(snakeSprites);

@@ -1,7 +1,8 @@
 #include"Genotype.h"
 #include<fstream>
 
-Row Norm(Row layer)
+
+Row ReLU(Row layer)
 {
 	for (int i = 0; i < 7; i++)
 	{
@@ -11,7 +12,6 @@ Row Norm(Row layer)
 
 	return layer;
 }
-
 
 Genotype::Genotype()
 {
@@ -99,7 +99,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 	Row answerTemp{ 3 };
 
 	secondLayer = this->firstLayer * inputTemp;
-	secondLayer = Norm(secondLayer);
+	secondLayer = ReLU(secondLayer);
 
 	secondLayer.add((double)1);									// add = push_beck() 
 	answerTemp = this->secondLayer * secondLayer;
@@ -116,7 +116,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 	{
 		while (true)
 		{
-			if (rand() % abc <= a && a >= 0)
+			if (a >= 0 && rand() % abc <= a)
 			{
 				answerTemp[0] = 1;
 				answerTemp[1] = 0;
@@ -124,7 +124,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 				return answerTemp;
 			}
 
-			if (rand() % abc <= b && b >= 0)
+			if (b >= 0 && rand() % abc <= b)
 			{
 				answerTemp[0] = 0;
 				answerTemp[1] = 1;
@@ -132,7 +132,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 				return answerTemp;
 			}
 
-			if (rand() % abc <= c && c >= 0)
+			if (c >= 0 && rand() % abc <= c)
 			{
 				answerTemp[0] = 0;
 				answerTemp[1] = 0;
@@ -141,6 +141,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 			}
 		}
 	}
+
 	if (answerTemp[0] >= answerTemp[1] && answerTemp[0] >= answerTemp[2])
 	{
 		answerTemp[0] = 1;

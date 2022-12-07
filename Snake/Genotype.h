@@ -1,12 +1,11 @@
 #pragma once
 #include"Matrix.h"
-constexpr double delta = 0.005;
 constexpr int CountOfInputs = 14;
 
 class Genotype
 {
 private:
-	Matrix firstLayer{ CountOfInputs, 7};					// count of column, rows
+	Matrix firstLayer{ CountOfInputs, 7};					
 	Matrix secondLayer{ 8, 3 };
 
 public:
@@ -17,8 +16,6 @@ public:
 	Matrix GetFirstLayer() { return this->firstLayer; }
 	Matrix GetSecondLayer() { return this->secondLayer; }
 	void SetFromFile();
-
-	/*void SetLayer(Matrix temp);*/
 	void operator =(Genotype g2)
 	{
 		for (int i = 0; i < 7; i++)
@@ -37,6 +34,4 @@ public:
 			}
 		}
 	}
-
-
 };
