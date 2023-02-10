@@ -22,4 +22,7 @@ public:
 	{
 		window.draw(apple);
 	}
+
+	void SetPosition(sf::Vector2f position);
+	sf::Vector2f GetPosition();
 };
