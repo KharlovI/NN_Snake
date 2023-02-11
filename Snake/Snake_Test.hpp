@@ -104,3 +104,69 @@ TEST_CASE("Next position")
     CHECK(snake3.NextPosition() == sf::Vector2f{snake3.GetHeadPosition().x,snake3.GetHeadPosition().y});
     CHECK(snake4.NextPosition() == sf::Vector2f{snake4.GetHeadPosition().x,snake4.GetHeadPosition().y - FrameLength});
 }
+
+TEST_CASE("Frame is wall")
+{
+    Snake snake1;
+    Snake snake2;
+    Snake snake3;
+    Snake snake4;
+
+    sf::Vector2f snake1Position{0,0};
+    sf::Vector2f snake2Position{FieldSIze,FieldSIze};   // into the wall
+    sf::Vector2f snake3Position{FieldSIze - FrameLength, 0};
+    sf::Vector2f snake4Position{0, FieldSIze - FrameLength};
+
+    char snake1Direction = 'U';
+    char snake2Direction = 'D';
+    char snake3Direction = 'D';
+    char snake4Direction = 'L';
+
+    snake1.SetDirection(snake1Direction);
+    snake1.SetHeadPosition(snake1Position);
+    snake2.SetDirection(snake2Direction);
+    snake2.SetHeadPosition(snake2Position);
+    snake3.SetDirection(snake3Direction);
+    snake3.SetHeadPosition(snake3Position);
+    snake4.SetDirection(snake4Direction);
+    snake4.SetHeadPosition(snake4Position);
+
+    CHECK(snake1.FrameIsWall() == true);
+    CHECK(snake2.FrameIsWall() == true);
+    CHECK(snake3.FrameIsWall() == false);
+    CHECK(snake4.FrameIsWall() == true);
+}
+
+TEST_CASE("Frame is apple")
+{
+    Apple apple;
+    Snake snake1;
+    Snake snake2;
+    Snake snake3;
+    Snake snake4;
+
+    sf::Vector2f applePosition{0,0};
+    sf::Vector2f snake1Position{0,FrameLength};
+    sf::Vector2f snake2Position{FieldSIze,FieldSIze};   // into the wall
+    sf::Vector2f snake3Position{FrameLength, 0};
+    sf::Vector2f snake4Position{0, 0};
+
+    char snake1Direction = 'U';
+    char snake2Direction = 'D';
+    char snake3Direction = 'L';
+    char snake4Direction = 'D';
+
+    snake1.SetDirection(snake1Direction);
+    snake1.SetHeadPosition(snake1Position);
+    snake2.SetDirection(snake2Direction);
+    snake2.SetHeadPosition(snake2Position);
+    snake3.SetDirection(snake3Direction);
+    snake3.SetHeadPosition(snake3Position);
+    snake4.SetDirection(snake4Direction);
+    snake4.SetHeadPosition(snake4Position);
+
+    CHECK(snake1.FrameISApple(apple) == true);
+    CHECK(snake1.FrameISApple(apple) == false);
+    CHECK(snake1.FrameISApple(apple) == true);
+    CHECK(snake4.FrameISApple(apple) == false);
+}

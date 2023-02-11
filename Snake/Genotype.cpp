@@ -1,6 +1,6 @@
 #include"Genotype.h"
 #include<fstream>
-
+#include <random>
 
 Row ReLU(Row layer)
 {
@@ -105,8 +105,173 @@ Row Genotype::GetStepPossibility(int inputs[])
 	answerTemp = this->secondLayer * secondLayer;
 
 
+	std::random_device randomDevice;
+ 	std::mt19937 engine{randomDevice()};
+
+	if(answerTemp[0] < 0 && answerTemp[1] < 0 && answerTemp[2] < 0)			// serch max when all values < 0
+	{
+		if(answerTemp[0] >= answerTemp[1] && answerTemp[0] >= answerTemp[2])
+		{
+			answerTemp[0] = 1;
+			answerTemp[1] = 0;
+			answerTemp[2] = 0;
+		}
+		if(answerTemp[1] >= answerTemp[0] && answerTemp[1] >= answerTemp[2])
+		{
+			answerTemp[0] = 0;
+			answerTemp[1] = 1;
+			answerTemp[2] = 0;
+		}
+		else
+		{
+			answerTemp[0] = 0;
+			answerTemp[1] = 0;
+			answerTemp[2] = 1;
+		}
+		return answerTemp;
+	}
 
 
+	/*
+	1)summation all non-zero values 
+	2)generate value between 0 and sum 
+	3)find Interval with this value
+	*/
+
+	if(answerTemp[0] >= 0)
+	{
+		if(answerTemp[1] >=0)
+		{
+			if(answerTemp[2]>=0)
+			{
+				double sum = answerTemp[0] + answerTemp[1] + answerTemp[2];
+				std::uniform_int_distribution<float> dist{0, sum};
+
+				float firstInterval = answerTemp[0] / sum;
+				float secondInterval = answerTemp[1] / sum + firstInterval;
+				float a = dist(engine);
+
+				if(a <= firstInterval)
+				{
+					answerTemp[0] = 1;
+					answerTemp[1] = 0;
+					answerTemp[2] = 0;
+					return answerTemp;
+				}
+				if(a <= secondInterval)
+				{
+					answerTemp[0] = 0;
+					answerTemp[1] = 1;
+					answerTemp[2] = 0;
+					return answerTemp;
+				}
+				else
+				{
+					answerTemp[0] = 0;
+					answerTemp[1] = 0;
+					answerTemp[2] = 1;
+					return answerTemp;
+				}
+			}
+			else
+			{
+				double sum = answerTemp[0] + answerTemp[1];
+				std::uniform_int_distribution<float> dist{0, sum};
+
+				float firstInterval = answerTemp[0] / sum;
+				float a = dist(engine);
+
+				if(a <= firstInterval)
+				{
+					answerTemp[0] = 1;
+					answerTemp[1] = 0;
+					answerTemp[2] = 0;
+					return answerTemp;
+				}
+				else
+				{
+					answerTemp[0] = 0;
+					answerTemp[1] = 1;
+					answerTemp[2] = 0;
+					return answerTemp;
+				}
+			}
+		}
+		else if(answerTemp[2] >=0)
+		{
+			double sum = answerTemp[0] + answerTemp[2];
+			std::uniform_int_distribution<float> dist{0, sum};
+
+			float firstInterval = answerTemp[0] / sum;
+			float a = dist(engine);
+
+			if(a <= firstInterval)
+			{
+				answerTemp[0] = 1;
+				answerTemp[1] = 0;
+				answerTemp[2] = 0;
+				return answerTemp;
+			}
+			else
+			{
+				answerTemp[0] = 0;
+				answerTemp[1] = 0;
+				answerTemp[2] = 1;
+				return answerTemp;
+			}
+		}
+		else
+		{
+			answerTemp[0] = 1;
+			answerTemp[1] = 0;
+			answerTemp[2] = 0;
+			return answerTemp;
+		}
+	}
+	else if(answerTemp[1]>=0)
+	{
+		if(answerTemp[2] >= 0)
+		{
+			float sum = answerTemp[1] + answerTemp[2];
+			std::uniform_int_distribution<float> dist{0, sum};
+
+			float firstInterval = answerTemp[1] / sum;
+			float a = dist(engine);
+
+			if(a <= firstInterval)
+			{
+				answerTemp[0] = 0;
+				answerTemp[1] = 1;
+				answerTemp[2] = 0;
+				return answerTemp;
+			}
+			else
+			{
+				answerTemp[0] = 0;
+				answerTemp[1] = 0;
+				answerTemp[2] = 1;
+				return answerTemp;
+			}
+		}
+		else
+		{
+			answerTemp[0] = 0;
+			answerTemp[1] = 1;
+			answerTemp[2] = 0;
+			return answerTemp;
+		}
+	}
+	else
+	{
+		answerTemp[0] = 0;
+		answerTemp[1] = 0;
+		answerTemp[2] = 1;
+		return answerTemp;
+	}
+
+
+	
+	/*
 	int a = answerTemp[0] * 1000;
 	int b = answerTemp[1] * 1000;
 	int c = answerTemp[2] * 1000;
@@ -165,6 +330,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 		answerTemp[2] = 1;
 		return answerTemp;
 	}
+	*/
 }
 
 void Genotype::SetFromFile()
