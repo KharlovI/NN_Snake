@@ -11,7 +11,7 @@ constexpr int FieldSIze = 800;
 class Snake
 {
 private:
-
+	
 	std::vector <sf::RectangleShape> snake;
 	std::vector <sf::Sprite> sprites;
 
@@ -72,6 +72,9 @@ public:
 	int GetGeneration();
 	int GetCountOfApple();
 	int GetLength() { return this->snake.size(); }
+
+	sf::Vector2f GetHeadPosition();
+	void SetHeadPosition(sf::Vector2f position);
 
 	void PrintSnake(sf::RenderWindow& window)
 	{

@@ -82,6 +82,15 @@ Snake::Snake(Genotype* old, int generation)
 	SetStartPositionSnake();
 }
 
+sf::Vector2f Snake::GetHeadPosition()
+{
+	return this->snake[this->snake.size()-1].getPosition();
+}
+
+void Snake::SetHeadPosition(sf::Vector2f position)
+{
+	this->snake[0].setPosition(position);
+}
 
 int Snake::DistanceToWall(char direction)
 {
