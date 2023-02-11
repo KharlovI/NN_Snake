@@ -27,13 +27,3 @@ void Apple::SetColor(sf::Color color)
 {
 	this->apple.setFillColor(color);
 }
-
-sf::Vector2f Apple::GetPosition()
-{
-	return this->apple.getPosition();
-}
-
-void Apple::SetPosition(sf:: Vector2f position)
-{
-	this->apple.setPosition(position);
-}
