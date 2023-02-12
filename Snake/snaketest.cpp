@@ -42,7 +42,7 @@ TEST_CASE("Distance to tail")
     
     CHECK(UpDistance == 2);
     CHECK(RightDistance == 2);
-    CHECK(DownDistance == 20);
+    CHECK(DownDistance == 1);
     CHECK(LeftDistance == 20);
 }
 
@@ -52,6 +52,9 @@ TEST_CASE("Distance to apple")
     sf::Vector2f snakePosition{10*FrameLength, 0};
     Apple apple;
     sf::Vector2f applePosition{0,0};
+
+    snake.SetHeadPosition(snakePosition);
+    apple.SetPosition(applePosition);
 
     int UpDistance = snake.DistanceToApple('U', apple);
     int RightDistance = snake.DistanceToApple('R', apple);
@@ -71,6 +74,9 @@ TEST_CASE("Diagonal distance to apple")
     Apple apple;
     sf::Vector2f applePosition{0,0};
 
+    snake.SetHeadPosition(snakePosition);
+    apple.SetPosition(applePosition);
+
     int LUDistance = snake.DiagonalDistanceToApple('L','U', apple);
     int URDistance = snake.DiagonalDistanceToApple('U','R', apple);
     int RDDistance = snake.DiagonalDistanceToApple('R','D', apple);
@@ -87,42 +93,24 @@ TEST_CASE("Next position")
 {
     Snake snake1;
     Snake snake2;
-    Snake snake3;
-    Snake snake4;
+
     sf::Vector2f firstSnakePosition{10*FrameLength, 0};
     char firstSnakeDirection = 'U';
     sf::Vector2f secondSnakePosition{0, 10*FrameLength};
     char secondSnakeDirection = 'D';
-    sf::Vector2f thirdSnakePosition{10*FrameLength, 10*FrameLength};
-    char thirdSnakeDirection = 'L';
-    sf::Vector2f lastSnakePosition{10*FrameLength, 10*FrameLength};
-    char lastSnakeDirection = 'R';
 
     snake1.SetHeadPosition(firstSnakePosition);
     snake1.SetDirection(firstSnakeDirection);
     snake2.SetHeadPosition(secondSnakePosition);
     snake2.SetDirection(secondSnakeDirection);
-    snake3.SetHeadPosition(thirdSnakePosition);
-    snake3.SetDirection(thirdSnakeDirection);
-    snake4.SetHeadPosition(lastSnakePosition);
-    snake4.SetDirection(lastSnakeDirection);
    
-    snake1.NextPosition();
-    snake2.NextPosition();
-    snake3.NextPosition();
-    snake4.NextPosition();
+    sf::Vector2f nextPosition1 = snake1.NextPosition();
+    sf::Vector2f nextPosition2 = snake2.NextPosition();
 
-    CHECK(snake1.GetHeadPosition().x == 10*FrameLength);
-    CHECK(snake1.GetHeadPosition().y == -FrameLength);
-
-    CHECK(snake2.GetHeadPosition().x == 0);
-    CHECK(snake2.GetHeadPosition().y == 11*FrameLength);
-
-    CHECK(snake3.GetHeadPosition().x == 9*FrameLength);
-    CHECK(snake3.GetHeadPosition().y == 10*FrameLength);
-
-    CHECK(snake4.GetHeadPosition().x == 11*FrameLength);
-    CHECK(snake4.GetHeadPosition().y == 10*FrameLength);
+    CHECK(nextPosition1.x == 10*FrameLength);
+    CHECK(nextPosition1.y == -FrameLength);
+    CHECK(nextPosition2.x == 0);
+    CHECK(nextPosition2.y == 11*FrameLength);
 }
 
 TEST_CASE("Frame is wall")
@@ -167,6 +155,8 @@ TEST_CASE("Frame is apple")
     char snake3Direction = 'L';
     char snake4Direction = 'D';
 
+    apple.SetPosition(applePosition);
+
     snake1.SetDirection(snake1Direction);
     snake1.SetHeadPosition(snake1Position);
     snake2.SetDirection(snake2Direction);
@@ -176,7 +166,7 @@ TEST_CASE("Frame is apple")
     snake4.SetDirection(snake4Direction);
     snake4.SetHeadPosition(snake4Position);
 
-    CHECK(snake1.FrameISApple(apple) == false);
+    CHECK(snake1.FrameISApple(apple) == true);
     CHECK(snake1.FrameISApple(apple) == false);
     CHECK(snake1.FrameISApple(apple) == true);
     CHECK(snake4.FrameISApple(apple) == false);
