@@ -129,7 +129,7 @@ int Snake::DistanceToTail(char direction)
 	{
 	case 'L':
 
-		answer = snakePosition.x / FrameLength;
+		answer = FieldSIze / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -144,7 +144,7 @@ int Snake::DistanceToTail(char direction)
 		return answer;
 
 	case 'U':
-		answer = snakePosition.y / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -158,7 +158,7 @@ int Snake::DistanceToTail(char direction)
 		return answer;
 
 	case 'R':
-		answer = (FieldSIze - snakePosition.x) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -173,7 +173,7 @@ int Snake::DistanceToTail(char direction)
 		return answer;
 
 	case 'D':
-		answer = (FieldSIze - snakePosition.y) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -199,7 +199,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 	switch (direction)
 	{
 	case 'L':
-		answer = snakePosition.x / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -211,7 +211,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 	case 'U':
-		answer = snakePosition.y / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -223,7 +223,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 	case 'R':
-		answer =(FieldSIze - snakePosition.x) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -236,7 +236,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 
 	case 'D':
 
-		answer = (FieldSIze - snakePosition.y) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -271,29 +271,29 @@ int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& appl
 		switch (direction2)
 		{
 		case 'U':
-			dx = pow(snakeNormX, 2);
-			dy = pow(snakeNormY, 2);
+			dx = FieldSIze / FrameLength;
+			dy = FieldSIze / FrameLength;
 
 			if (snakePosition.x - applePosition.x == snakePosition.y - applePosition.y)
 			{
-				dx = pow(snakeNormX - appleNormX, 2);
-				dy = pow(snakeNormY - appleNormY, 2);
+				dx = snakeNormX - appleNormX;
+				dy = snakeNormY - appleNormY;
 			}
 
-			answer = pow(dx + dy, 0.5);
+			answer = dx + dy;
 			return answer;
 
 		case 'D':
-			dx = pow(snakeNormX, 2);
-			dy = pow(FieldSIze / FrameLength - snakeNormY, 2);
+			dx = FieldSIze / FrameLength;
+			dy = FieldSIze / FrameLength;
 
 			if (snakePosition.x - applePosition.x == applePosition.y - snakePosition.y)
 			{
-				dx = pow(snakeNormX - appleNormX, 2);
-				dy = pow(appleNormY - snakeNormY, 2);
+				dx = snakeNormX - appleNormX;
+				dy = appleNormY - snakeNormY;
 			}
 
-			answer = pow(dx + dy, 0.5);
+			answer = dx + dy;
 			return answer;
 		}
 		break;
@@ -301,27 +301,27 @@ int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& appl
 		switch (direction2)
 		{
 		case 'U':
-			dx = pow(FieldSIze / FrameLength - snakeNormX, 2);
-			dy = pow(snakeNormY, 2);
+			dx = FieldSIze / FrameLength;
+			dy = FieldSIze / FrameLength;
 
 			if (applePosition.x - snakePosition.x == snakePosition.y - applePosition.y)
 			{
-				dx = pow((appleNormX - snakeNormX), 2);
-				dy = pow((snakeNormY - appleNormY), 2);
+				dx = appleNormX - snakeNormX;
+				dy = snakeNormY - appleNormY;
 			}
-			answer = pow(dx + dy, 0.5);
+			answer = dx + dy;
 			return answer;
 
 		case 'D':
-			dx = pow(FieldSIze / FrameLength - snakeNormX, 2);
-			dy = pow(FieldSIze / FrameLength - snakeNormY, 2);
+			dx = FieldSIze / FrameLength;
+			dy = FieldSIze / FrameLength;
 
 			if (applePosition.x - snakePosition.x == applePosition.y - snakePosition.y)
 			{
-				dx = pow((appleNormX - snakeNormX), 2);
-				dy = pow((appleNormY - snakeNormY), 2);
+				dx = appleNormX - snakeNormX;
+				dy = appleNormY - snakeNormY;
 			}
-			answer = pow(dx + dy, 0.5);
+			answer = dx + dy;
 			return answer;
 		}
 	}
