@@ -108,7 +108,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 	std::random_device randomDevice;
  	std::mt19937 engine{randomDevice()};
 
-	if(answerTemp[0] < 0 && answerTemp[1] < 0 && answerTemp[2] < 0)			// serch max when all values < 0
+	if(answerTemp[0] < 0 && answerTemp[1] < 0 && answerTemp[2] < 0)			// search max when all values < 0
 	{
 		if(answerTemp[0] >= answerTemp[1] && answerTemp[0] >= answerTemp[2])
 		{
@@ -145,7 +145,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 			if(answerTemp[2]>=0)
 			{
 				double sum = answerTemp[0] + answerTemp[1] + answerTemp[2];
-				std::uniform_int_distribution<float> dist{0, sum};
+				std::uniform_real_distribution <double> dist{0, sum};
 
 				float firstInterval = answerTemp[0] / sum;
 				float secondInterval = answerTemp[1] / sum + firstInterval;
@@ -176,7 +176,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 			else
 			{
 				double sum = answerTemp[0] + answerTemp[1];
-				std::uniform_int_distribution<float> dist{0, sum};
+				std::uniform_real_distribution<double> dist{0, sum};
 
 				float firstInterval = answerTemp[0] / sum;
 				float a = dist(engine);
@@ -200,7 +200,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 		else if(answerTemp[2] >=0)
 		{
 			double sum = answerTemp[0] + answerTemp[2];
-			std::uniform_int_distribution<float> dist{0, sum};
+			std::uniform_real_distribution<double> dist{0, sum};
 
 			float firstInterval = answerTemp[0] / sum;
 			float a = dist(engine);
@@ -233,7 +233,7 @@ Row Genotype::GetStepPossibility(int inputs[])
 		if(answerTemp[2] >= 0)
 		{
 			float sum = answerTemp[1] + answerTemp[2];
-			std::uniform_int_distribution<float> dist{0, sum};
+			std::uniform_real_distribution<double> dist{0, sum};
 
 			float firstInterval = answerTemp[1] / sum;
 			float a = dist(engine);

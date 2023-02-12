@@ -63,6 +63,7 @@ CMAKE_BINARY_DIR = S:\Downloads\AISnake\cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/AISnake.dir/all
+all: CMakeFiles/snakeTest.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,6 +72,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/AISnake.dir/clean
+clean: CMakeFiles/snakeTest.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -98,6 +100,32 @@ AISnake: CMakeFiles/AISnake.dir/rule
 CMakeFiles/AISnake.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/clean
 .PHONY : CMakeFiles/AISnake.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/snakeTest.dir
+
+# All Build rule for target.
+CMakeFiles/snakeTest.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=S:\Downloads\AISnake\cmake-build-debug\CMakeFiles --progress-num=8,9,10,11,12,13,14 "Built target snakeTest"
+.PHONY : CMakeFiles/snakeTest.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/snakeTest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Downloads\AISnake\cmake-build-debug\CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/snakeTest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start S:\Downloads\AISnake\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/snakeTest.dir/rule
+
+# Convenience name for target.
+snakeTest: CMakeFiles/snakeTest.dir/rule
+.PHONY : snakeTest
+
+# clean rule for target.
+CMakeFiles/snakeTest.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/clean
+.PHONY : CMakeFiles/snakeTest.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

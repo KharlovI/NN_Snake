@@ -259,6 +259,9 @@ FLAC_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libFLAC.a
 //Path to a library.
 FreeType_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libfreetype.a
 
+//Git command line client
+GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
 //Path to a library.
 Ogg_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libogg.a
 
@@ -268,6 +271,9 @@ OpenAL_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libopenal32.a
 //Path to a file.
 SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 
+//The directory containing a CMake configuration file for Snake/doctest.
+Snake/doctest_DIR:PATH=Snake/doctest_DIR-NOTFOUND
+
 //Path to a library.
 VorbisEnc_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libvorbisenc.a
 
@@ -276,6 +282,9 @@ VorbisFile_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libvorbisfile.a
 
 //Path to a library.
 Vorbis_LIB:FILEPATH=S:/Programs/CLion 2022.2.3/SFML/lib/libvorbis.a
+
+//The directory containing a CMake configuration file for doctest.
+doctest_DIR:PATH=doctest_DIR-NOTFOUND
 
 
 ########################
@@ -444,10 +453,16 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Path to include folder for doctest
+DOCTEST_INCLUDE_DIR:INTERNAL=S:/Downloads/AISnake/cmake-build-debug/doctest/src/doctest/doctest
+//Details about finding Git
+FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[C:/Program Files/Git/cmd/git.exe][v2.33.0.windows.2()]
 //ADVANCED property for variable: FLAC_LIB
 FLAC_LIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: FreeType_LIB
 FreeType_LIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: GIT_EXECUTABLE
+GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Ogg_LIB
 Ogg_LIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenAL_LIB

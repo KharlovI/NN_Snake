@@ -128,12 +128,26 @@ AISnake/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/build
 .PHONY : AISnake/fast
 
+#=============================================================================
+# Target rules for targets named snakeTest
+
+# Build rule for target.
+snakeTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 snakeTest
+.PHONY : snakeTest
+
+# fast build rule for target.
+snakeTest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/build
+.PHONY : snakeTest/fast
+
 Snake/Apple.obj: Snake/Apple.cpp.obj
 .PHONY : Snake/Apple.obj
 
 # target to build an object file
 Snake/Apple.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Apple.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Apple.cpp.obj
 .PHONY : Snake/Apple.cpp.obj
 
 Snake/Apple.i: Snake/Apple.cpp.i
@@ -142,6 +156,7 @@ Snake/Apple.i: Snake/Apple.cpp.i
 # target to preprocess a source file
 Snake/Apple.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Apple.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Apple.cpp.i
 .PHONY : Snake/Apple.cpp.i
 
 Snake/Apple.s: Snake/Apple.cpp.s
@@ -150,6 +165,7 @@ Snake/Apple.s: Snake/Apple.cpp.s
 # target to generate assembly for a file
 Snake/Apple.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Apple.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Apple.cpp.s
 .PHONY : Snake/Apple.cpp.s
 
 Snake/Button.obj: Snake/Button.cpp.obj
@@ -158,6 +174,7 @@ Snake/Button.obj: Snake/Button.cpp.obj
 # target to build an object file
 Snake/Button.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Button.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Button.cpp.obj
 .PHONY : Snake/Button.cpp.obj
 
 Snake/Button.i: Snake/Button.cpp.i
@@ -166,6 +183,7 @@ Snake/Button.i: Snake/Button.cpp.i
 # target to preprocess a source file
 Snake/Button.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Button.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Button.cpp.i
 .PHONY : Snake/Button.cpp.i
 
 Snake/Button.s: Snake/Button.cpp.s
@@ -174,6 +192,7 @@ Snake/Button.s: Snake/Button.cpp.s
 # target to generate assembly for a file
 Snake/Button.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Button.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Button.cpp.s
 .PHONY : Snake/Button.cpp.s
 
 Snake/Genotype.obj: Snake/Genotype.cpp.obj
@@ -182,6 +201,7 @@ Snake/Genotype.obj: Snake/Genotype.cpp.obj
 # target to build an object file
 Snake/Genotype.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Genotype.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Genotype.cpp.obj
 .PHONY : Snake/Genotype.cpp.obj
 
 Snake/Genotype.i: Snake/Genotype.cpp.i
@@ -190,6 +210,7 @@ Snake/Genotype.i: Snake/Genotype.cpp.i
 # target to preprocess a source file
 Snake/Genotype.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Genotype.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Genotype.cpp.i
 .PHONY : Snake/Genotype.cpp.i
 
 Snake/Genotype.s: Snake/Genotype.cpp.s
@@ -198,6 +219,7 @@ Snake/Genotype.s: Snake/Genotype.cpp.s
 # target to generate assembly for a file
 Snake/Genotype.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Genotype.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Genotype.cpp.s
 .PHONY : Snake/Genotype.cpp.s
 
 Snake/Snake.obj: Snake/Snake.cpp.obj
@@ -206,6 +228,7 @@ Snake/Snake.obj: Snake/Snake.cpp.obj
 # target to build an object file
 Snake/Snake.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Snake.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Snake.cpp.obj
 .PHONY : Snake/Snake.cpp.obj
 
 Snake/Snake.i: Snake/Snake.cpp.i
@@ -214,6 +237,7 @@ Snake/Snake.i: Snake/Snake.cpp.i
 # target to preprocess a source file
 Snake/Snake.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Snake.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Snake.cpp.i
 .PHONY : Snake/Snake.cpp.i
 
 Snake/Snake.s: Snake/Snake.cpp.s
@@ -222,6 +246,7 @@ Snake/Snake.s: Snake/Snake.cpp.s
 # target to generate assembly for a file
 Snake/Snake.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Snake.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Snake.cpp.s
 .PHONY : Snake/Snake.cpp.s
 
 Snake/Utilities.obj: Snake/Utilities.cpp.obj
@@ -230,6 +255,7 @@ Snake/Utilities.obj: Snake/Utilities.cpp.obj
 # target to build an object file
 Snake/Utilities.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Utilities.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Utilities.cpp.obj
 .PHONY : Snake/Utilities.cpp.obj
 
 Snake/Utilities.i: Snake/Utilities.cpp.i
@@ -238,6 +264,7 @@ Snake/Utilities.i: Snake/Utilities.cpp.i
 # target to preprocess a source file
 Snake/Utilities.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Utilities.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Utilities.cpp.i
 .PHONY : Snake/Utilities.cpp.i
 
 Snake/Utilities.s: Snake/Utilities.cpp.s
@@ -246,6 +273,7 @@ Snake/Utilities.s: Snake/Utilities.cpp.s
 # target to generate assembly for a file
 Snake/Utilities.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/Utilities.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/Utilities.cpp.s
 .PHONY : Snake/Utilities.cpp.s
 
 Snake/main.obj: Snake/main.cpp.obj
@@ -272,6 +300,30 @@ Snake/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AISnake.dir\build.make CMakeFiles/AISnake.dir/Snake/main.cpp.s
 .PHONY : Snake/main.cpp.s
 
+Snake/snaketest.obj: Snake/snaketest.cpp.obj
+.PHONY : Snake/snaketest.obj
+
+# target to build an object file
+Snake/snaketest.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/snaketest.cpp.obj
+.PHONY : Snake/snaketest.cpp.obj
+
+Snake/snaketest.i: Snake/snaketest.cpp.i
+.PHONY : Snake/snaketest.i
+
+# target to preprocess a source file
+Snake/snaketest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/snaketest.cpp.i
+.PHONY : Snake/snaketest.cpp.i
+
+Snake/snaketest.s: Snake/snaketest.cpp.s
+.PHONY : Snake/snaketest.s
+
+# target to generate assembly for a file
+Snake/snaketest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\snakeTest.dir\build.make CMakeFiles/snakeTest.dir/Snake/snaketest.cpp.s
+.PHONY : Snake/snaketest.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -281,6 +333,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... AISnake
+	@echo ... snakeTest
 	@echo ... Snake/Apple.obj
 	@echo ... Snake/Apple.i
 	@echo ... Snake/Apple.s
@@ -299,6 +352,9 @@ help:
 	@echo ... Snake/main.obj
 	@echo ... Snake/main.i
 	@echo ... Snake/main.s
+	@echo ... Snake/snaketest.obj
+	@echo ... Snake/snaketest.i
+	@echo ... Snake/snaketest.s
 .PHONY : help
 
 

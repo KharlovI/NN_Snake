@@ -1,0 +1,8 @@
+# Hashes of file build rules.
+eecef7293ddded5da9a829a610b4622d CMakeFiles/doctest-complete
+fa3ab2da71aec2b85474e1d0548246e8 doctest/src/doctest-stamp/doctest-build
+eb27523fd38f64f984e2e7731e6ec93c doctest/src/doctest-stamp/doctest-configure
+5944d8d553487a9f0197e8304647de6f doctest/src/doctest-stamp/doctest-download
+ccbfcf87bf172e3fb39982a06bea730a doctest/src/doctest-stamp/doctest-install
+6144772d73cbab78df8122d0779a9efe doctest/src/doctest-stamp/doctest-mkdir
+65555c1bda8372ee6bd8c8bb2df0fcec doctest/src/doctest-stamp/doctest-patch
