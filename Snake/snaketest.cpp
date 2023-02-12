@@ -112,10 +112,17 @@ TEST_CASE("Next position")
     snake3.NextPosition();
     snake4.NextPosition();
 
-    CHECK(snake1.GetHeadPosition().x == 10*FrameLength && snake1.GetHeadPosition().y == -FrameLength);
-    CHECK(snake2.GetHeadPosition().x == 0 && snake2.GetHeadPosition().y == 11*FrameLength);
-    CHECK(snake3.GetHeadPosition().x == 9*FrameLength && snake3.GetHeadPosition().y == 10*FrameLength);
-    CHECK(snake4.GetHeadPosition().x == 11*FrameLength && snake4.GetHeadPosition().y == 10*FrameLength);
+    CHECK(snake1.GetHeadPosition().x == 10*FrameLength);
+    CHECK(snake1.GetHeadPosition().y == -FrameLength);
+
+    CHECK(snake2.GetHeadPosition().x == 0);
+    CHECK(snake2.GetHeadPosition().y == 11*FrameLength);
+
+    CHECK(snake3.GetHeadPosition().x == 9*FrameLength);
+    CHECK(snake3.GetHeadPosition().y == 10*FrameLength);
+
+    CHECK(snake4.GetHeadPosition().x == 11*FrameLength);
+    CHECK(snake4.GetHeadPosition().y == 10*FrameLength);
 }
 
 TEST_CASE("Frame is wall")
