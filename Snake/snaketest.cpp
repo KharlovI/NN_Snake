@@ -9,16 +9,15 @@ TEST_CASE("Distance to wall")
     Snake snake;
     sf::Vector2f position{10*FrameLength,0};
     snake.SetHeadPosition(position);
+    char direction = 'U';
 
-    int UpDistance = snake.DistanceToWall('U');
-    int RightDistance = snake.DistanceToWall('R');
-    int DownDistance = snake.DistanceToWall('D');
-    int LeftDistance = snake.DistanceToWall('L');
+    int LDistance = snake.DistanceToWall('L');
+    int RDistance = snake.DistanceToWall('R');
+    int UDistance = snake.DistanceToWall('U');
     
-    CHECK(UpDistance == 0);
-    CHECK(RightDistance == 10);
-    CHECK(DownDistance == 20);
-    CHECK(LeftDistance == 10);
+    CHECK(UDistance == 0);
+    CHECK(RDistance == 9);
+    CHECK(LDistance == 10);
 }
 
 TEST_CASE("Distance to tail")

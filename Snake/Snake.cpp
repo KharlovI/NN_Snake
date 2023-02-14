@@ -92,26 +92,54 @@ void Snake::SetHeadPosition(sf::Vector2f position)
 	this->snake[0].setPosition(position);
 }
 
-int Snake::DistanceToWall(char direction)
+int Snake::DistanceToWall(char direction2)
 {
 	int answer = 0;
 
 	int headPosition = this->snake.size() - 1;
 
-	switch (direction)
+	switch (this->direction)
 	{
 	case 'L':
-		answer = (this->snake[headPosition].getPosition().x) / FrameLength;
-		break;
+		switch (direction2)
+		{
+		case 'L':
+			return answer = (FieldSIze - (this->snake[headPosition].getPosition().y) - FrameLength) / FrameLength;
+		case 'U':
+			return answer = (this->snake[headPosition].getPosition().x) / FrameLength;
+		case 'R':
+			return answer = (this->snake[headPosition].getPosition().y) / FrameLength;
+		}
 	case 'U':
-		answer = (this->snake[headPosition].getPosition().y) / FrameLength;
-		break;
+		switch (direction2)
+		{
+		case 'L':
+			return answer = (this->snake[headPosition].getPosition().x) / FrameLength;
+		case 'U':
+			return answer = (this->snake[headPosition].getPosition().y) / FrameLength;
+		case 'R':
+			return answer = (FieldSIze - (this->snake[headPosition].getPosition().x) - FrameLength) / FrameLength;
+		}
 	case 'R':
-		answer = (FieldSIze - (this->snake[headPosition].getPosition().x)) / FrameLength;
-		break;
+		switch (direction2)
+		{
+		case 'L':
+			return answer = (this->snake[headPosition].getPosition().y) / FrameLength;
+		case 'U':
+			return answer = (FieldSIze - (this->snake[headPosition].getPosition().x) - FrameLength) / FrameLength;
+		case 'R':
+			return answer = (FieldSIze - (this->snake[headPosition].getPosition().y) - FrameLength) / FrameLength;
+		}
 	case 'D':
-		answer = (FieldSIze - (this->snake[headPosition].getPosition().y)) / FrameLength;
-		break;
+		switch (direction2)
+		{
+		case 'L':
+			return answer = (FieldSIze - (this->snake[headPosition].getPosition().x) - FrameLength) / FrameLength;
+		case 'U':
+			return answer = (FieldSIze - (this->snake[headPosition].getPosition().y) - FrameLength) / FrameLength;
+		case 'R':
+			return answer = (this->snake[headPosition].getPosition().x) / FrameLength;
+		}
 	}
 
 	return answer;
