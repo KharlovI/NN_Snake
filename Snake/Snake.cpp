@@ -144,7 +144,7 @@ int Snake::DistanceToWall(char direction2)
 
 	return answer;
 }
-int Snake::DistanceToTail(char direction)
+int Snake::DistanceToTail(char direction2)
 {
 	int headIndex = this->snake.size() - 1;
 
@@ -153,68 +153,205 @@ int Snake::DistanceToTail(char direction)
 
 	int answer;
 
-	switch (direction)
+	switch (this->direction)
 	{
 	case 'L':
-
-		answer = FieldSIze / FrameLength;
+	switch (direction2)
+	{
+		case 'L':
+		answer = (FieldSIze - FrameLength) / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
 
-			if (snakePosition.y == tailPosition.y)
+			if (snakePosition.x == tailPosition.x && snakePosition.y < tailPosition.y)
 			{
-				if ((snakePosition.x - tailPosition.x) / FrameLength < answer && snakePosition.x - tailPosition.x > 0)
-					answer = (snakePosition.x - tailPosition.x) / FrameLength;
+				int temp = (tailPosition.y - snakePosition.y) / FrameLength;
+				if (temp < answer)
+					answer = temp;
 			}
-		}
-		
+		}		
 		return answer;
 
-	case 'U':
-		answer = FieldSIze / FrameLength;
+		case 'U':
+		answer = snakePosition.x / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
-			if (snakePosition.x == tailPosition.x)
+			if (snakePosition.y == tailPosition.y && snakePosition.x > tailPosition.x)
 			{
-				if ((snakePosition.y - tailPosition.y) / FrameLength < answer && snakePosition.y - tailPosition.y > 0)
-					answer = (snakePosition.y - tailPosition.y) / FrameLength;
-			}
-		}
-		return answer;
-
-	case 'R':
-		answer = FieldSIze / FrameLength;
-
-		for (int i = 0; i < headIndex; i++)
-		{
-			tailPosition = this->snake[i].getPosition();
-			if (snakePosition.y == tailPosition.y)
-			{
-				if ((tailPosition.x - snakePosition.x) / FrameLength < answer && tailPosition.x - snakePosition.x > 0)
-					answer = (tailPosition.x - snakePosition.x) / FrameLength;
+				int temp = (snakePosition.x - tailPosition.x) / FrameLength;
+				if (temp < answer)
+					answer = temp;
 			}
 		}
 
 		return answer;
-
-	case 'D':
-		answer = FieldSIze / FrameLength;
+		case 'R':
+		answer = snakePosition.y / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
-			if (snakePosition.x == tailPosition.x)
+			if (snakePosition.x == tailPosition.x && snakePosition.y > tailPosition.y)
 			{
-				if ((tailPosition.y - snakePosition.y) / FrameLength < answer && tailPosition.y - snakePosition.y > 0)
-					answer = (tailPosition.y - snakePosition.y) / FrameLength;
+				int temp = (snakePosition.y - tailPosition.y) / FrameLength;
+				if (temp < answer)
+					answer = temp;
 			}
 		}
 
 		return answer;
 	}
+	case 'U':
+	switch (direction2)
+	{
+		case 'L':
+		answer = snakePosition.x / FrameLength;
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.y == tailPosition.y && tailPosition.x < snakePosition.x)
+			{
+				int temp = (snakePosition.x - tailPosition.x) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}		
+		return answer;
+
+		case 'U':
+		answer = snakePosition.y / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+			if (snakePosition.x == tailPosition.x && snakePosition.y > tailPosition.y)
+			{
+				int temp = (snakePosition.y - tailPosition.y) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}
+
+		return answer;
+		case 'R':
+		answer = (FieldSIze - FrameLength)/ FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+			if (snakePosition.y == tailPosition.y && snakePosition.x < tailPosition.x)
+			{
+				int temp = (tailPosition.x - snakePosition.x) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}
+	}
+		return answer;
+	case 'R':
+	switch (direction2)
+	{
+		case 'L':
+		answer = snakePosition.y / FrameLength;
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.x == tailPosition.x && tailPosition.y < snakePosition.y)
+			{
+				int temp = (snakePosition.y - tailPosition.y) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}		
+		return answer;
+
+		case 'U':
+		answer = (FieldSIze - FrameLength) / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+			if (snakePosition.y == tailPosition.y && snakePosition.x < tailPosition.x)
+			{
+				int temp = (tailPosition.x - snakePosition.x) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}
+
+		return answer;
+		case 'R':
+		answer = (FieldSIze - FrameLength)/ FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+			if (snakePosition.x == tailPosition.x && snakePosition.y < tailPosition.y)
+			{
+				int temp = (tailPosition.y - snakePosition.y) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}
+	}
+		return answer;
+	case 'D':
+	switch (direction2)
+	{
+		case 'L':
+		answer = (FieldSIze - FrameLength) / FrameLength;
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+
+			if (snakePosition.y == tailPosition.y && tailPosition.x > snakePosition.x)
+			{
+				int temp = (tailPosition.x - snakePosition.x) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}		
+		return answer;
+
+		case 'U':
+		answer = (FieldSIze - FrameLength) / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+			if (snakePosition.x == tailPosition.x && snakePosition.y < tailPosition.y)
+			{
+				int temp = (tailPosition.y - snakePosition.y) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}
+
+		return answer;
+		case 'R':
+		answer = snakePosition.x / FrameLength;
+
+		for (int i = 0; i < headIndex; i++)
+		{
+			tailPosition = this->snake[i].getPosition();
+			if (snakePosition.y == tailPosition.y && snakePosition.x > tailPosition.x)
+			{
+				int temp = (snakePosition.x - tailPosition.x) / FrameLength;
+				if (temp < answer)
+					answer = temp;
+			}
+		}
+	}
+		return answer;
+	default:
+		break;
+	}
+	
 }
 int Snake::DistanceToApple(char direction, Apple& apple)
 {

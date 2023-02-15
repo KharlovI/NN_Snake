@@ -33,16 +33,17 @@ TEST_CASE("Distance to tail")
     snake.AddElementToBody(sf::Vector2f{12*FrameLength,13*FrameLength});
     snake.AddElementToBody(sf::Vector2f{11*FrameLength,13*FrameLength});
     snake.AddElementToBody(sf::Vector2f{11*FrameLength,12*FrameLength});
+    
+    char direction = 'U';
+    snake.SetDirection(direction);
 
     int UpDistance = snake.DistanceToTail('U');
     int RightDistance = snake.DistanceToTail('R');
-    int DownDistance = snake.DistanceToTail('D');
     int LeftDistance = snake.DistanceToTail('L');
     
     CHECK(UpDistance == 2);
     CHECK(RightDistance == 2);
-    CHECK(DownDistance == 1);
-    CHECK(LeftDistance == 20);
+    CHECK(LeftDistance == 11);
 }
 
 TEST_CASE("Distance to apple")
