@@ -10,6 +10,7 @@ TEST_CASE("Distance to wall")
     sf::Vector2f position{10*FrameLength,0};
     snake.SetHeadPosition(position);
     char direction = 'U';
+    snake.SetDirection(direction);
 
     int LDistance = snake.DistanceToWall('L');
     int RDistance = snake.DistanceToWall('R');
@@ -50,21 +51,21 @@ TEST_CASE("Distance to apple")
 {
     Snake snake;
     sf::Vector2f snakePosition{10*FrameLength, 0};
+    char direction = 'U';
     Apple apple;
     sf::Vector2f applePosition{0,0};
 
     snake.SetHeadPosition(snakePosition);
     apple.SetPosition(applePosition);
 
-    int UpDistance = snake.DistanceToApple('U', apple);
-    int RightDistance = snake.DistanceToApple('R', apple);
-    int DownDistance = snake.DistanceToApple('D', apple);
-    int LeftDistance = snake.DistanceToApple('L',apple); 
+    
+    int UDistance = snake.DistanceToApple('U', apple);
+    int RDistance = snake.DistanceToApple('R', apple);
+    int LDistance = snake.DistanceToApple('L', apple); 
 
-    CHECK(UpDistance == 20);
-    CHECK(RightDistance == 20);
-    CHECK(DownDistance == 20);
-    CHECK(LeftDistance == 10);
+    CHECK(UDistance == 0);
+    CHECK(RDistance == 9);
+    CHECK(LDistance == 10);
 }
 
 TEST_CASE("Diagonal distance to apple")

@@ -361,56 +361,164 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 	sf::Vector2f snakePosition = this->snake[headPosition].getPosition();
 	sf::Vector2f applePosition = apple.GetApple().getPosition();
 
-	switch (direction)
+	switch(this->direction)
 	{
 	case 'L':
-		answer = FieldSIze / FrameLength;
-
-		if (applePosition.y == snakePosition.y)
+		switch (direction)
 		{
-			if (snakePosition.x - applePosition.x > 0)
+		case 'L':
+		answer = (FieldSIze - FrameLength)  / FrameLength;
+
+		if (applePosition.x == snakePosition.x)
+		{
+			if (snakePosition.y < applePosition.y)
 			{
-				answer = (snakePosition.x - applePosition.x) / FrameLength;
+				answer = (applePosition.y - snakePosition.y) / FrameLength;
 			}
 		}
 		return answer;
 
-	case 'U':
-		answer = FieldSIze / FrameLength;
+		case 'U':
+		answer = snakePosition.x / FrameLength;
+
+		if (applePosition.y == snakePosition.y)
+		{
+			if (snakePosition.x > applePosition.x)
+			{
+				answer = snakePosition.x - applePosition.x;
+			}
+		}
+		return answer;
+
+		case 'R':
+		answer = snakePosition.y / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
-			if (snakePosition.y - applePosition.y > 0)
+			if (applePosition.y < snakePosition.y)
+			{
+				answer = snakePosition.y - applePosition.y;
+			}
+		}
+		return answer;
+		}
+	case 'U':
+		switch (direction)
+		{
+		case 'L':
+		answer = snakePosition.x  / FrameLength;
+
+		if (applePosition.y == snakePosition.y)
+		{
+			if (snakePosition.x > applePosition.x)
+			{
+				answer = (snakePosition.x - applePosition.x ) / FrameLength;
+			}
+		}
+		return answer;
+
+		case 'U':
+		answer = snakePosition.y / FrameLength;
+
+		if (applePosition.x == snakePosition.x)
+		{
+			if (snakePosition.y > applePosition.y)
 			{
 				answer = snakePosition.y - applePosition.y;
 			}
 		}
 		return answer;
 
-	case 'R':
-		answer = FieldSIze / FrameLength;
+		case 'R':
+		answer = (FieldSIze - FrameLength) / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
-			if (applePosition.x - snakePosition.x > 0)
+			if (applePosition.x > snakePosition.x)
+			{
+				answer = applePosition.x - snakePosition.x;
+			}
+		}
+		return answer;
+		}
+	case 'R':
+		switch (direction)
+		{
+		case 'L':
+		answer = snakePosition.y / FrameLength;
+
+		if (applePosition.x == snakePosition.x)
+		{
+			if (snakePosition.y > applePosition.y)
+			{
+				answer = (snakePosition.y - applePosition.y) / FrameLength;
+			}
+		}
+		return answer;
+
+		case 'U':
+		answer = (FieldSIze - FrameLength) / FrameLength;
+
+		if (applePosition.y == snakePosition.y)
+		{
+			if (snakePosition.x < applePosition.x)
 			{
 				answer = applePosition.x - snakePosition.x;
 			}
 		}
 		return answer;
 
-	case 'D':
-
-		answer = FieldSIze / FrameLength;
+		case 'R':
+		answer = (FieldSIze - FrameLength) / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
-			if (applePosition.y - snakePosition.y > 0)
+			if (applePosition.y > snakePosition.y)
 			{
 				answer = applePosition.y - snakePosition.y;
 			}
 		}
 		return answer;
+		}
+	case 'D':
+		switch (direction)
+		{
+		case 'L':
+		answer = (FieldSIze - FrameLength)  / FrameLength;
+
+		if (applePosition.y == snakePosition.y)
+		{
+			if (snakePosition.x < applePosition.x)
+			{
+				answer = (applePosition.x - snakePosition.x) / FrameLength;
+			}
+		}
+		return answer;
+
+		case 'U':
+		answer = (FieldSIze - FrameLength) / FrameLength;
+
+		if (applePosition.x == snakePosition.x)
+		{
+			if (snakePosition.y < applePosition.y)
+			{
+				answer = applePosition.y - snakePosition.y;
+			}
+		}
+		return answer;
+
+		case 'R':
+		answer = snakePosition.x / FrameLength;
+
+		if (applePosition.y == snakePosition.y)
+		{
+			if (applePosition.x < snakePosition.x)
+			{
+				answer = snakePosition.x - applePosition.x;
+			}
+		}
+		return answer;
+		}
 	}
 }
 int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& apple)
