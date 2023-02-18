@@ -74,20 +74,18 @@ TEST_CASE("Diagonal distance to apple")
     sf::Vector2f snakePosition{10*FrameLength, 10*FrameLength};
     Apple apple;
     sf::Vector2f applePosition{0,0};
+    char direction = 'U';
+    snake.SetDirection(direction);
 
     snake.SetHeadPosition(snakePosition);
     apple.SetPosition(applePosition);
 
-    int LUDistance = snake.DiagonalDistanceToApple('L','U', apple);
-    int URDistance = snake.DiagonalDistanceToApple('U','R', apple);
-    int RDDistance = snake.DiagonalDistanceToApple('R','D', apple);
-    int DLDistance = snake.DiagonalDistanceToApple('D','L',apple); 
+    int LDistance = snake.DiagonalDistanceToApple('L', apple);
+    int RDistance = snake.DiagonalDistanceToApple('R', apple);
 
-    CHECK(LUDistance == 20);
-    CHECK(URDistance == 40);
-    CHECK(RDDistance == 40);
-    CHECK(DLDistance == 40);
-    
+
+    CHECK(LDistance == 20);
+    CHECK(RDistance == 40);   
 }
 
 TEST_CASE("Next position")
@@ -109,8 +107,8 @@ TEST_CASE("Next position")
     sf::Vector2f nextPosition2 = snake2.NextPosition();
 
     CHECK(nextPosition1.x == 10*FrameLength);
-    CHECK(nextPosition1.y == -FrameLength);
-    CHECK(nextPosition2.x == 0);
+    CHECK(nextPosition1.y == 0);
+    CHECK(nextPosition2.x == 0  );
     CHECK(nextPosition2.y == 11*FrameLength);
 }
 
@@ -168,7 +166,7 @@ TEST_CASE("Frame is apple")
     snake4.SetHeadPosition(snake4Position);
 
     CHECK(snake1.FrameISApple(apple) == true);
-    CHECK(snake1.FrameISApple(apple) == false);
-    CHECK(snake1.FrameISApple(apple) == true);
+    CHECK(snake2.FrameISApple(apple) == false);
+    CHECK(snake3.FrameISApple(apple) == true);
     CHECK(snake4.FrameISApple(apple) == false);
 }

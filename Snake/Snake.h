@@ -37,7 +37,7 @@ public:
 	int DistanceToWall(char direction);
 	int DistanceToTail(char direction);	
 	int DistanceToApple(char direction, Apple& apple);
-	int DiagonalDistanceToApple(char direction1, char direction2, Apple& apple);	
+	int DiagonalDistanceToApple(char direction1, Apple& apple);	
 
 	void AddElementToBody(sf::Vector2f newPosition);
 	bool EatApple(Apple& apple);

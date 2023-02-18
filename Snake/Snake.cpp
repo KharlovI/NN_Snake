@@ -521,7 +521,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		}
 	}
 }
-int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& apple)
+int Snake::DiagonalDistanceToApple(char direction1, Apple& apple)
 {
 	int headIndex = this->snake.size() - 1;
 
@@ -538,64 +538,98 @@ int Snake::DiagonalDistanceToApple(char direction1, char direction2, Apple& appl
 	int dy;
 
 	int answer;
-	switch (direction1)
+	int alternativeAnsver = ( 2 * (FieldSIze-FrameLength) / FrameLength);
+	switch (this->direction)
 	{
 	case 'L':
-		switch (direction2)
+		switch (direction1)
 		{
-		case 'U':
-			dx = FieldSIze / FrameLength;
-			dy = FieldSIze / FrameLength;
+		case 'L':
+			dx = snakeNormX - appleNormX;
+			dy = appleNormY - snakeNormY;
 
-			if (snakePosition.x - applePosition.x == snakePosition.y - applePosition.y)
+			if(dx == dy)
 			{
-				dx = snakeNormX - appleNormX;
-				dy = snakeNormY - appleNormY;
+				return dx + dy;
 			}
 
-			answer = dx + dy;
-			return answer;
+			return alternativeAnsver;
+		case 'R':
+			dx = snakeNormX - appleNormX;
+			dy = snakeNormY - appleNormY;
 
-		case 'D':
-			dx = FieldSIze / FrameLength;
-			dy = FieldSIze / FrameLength;
-
-			if (snakePosition.x - applePosition.x == applePosition.y - snakePosition.y)
+			if(dx == dy)
 			{
-				dx = snakeNormX - appleNormX;
-				dy = appleNormY - snakeNormY;
+				return dx + dy;
 			}
 
-			answer = dx + dy;
-			return answer;
+			return alternativeAnsver;
 		}
-		break;
-	case 'R':
-		switch (direction2)
+	case 'U':
+		switch (direction1)
 		{
-		case 'U':
-			dx = FieldSIze / FrameLength;
-			dy = FieldSIze / FrameLength;
+		case 'L':
+			dx = snakeNormX - appleNormX;
+			dy = snakeNormY - appleNormY;
 
-			if (applePosition.x - snakePosition.x == snakePosition.y - applePosition.y)
+			if(dx == dy)
 			{
-				dx = appleNormX - snakeNormX;
-				dy = snakeNormY - appleNormY;
+				return dx + dy;
 			}
-			answer = dx + dy;
-			return answer;
+			return alternativeAnsver;
+		case 'R':
+			dx = appleNormX - snakeNormX;
+			dy = snakeNormY - appleNormY;
 
-		case 'D':
-			dx = FieldSIze / FrameLength;
-			dy = FieldSIze / FrameLength;
-
-			if (applePosition.x - snakePosition.x == applePosition.y - snakePosition.y)
+			if(dx == dy)
 			{
-				dx = appleNormX - snakeNormX;
-				dy = appleNormY - snakeNormY;
+				return dx + dy;
 			}
-			answer = dx + dy;
-			return answer;
+			return alternativeAnsver;		
+		}
+	case 'R':
+		switch (direction1)
+		{
+		case 'L':
+			dx = appleNormX - snakeNormX;
+			dy = snakeNormY - appleNormY;
+
+			if(dx == dy)
+			{
+				return dx + dy;
+			}
+			return alternativeAnsver;
+		case 'R':
+			dx = appleNormX - snakeNormX;
+			dy = appleNormY - snakeNormY;
+
+			if(dx == dy)
+			{
+				return dx + dy;
+			}
+			return alternativeAnsver;		
+		}
+	case 'D':
+		switch (direction1)
+		{
+		case 'L':
+			dx = appleNormX - snakeNormX;
+			dy = appleNormY - snakeNormY;
+
+			if(dx == dy)
+			{
+				return dx + dy;
+			}
+			return alternativeAnsver;
+		case 'R':
+			dx = snakeNormX - appleNormX;
+			dy = appleNormY - snakeNormY;
+
+			if(dx == dy)
+			{
+				return dx + dy;
+			}
+			return alternativeAnsver;
 		}
 	}
 }
@@ -626,65 +660,25 @@ bool Snake::EatApple(Apple& apple)
 int* Snake::Inputs(Apple& apple)
 {
 	int* answer = new int[CountOfInputs];
+	answer[0] = DistanceToTail('L');
+	answer[1] = DistanceToTail('U');
+	answer[2] = DistanceToTail('R');
 
-	switch (this->direction)
-	{
-	case'L':
-		answer[0] = DistanceToWall('D');
-		answer[1] = DistanceToTail('D');
-		answer[2] = DistanceToApple('D', apple);
-		answer[3] = DistanceToWall('L');
-		answer[4] = DistanceToTail('L');
-		answer[5] = DistanceToApple('L', apple);
-		answer[6] = DistanceToWall('U');
-		answer[7] = DistanceToTail('U');
-		answer[8] = DistanceToApple('U', apple);
-		break;
+	answer[3] = DistanceToWall('L');
+	answer[4] = DistanceToWall('U');
+	answer[5] = DistanceToWall('R');
 
-	case'U':
-		answer[0] = DistanceToWall('L');
-		answer[1] = DistanceToTail('L');
-		answer[2] = DistanceToApple('L', apple);
-		answer[3] = DistanceToWall('U');
-		answer[4] = DistanceToTail('U');
-		answer[5] = DistanceToApple('U', apple);
-		answer[6] = DistanceToWall('R');
-		answer[7] = DistanceToTail('R');
-		answer[8] = DistanceToApple('R', apple);
-		break;
+	answer[6] = DistanceToApple('L', apple);
+	answer[7] = DiagonalDistanceToApple('L', apple);
+	answer[8] = DistanceToApple('U', apple);
+	answer[9] = DiagonalDistanceToApple('R', apple);
+	answer[10] = DistanceToApple('R', apple);
 
-	case 'R':
-		answer[0] = DistanceToWall('U');
-		answer[1] = DistanceToTail('U');
-		answer[2] = DistanceToApple('U', apple);
-		answer[3] = DistanceToWall('R');
-		answer[4] = DistanceToTail('R');
-		answer[5] = DistanceToApple('R', apple);
-		answer[6] = DistanceToWall('D');
-		answer[7] = DistanceToTail('D');
-		answer[8] = DistanceToApple('D', apple);
-		break;
-	case 'D':
-		answer[0] = DistanceToWall('R');
-		answer[1] = DistanceToTail('R');
-		answer[2] = DistanceToApple('R', apple);
-		answer[3] = DistanceToWall('D');
-		answer[4] = DistanceToTail('D');
-		answer[5] = DistanceToApple('D', apple);
-		answer[6] = DistanceToWall('L');
-		answer[7] = DistanceToTail('L');
-		answer[8] = DistanceToApple('L', apple);
-		break;
-	}
-
-	answer[9] = DiagonalDistanceToApple('L', 'U', apple);
-	answer[10] = DiagonalDistanceToApple('L', 'D', apple);
-	answer[11] = DiagonalDistanceToApple('R', 'U', apple);
-	answer[12] = DiagonalDistanceToApple('R', 'D', apple);
-	answer[13] = 1;
+	answer[11] = 1;
 
 	return answer;
 }
+
 bool Snake::MoveAI(Apple& apple)
 {
 	int* inputs = Inputs(apple);
