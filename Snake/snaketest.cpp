@@ -44,7 +44,7 @@ TEST_CASE("Distance to tail")
     
     CHECK(UpDistance == 2);
     CHECK(RightDistance == 2);
-    CHECK(LeftDistance == 11);
+    CHECK(LeftDistance == 19);
 }
 
 TEST_CASE("Distance to apple")
@@ -55,6 +55,7 @@ TEST_CASE("Distance to apple")
     Apple apple;
     sf::Vector2f applePosition{0,0};
 
+    snake.SetDirection(direction);
     snake.SetHeadPosition(snakePosition);
     apple.SetPosition(applePosition);
 
@@ -63,8 +64,8 @@ TEST_CASE("Distance to apple")
     int RDistance = snake.DistanceToApple('R', apple);
     int LDistance = snake.DistanceToApple('L', apple); 
 
-    CHECK(UDistance == 0);
-    CHECK(RDistance == 9);
+    CHECK(UDistance == 19);
+    CHECK(RDistance == 19);
     CHECK(LDistance == 10);
 }
 
@@ -85,7 +86,7 @@ TEST_CASE("Diagonal distance to apple")
 
 
     CHECK(LDistance == 20);
-    CHECK(RDistance == 40);   
+    CHECK(RDistance == 38);   
 }
 
 TEST_CASE("Next position")

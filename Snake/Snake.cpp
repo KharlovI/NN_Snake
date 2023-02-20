@@ -174,7 +174,7 @@ int Snake::DistanceToTail(char direction2)
 		return answer;
 
 		case 'U':
-		answer = snakePosition.x / FrameLength;
+		answer = (FieldSIze - FrameLength) / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -189,7 +189,7 @@ int Snake::DistanceToTail(char direction2)
 
 		return answer;
 		case 'R':
-		answer = snakePosition.y / FrameLength;
+		answer = (FieldSIze - FrameLength) / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -208,7 +208,7 @@ int Snake::DistanceToTail(char direction2)
 	switch (direction2)
 	{
 		case 'L':
-		answer = snakePosition.x / FrameLength;
+		answer = (FieldSIze - FrameLength) / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -223,7 +223,7 @@ int Snake::DistanceToTail(char direction2)
 		return answer;
 
 		case 'U':
-		answer = snakePosition.y / FrameLength;
+		answer = (FieldSIze - FrameLength) / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -256,7 +256,7 @@ int Snake::DistanceToTail(char direction2)
 	switch (direction2)
 	{
 		case 'L':
-		answer = snakePosition.y / FrameLength;
+		answer = (FieldSIze - FrameLength) / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -334,7 +334,7 @@ int Snake::DistanceToTail(char direction2)
 
 		return answer;
 		case 'R':
-		answer = snakePosition.x / FrameLength;
+		answer = (FieldSIze - FrameLength) / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -379,7 +379,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'U':
-		answer = snakePosition.x / FrameLength;
+		answer = (FieldSIze - FrameLength)  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -391,8 +391,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'R':
-		answer = snakePosition.y / FrameLength;
-
+		answer = (FieldSIze - FrameLength)  / FrameLength;
 		if (applePosition.x == snakePosition.x)
 		{
 			if (applePosition.y < snakePosition.y)
@@ -406,7 +405,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		switch (direction)
 		{
 		case 'L':
-		answer = snakePosition.x  / FrameLength;
+		answer = (FieldSIze - FrameLength)  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -418,7 +417,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'U':
-		answer = snakePosition.y / FrameLength;
+		answer = (FieldSIze - FrameLength)  / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -445,7 +444,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		switch (direction)
 		{
 		case 'L':
-		answer = snakePosition.y / FrameLength;
+		answer = (FieldSIze - FrameLength)  / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -508,7 +507,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'R':
-		answer = snakePosition.x / FrameLength;
+		answer = (FieldSIze - FrameLength)  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
