@@ -170,3 +170,14 @@ TEST_CASE("Frame is apple")
     CHECK(snake3.FrameISApple(apple) == true);
     CHECK(snake4.FrameISApple(apple) == false);
 }
+
+TEST_CASE("Imposible direction")
+{
+    Snake snake;
+    sf::Vector2f position{FrameLength, FrameLength};
+    char direction = 'R';
+    snake.SetDirection(direction);
+    snake.SetHeadPosition(position);
+
+    CHECK(snake.ImpossibleDirection() == 'L' );
+}
