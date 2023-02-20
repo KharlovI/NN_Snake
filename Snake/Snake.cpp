@@ -673,8 +673,6 @@ int* Snake::Inputs(Apple& apple)
 	answer[9] = DiagonalDistanceToApple('R', apple);
 	answer[10] = DistanceToApple('R', apple);
 
-	answer[11] = 1;
-
 	return answer;
 }
 
