@@ -913,26 +913,18 @@ sf::Vector2f Snake::NextPosition()
 	switch (this->direction)
 	{
 	case 'L':
-	    if(temp.x == 0)
-			return temp;
 		temp.x -= FrameLength;
 		return temp;
 
 	case 'U':
-		if(temp.y == 0)
-			return temp;
 		temp.y -= FrameLength;
 		return temp;
 
 	case 'R':
-		if(temp.x == FieldSIze - FrameLength)
-			return temp;
 		temp.x += FrameLength;
 		return temp;
 
 	case 'D':
-		if(temp.y == FieldSIze - FrameLength)
-			return temp;
 		temp.y += FrameLength;
 		return temp;
 	}
