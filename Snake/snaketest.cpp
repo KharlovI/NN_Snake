@@ -182,3 +182,27 @@ TEST_CASE("Imposible direction")
 
     CHECK(snake.ImpossibleDirection() == 'L' );
 }
+
+TEST_CASE("Model")
+{
+    Genotype genotype;
+    genotype.SetFromFile();
+
+   int* inputs = new int[CountOfInputs];
+   inputs[0] = 20;
+   inputs[1] = 20;
+   inputs[2] = 3;
+   inputs[3] = 2;
+   inputs[4] = 0;
+   inputs[5] = 18;
+   inputs[6] = 20;
+   inputs[7] = 40;
+   inputs[8] = 20;
+   inputs[9] = 40;
+   inputs[10] = 6;
+
+   Row answer = genotype.GetStepPossibility(inputs);
+   CHECK(answer[2] == 1);
+   CHECK(answer[1] == 0);
+   CHECK(answer[0] == 0);
+}
