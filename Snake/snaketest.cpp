@@ -205,4 +205,6 @@ TEST_CASE("Model")
    CHECK(answer[2] == 1);
    CHECK(answer[1] == 0);
    CHECK(answer[0] == 0);
+   
+   delete inputs;
 }
