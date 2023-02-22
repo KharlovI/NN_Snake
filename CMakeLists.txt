@@ -29,8 +29,7 @@ add_executable(AISnake
         Snake/Utilities.h
         Snake/Button.cpp
         Snake/Button.h
-        Snake/firstLayer.txt
-        Snake/secondLayer.txt)
+        )
 
 set(SFML_DIR "S:\\Programs\\CLion 2022.2.3\\SFML\\lib\\cmake\\SFML")
 

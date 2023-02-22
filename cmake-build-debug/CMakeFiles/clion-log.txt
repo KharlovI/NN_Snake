@@ -1,5 +1,0 @@
-"S:\Programs\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S S:\Downloads\AISnake -B S:\Downloads\AISnake\cmake-build-debug
--- Found SFML 2.5.1 in S:/Programs/CLion 2022.2.3/SFML/lib/cmake/SFML
--- Configuring done
--- Generating done
--- Build files have been written to: S:/Downloads/AISnake/cmake-build-debug

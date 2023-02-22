@@ -1,3 +1,0 @@
-"S:\Programs\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\snakeTest.dir/objects.a
-S:\Programs\CLION2~1.3\bin\mingw\bin\ar.exe qc CMakeFiles\snakeTest.dir/objects.a @CMakeFiles\snakeTest.dir\objects1.rsp
-S:\Programs\CLION2~1.3\bin\mingw\bin\G__~1.EXE -g -static -static-libgcc -Wl,--whole-archive CMakeFiles\snakeTest.dir/objects.a -Wl,--no-whole-archive -o snakeTest.exe -Wl,--out-implib,libsnakeTest.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\snakeTest.dir\linklibs.rsp
