@@ -31,7 +31,7 @@ add_executable(AISnake
         Snake/Button.h
         )
 
-set(SFML_DIR "S:\\Programs\\CLion 2022.2.3\\SFML\\lib\\cmake\\SFML")
+set(SFML_DIR "SFML\\lib\\cmake\\SFML")
 
 target_link_libraries(AISnake sfml-graphics)
 
@@ -52,7 +52,6 @@ add_executable(snakeTest
         Snake/Utilities.cpp
         Snake/Utilities.h
         Snake/Button.cpp
-        Snake/Button.h
-        )
+        Snake/Button.h)
 
 target_link_libraries(snakeTest sfml-graphics)
