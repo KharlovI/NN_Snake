@@ -579,11 +579,11 @@ void Genotype::SetFromFile()
 			layer_2 >> this->layer_2[i][j];
 			layer_3 >> this->layer_3[i][j];
 			layer_4 >> this->layer_4[i][j];
-
-			intercepts_2 >> this->intersept_2[i][j];
-			intercepts_3 >> this->intersept_3[i][j];
-			intercepts_4 >> this->intersept_4[i][j];
 		}
+
+        intercepts_2 >> this->intersept_2[i][0];
+        intercepts_3 >> this->intersept_3[i][0];
+        intercepts_4 >> this->intersept_4[i][0];
 	}
 
 	for (int i = 0; i < Outputs; i++)
@@ -591,8 +591,8 @@ void Genotype::SetFromFile()
 		for (int j = 0; j < Weights; j++)
 		{
 			layer_5 >> this->layer_5[i][j];
-			intercepts_5 >> this->intersept_5[i][j];
 		}
+        intercepts_5 >> this->intersept_5[i][0];
 	}
 
 	layer_1.close();
