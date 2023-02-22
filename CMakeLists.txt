@@ -53,7 +53,6 @@ add_executable(snakeTest
         Snake/Utilities.h
         Snake/Button.cpp
         Snake/Button.h
-        Snake/firstLayer.txt
-        Snake/secondLayer.txt)
+        )
 
 target_link_libraries(snakeTest sfml-graphics)
