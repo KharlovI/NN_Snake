@@ -551,7 +551,7 @@ void Genotype::SetFromFile()
 	intercepts_4.open("intercepts_4.txt", std::ifstream::in);
     intercepts_5.open("intercepts_5.txt",std::ifstream::in);
 
-    if(layer_1.is_open()) std::cout << "l1 loaded." << std::endl;
+    if(layer_1.is_open()) std::cout << "l1 file loaded." << std::endl;
     if(layer_2.is_open()) std::cout << "l2 file loaded." << std::endl;
 	if(layer_3.is_open()) std::cout << "l3 file loaded." << std::endl;
     if(layer_4.is_open()) std::cout << "l4 file loaded." << std::endl;
@@ -561,6 +561,7 @@ void Genotype::SetFromFile()
     if(intercepts_3.is_open()) std::cout << "i3 file loaded." << std::endl;
 	if(intercepts_4.is_open()) std::cout << "i4 file loaded." << std::endl;
     if(intercepts_5.is_open()) std::cout << "i5 file loaded." << std::endl;
+
 
 	for (int i = 0; i < Weights; i++)
 	{
