@@ -32,7 +32,7 @@ add_executable(AISnake
         Snake/firstLayer.txt
         Snake/secondLayer.txt)
 
-set(SFML_DIR "S:\\Programs\\CLion 2022.2.3\\SFML\\lib\\cmake\\SFML")
+set(SFML_DIR "SFML")
 
 target_link_libraries(AISnake sfml-graphics)
 
