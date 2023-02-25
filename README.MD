@@ -1,4 +1,5 @@
 <h1 class = "header"> AISnake Project Glossary </h1>
+![snake](https://user-images.githubusercontent.com/78792148/221324701-91c31482-2b71-4649-8c83-b68122344e4a.png)
 
 <article>
     Here will be mentioned the main terms with their definitions.
