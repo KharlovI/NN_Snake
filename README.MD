@@ -17,6 +17,8 @@
     <li><span class = "glossary_term">Training mode</span> – the process of agent's behaviour ameliorating.</li>
     <br></br>
     <li><span class = "glossary_term">Trained mode</span> – the mode which is considered to perform the most efficient behaviour in the ambient.</li>
+    <br></br>
+    <li><span class = "glossary_term">Direction</span> – the next possible agent's step.</li>
     </ul>
     <br></br>
     Thank you for your consideration.
