@@ -1,7 +1,9 @@
 <h1 class = "header"> AISnake Project Glossary </h1>
 
-<img src="https://user-images.githubusercontent.com/78792148/221324730-951924b4-c36d-448d-becb-8261edf2f923.png" width=300 height=300>
-<img src=https://user-images.githubusercontent.com/78792148/221324900-81017f23-41af-4df4-a914-e6c3d38e6516.png" width=300 height=300>
+<table><tr>
+<td><img src="https://user-images.githubusercontent.com/78792148/221324730-951924b4-c36d-448d-becb-8261edf2f923.png" width=300 height=300></td>
+<td><img src=https://user-images.githubusercontent.com/78792148/221324900-81017f23-41af-4df4-a914-e6c3d38e6516.png" width=300 height=300></td>
+</tr></table>
 
 <article>
     Here will be mentioned the main terms with their definitions.
