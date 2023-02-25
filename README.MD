@@ -12,7 +12,7 @@
     <br></br>
     <br></br>
     <ul>
-    <li><span class = "glossary_term">Snake(Agent)</span> – the learner and decision-maker, it interacts continually with the environment.</li>
+    <li><span style = "text-decoration:underline">Snake(Agent)</span> – the learner and decision-maker, it interacts continually with the environment.</li>
     <br></br>
     <li><span class = "glossary_term">Environment</span> – ambient. The whole area of interaction.</li>
     <br></br>
