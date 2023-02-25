@@ -10,6 +10,7 @@
 <article>
     Here will be mentioned the main terms with their definitions.
     <br></br>
+    <br></br>
     <ul>
     <li><span class = "glossary_term">Snake(Agent)</span> – the learner and decision-maker, it interacts continually with the environment.</li>
     <br></br>
