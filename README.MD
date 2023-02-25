@@ -8,7 +8,7 @@
 <br></br>
 
 <article>
-    Here will be mentioned the main terms with their definitions.
+    <em>Here will be mentioned the main terms with their definitions.</em>
     <br></br>
     <br></br>
     <ul>
@@ -29,7 +29,7 @@
     <li><b>Direction</b> – the next possible agent's step.</li>
     </ul>
     <br></br>
-    Thank you for your consideration.
+    <em>Thank you for your consideration.</em>
 </article>
 <br>
 <div align="right"><em> by <a href="https://github.com/KharlovI">KharlovI</a> and
