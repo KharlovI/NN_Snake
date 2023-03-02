@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "S:/Downloads/AISnake/Snake/Apple.cpp" "CMakeFiles/AISnake.dir/Snake/Apple.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Apple.cpp.obj.d"
-  "S:/Downloads/AISnake/Snake/Button.cpp" "CMakeFiles/AISnake.dir/Snake/Button.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Button.cpp.obj.d"
-  "S:/Downloads/AISnake/Snake/Genotype.cpp" "CMakeFiles/AISnake.dir/Snake/Genotype.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Genotype.cpp.obj.d"
-  "S:/Downloads/AISnake/Snake/Snake.cpp" "CMakeFiles/AISnake.dir/Snake/Snake.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Snake.cpp.obj.d"
-  "S:/Downloads/AISnake/Snake/Utilities.cpp" "CMakeFiles/AISnake.dir/Snake/Utilities.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Utilities.cpp.obj.d"
-  "S:/Downloads/AISnake/Snake/main.cpp" "CMakeFiles/AISnake.dir/Snake/main.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/main.cpp.obj.d"
+  "D:/AISnake/Snake/Apple.cpp" "CMakeFiles/AISnake.dir/Snake/Apple.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Apple.cpp.obj.d"
+  "D:/AISnake/Snake/Button.cpp" "CMakeFiles/AISnake.dir/Snake/Button.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Button.cpp.obj.d"
+  "D:/AISnake/Snake/Genotype.cpp" "CMakeFiles/AISnake.dir/Snake/Genotype.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Genotype.cpp.obj.d"
+  "D:/AISnake/Snake/Snake.cpp" "CMakeFiles/AISnake.dir/Snake/Snake.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Snake.cpp.obj.d"
+  "D:/AISnake/Snake/Utilities.cpp" "CMakeFiles/AISnake.dir/Snake/Utilities.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/Utilities.cpp.obj.d"
+  "D:/AISnake/Snake/main.cpp" "CMakeFiles/AISnake.dir/Snake/main.cpp.obj" "gcc" "CMakeFiles/AISnake.dir/Snake/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

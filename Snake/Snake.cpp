@@ -159,7 +159,7 @@ int Snake::DistanceToTail(char direction2)
 	switch (direction2)
 	{
 		case 'L':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -174,7 +174,7 @@ int Snake::DistanceToTail(char direction2)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -189,7 +189,7 @@ int Snake::DistanceToTail(char direction2)
 
 		return answer;
 		case 'R':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -208,7 +208,7 @@ int Snake::DistanceToTail(char direction2)
 	switch (direction2)
 	{
 		case 'L':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -223,7 +223,7 @@ int Snake::DistanceToTail(char direction2)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -238,7 +238,7 @@ int Snake::DistanceToTail(char direction2)
 
 		return answer;
 		case 'R':
-		answer = (FieldSIze - FrameLength)/ FrameLength;
+		answer = FieldSIze/ FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -256,7 +256,7 @@ int Snake::DistanceToTail(char direction2)
 	switch (direction2)
 	{
 		case 'L':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -271,7 +271,7 @@ int Snake::DistanceToTail(char direction2)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -286,7 +286,7 @@ int Snake::DistanceToTail(char direction2)
 
 		return answer;
 		case 'R':
-		answer = (FieldSIze - FrameLength)/ FrameLength;
+		answer = FieldSIze/ FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -304,7 +304,7 @@ int Snake::DistanceToTail(char direction2)
 	switch (direction2)
 	{
 		case 'L':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 		for (int i = 0; i < headIndex; i++)
 		{
 			tailPosition = this->snake[i].getPosition();
@@ -319,7 +319,7 @@ int Snake::DistanceToTail(char direction2)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -334,7 +334,7 @@ int Snake::DistanceToTail(char direction2)
 
 		return answer;
 		case 'R':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		for (int i = 0; i < headIndex; i++)
 		{
@@ -367,7 +367,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		switch (direction)
 		{
 		case 'L':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -379,7 +379,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -391,7 +391,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'R':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 		if (applePosition.x == snakePosition.x)
 		{
 			if (applePosition.y < snakePosition.y)
@@ -405,7 +405,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		switch (direction)
 		{
 		case 'L':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -417,7 +417,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -429,7 +429,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'R':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -444,7 +444,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		switch (direction)
 		{
 		case 'L':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -456,7 +456,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -468,7 +468,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'R':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -483,7 +483,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		switch (direction)
 		{
 		case 'L':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -495,7 +495,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'U':
-		answer = (FieldSIze - FrameLength) / FrameLength;
+		answer = FieldSIze / FrameLength;
 
 		if (applePosition.x == snakePosition.x)
 		{
@@ -507,7 +507,7 @@ int Snake::DistanceToApple(char direction, Apple& apple)
 		return answer;
 
 		case 'R':
-		answer = (FieldSIze - FrameLength)  / FrameLength;
+		answer = FieldSIze  / FrameLength;
 
 		if (applePosition.y == snakePosition.y)
 		{
@@ -537,7 +537,7 @@ int Snake::DiagonalDistanceToApple(char direction1, Apple& apple)
 	int dy;
 
 	int answer;
-	int alternativeAnsver = ( 2 * (FieldSIze-FrameLength) / FrameLength);
+	int alternativeAnsver =  2 * FieldSIze / FrameLength;
 	switch (this->direction)
 	{
 	case 'L':

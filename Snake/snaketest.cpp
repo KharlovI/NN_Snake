@@ -191,19 +191,19 @@ TEST_CASE("Model")
    int* inputs = new int[CountOfInputs];
    inputs[0] = 20;
    inputs[1] = 20;
-   inputs[2] = 3;
+   inputs[2] = 20;
    inputs[3] = 2;
-   inputs[4] = 0;
-   inputs[5] = 18;
+   inputs[4] = 3;
+   inputs[5] = 17;
    inputs[6] = 20;
    inputs[7] = 40;
    inputs[8] = 20;
    inputs[9] = 40;
-   inputs[10] = 6;
+   inputs[10] = 20;
 
    Row answer = genotype.GetStepPossibility(inputs);
-   CHECK(answer[2] == 1);
-   CHECK(answer[1] == 0);
+   CHECK(answer[2] == 0);
+   CHECK(answer[1] == 1);
    CHECK(answer[0] == 0);
    
    delete inputs;

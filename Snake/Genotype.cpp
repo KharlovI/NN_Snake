@@ -278,6 +278,25 @@ Row Genotype::GetStepPossibility(int inputs[])
 
 	std::random_device randomDevice;
  	std::mt19937 engine{randomDevice()};
+    if(answerTemp[0] >= answerTemp[1] && answerTemp[0] >= answerTemp[2])
+    {
+        answerTemp[0] = 1;
+        answerTemp[1] = 0;
+        answerTemp[2] = 0;
+    }
+    else if(answerTemp[1] >= answerTemp[0] && answerTemp[1] >= answerTemp[2])
+    {
+        answerTemp[0] = 0;
+        answerTemp[1] = 1;
+        answerTemp[2] = 0;
+    }
+    else
+    {
+        answerTemp[0] = 0;
+        answerTemp[1] = 0;
+        answerTemp[2] = 1;
+    }
+    return answerTemp;
 
 	if(answerTemp[0] >= answerTemp[1] && answerTemp[0] >= answerTemp[2])
 	{
@@ -568,8 +587,8 @@ void Genotype::SetFromFile()
 		for (int j = 0; j < CountOfInputs; j++)
 		{
 			layer_1 >> this->layer_1[i][j];
-			intercepts_1 >> this->intersept_1[i][j];
 		}
+        intercepts_1 >> this->intersept_1[i][0];
 	}
 
 	for (int i = 0; i < Weights; i++)

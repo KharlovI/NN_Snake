@@ -1,4 +1,4 @@
-S:/Downloads/AISnake/cmake-build-debug/CMakeFiles/AISnake.dir
-S:/Downloads/AISnake/cmake-build-debug/CMakeFiles/snakeTest.dir
-S:/Downloads/AISnake/cmake-build-debug/CMakeFiles/edit_cache.dir
-S:/Downloads/AISnake/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/AISnake/cmake-build-debug/CMakeFiles/AISnake.dir
+D:/AISnake/cmake-build-debug/CMakeFiles/snakeTest.dir
+D:/AISnake/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/AISnake/cmake-build-debug/CMakeFiles/rebuild_cache.dir

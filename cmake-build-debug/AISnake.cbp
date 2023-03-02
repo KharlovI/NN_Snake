@@ -8,205 +8,205 @@
 		<Option virtualFolders="CMake Files\;CMake Files\SFML\;CMake Files\SFML\lib\;CMake Files\SFML\lib\cmake\;CMake Files\SFML\lib\cmake\SFML\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="AISnake">
-				<Option output="S:/Downloads/AISnake/cmake-build-debug/AISnake.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option output="D:/AISnake/cmake-build-debug/AISnake.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DSFML_STATIC"/>
-					<Add directory="S:/Downloads/AISnake/Snake"/>
-					<Add directory="S:/Downloads/AISnake/SFML/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/AISnake/Snake"/>
+					<Add directory="D:/AISnake/SFML/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 AISnake"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 AISnake"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="AISnake/fast">
-				<Option output="S:/Downloads/AISnake/cmake-build-debug/AISnake.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option output="D:/AISnake/cmake-build-debug/AISnake.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DSFML_STATIC"/>
-					<Add directory="S:/Downloads/AISnake/Snake"/>
-					<Add directory="S:/Downloads/AISnake/SFML/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/AISnake/Snake"/>
+					<Add directory="D:/AISnake/SFML/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 AISnake/fast"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 AISnake/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="snakeTest">
-				<Option output="S:/Downloads/AISnake/cmake-build-debug/snakeTest.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option output="D:/AISnake/cmake-build-debug/snakeTest.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DSFML_STATIC"/>
-					<Add directory="S:/Downloads/AISnake/Snake"/>
-					<Add directory="S:/Downloads/AISnake/SFML/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/AISnake/Snake"/>
+					<Add directory="D:/AISnake/SFML/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 snakeTest"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 snakeTest"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="snakeTest/fast">
-				<Option output="S:/Downloads/AISnake/cmake-build-debug/snakeTest.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option output="D:/AISnake/cmake-build-debug/snakeTest.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DSFML_STATIC"/>
-					<Add directory="S:/Downloads/AISnake/Snake"/>
-					<Add directory="S:/Downloads/AISnake/SFML/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="S:/Programs/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/AISnake/Snake"/>
+					<Add directory="D:/AISnake/SFML/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 snakeTest/fast"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 snakeTest/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="S:/Downloads/AISnake/cmake-build-debug"/>
+				<Option working_dir="D:/AISnake/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="S:/Programs/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;S:/Downloads/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;D:/AISnake/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="S:/Downloads/AISnake/Snake/Apple.cpp">
+		<Unit filename="D:/AISnake/Snake/Apple.cpp">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Apple.h">
+		<Unit filename="D:/AISnake/Snake/Apple.h">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Button.cpp">
+		<Unit filename="D:/AISnake/Snake/Button.cpp">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Button.h">
+		<Unit filename="D:/AISnake/Snake/Button.h">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Genotype.cpp">
+		<Unit filename="D:/AISnake/Snake/Genotype.cpp">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Genotype.h">
+		<Unit filename="D:/AISnake/Snake/Genotype.h">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Matrix.h">
+		<Unit filename="D:/AISnake/Snake/Matrix.h">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Snake.cpp">
+		<Unit filename="D:/AISnake/Snake/Snake.cpp">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Snake.h">
+		<Unit filename="D:/AISnake/Snake/Snake.h">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Utilities.cpp">
+		<Unit filename="D:/AISnake/Snake/Utilities.cpp">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/Utilities.h">
+		<Unit filename="D:/AISnake/Snake/Utilities.h">
 			<Option target="AISnake"/>
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/main.cpp">
+		<Unit filename="D:/AISnake/Snake/main.cpp">
 			<Option target="AISnake"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/Snake/snaketest.cpp">
+		<Unit filename="D:/AISnake/Snake/snaketest.cpp">
 			<Option target="snakeTest"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/CMakeLists.txt">
+		<Unit filename="D:/AISnake/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/SFML/lib/cmake/SFML/SFMLConfig.cmake">
+		<Unit filename="D:/AISnake/SFML/lib/cmake/SFML/SFMLConfig.cmake">
 			<Option virtualFolder="CMake Files\SFML\lib\cmake\SFML\"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/SFML/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+		<Unit filename="D:/AISnake/SFML/lib/cmake/SFML/SFMLConfigDependencies.cmake">
 			<Option virtualFolder="CMake Files\SFML\lib\cmake\SFML\"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/SFML/lib/cmake/SFML/SFMLConfigVersion.cmake">
+		<Unit filename="D:/AISnake/SFML/lib/cmake/SFML/SFMLConfigVersion.cmake">
 			<Option virtualFolder="CMake Files\SFML\lib\cmake\SFML\"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/SFML/lib/cmake/SFML/SFMLStaticTargets-debug.cmake">
+		<Unit filename="D:/AISnake/SFML/lib/cmake/SFML/SFMLStaticTargets-debug.cmake">
 			<Option virtualFolder="CMake Files\SFML\lib\cmake\SFML\"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/SFML/lib/cmake/SFML/SFMLStaticTargets-release.cmake">
+		<Unit filename="D:/AISnake/SFML/lib/cmake/SFML/SFMLStaticTargets-release.cmake">
 			<Option virtualFolder="CMake Files\SFML\lib\cmake\SFML\"/>
 		</Unit>
-		<Unit filename="S:/Downloads/AISnake/SFML/lib/cmake/SFML/SFMLStaticTargets.cmake">
+		<Unit filename="D:/AISnake/SFML/lib/cmake/SFML/SFMLStaticTargets.cmake">
 			<Option virtualFolder="CMake Files\SFML\lib\cmake\SFML\"/>
 		</Unit>
 	</Project>
